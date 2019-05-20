@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Competition summary</title>
+<link rel="stylesheet" type="text/css" href="/assets/css/rouge.css">
 <link rel="stylesheet" href="/assets/css/styles.css">
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -11,7 +12,7 @@
  
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="my awesome site" />
+<link type="application/atom+xml" rel="alternate" href="/feed.xml" title="my awesome site" />
     <!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>Competition summary | my awesome site</title>
 <meta name="generator" content="Jekyll v3.8.5" />
@@ -20,13 +21,11 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="2015 TaoBao Challenge of User Classification" />
 <meta property="og:description" content="2015 TaoBao Challenge of User Classification" />
-<link rel="canonical" href="http://localhost:4000/2019/05/19/competition-summary.html" />
-<meta property="og:url" content="http://localhost:4000/2019/05/19/competition-summary.html" />
 <meta property="og:site_name" content="my awesome site" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2019-05-19T00:00:00+08:00" />
 <script type="application/ld+json">
-{"description":"2015 TaoBao Challenge of User Classification","author":{"@type":"Person","name":"willXu"},"@type":"BlogPosting","url":"http://localhost:4000/2019/05/19/competition-summary.html","headline":"Competition summary","dateModified":"2019-05-19T00:00:00+08:00","datePublished":"2019-05-19T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2019/05/19/competition-summary.html"},"@context":"https://schema.org"}</script>
+{"description":"2015 TaoBao Challenge of User Classification","author":{"@type":"Person","name":"willXu"},"@type":"BlogPosting","url":"/2019/05/19/competition-summary.html","headline":"Competition summary","dateModified":"2019-05-19T00:00:00+08:00","datePublished":"2019-05-19T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"/2019/05/19/competition-summary.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <script type="text/x-mathjax-config">
@@ -450,15 +449,17 @@
 
 <p>The argument time in clean_data function can split the whole log_train.csv into different part by time interval as your wish.We give a invoking example below.</p>
 
-<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="w"> </span><span class="n">train_t1</span><span class="o">&lt;-</span><span class="n">clean_data</span><span class="p">(</span><span class="n">log_train</span><span class="p">,</span><span class="n">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span><span class="n">user.all</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_user</span><span class="p">(</span><span class="n">log_train</span><span class="p">),</span><span class="n">brand_kmeans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">brand_kmeans</span><span class="p">,</span><span class="n">cat_kmeans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cat_kmeans</span><span class="p">)</span><span class="w">
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
+ </span><span class="n">train_t1</span><span class="o">&lt;-</span><span class="n">clean_data</span><span class="p">(</span><span class="n">log_train</span><span class="p">,</span><span class="n">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span><span class="n">user.all</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_user</span><span class="p">(</span><span class="n">log_train</span><span class="p">),</span><span class="n">brand_kmeans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">brand_kmeans</span><span class="p">,</span><span class="n">cat_kmeans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cat_kmeans</span><span class="p">)</span><span class="w">
   </span><span class="n">train_t2</span><span class="o">&lt;-</span><span class="n">clean_data</span><span class="p">(</span><span class="n">log_train</span><span class="p">,</span><span class="n">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">11</span><span class="o">:</span><span class="m">40</span><span class="p">,</span><span class="n">user.all</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_user</span><span class="p">(</span><span class="n">log_train</span><span class="p">),</span><span class="n">brand_kmeans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">brand_kmeans</span><span class="p">,</span><span class="n">cat_kmeans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cat_kmeans</span><span class="p">)</span><span class="w">
   </span><span class="n">train_t3</span><span class="o">&lt;-</span><span class="n">clean_data</span><span class="p">(</span><span class="n">log_train</span><span class="p">,</span><span class="n">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">40</span><span class="o">:</span><span class="m">100</span><span class="p">,</span><span class="n">user.all</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_user</span><span class="p">(</span><span class="n">log_train</span><span class="p">),</span><span class="n">brand_kmeans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">brand_kmeans</span><span class="p">,</span><span class="n">cat_kmeans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cat_kmeans</span><span class="p">)</span><span class="w">
   </span><span class="n">train_t4</span><span class="o">&lt;-</span><span class="n">clean_data</span><span class="p">(</span><span class="n">log_train</span><span class="p">,</span><span class="n">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="o">:</span><span class="m">185</span><span class="p">,</span><span class="n">user.all</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_user</span><span class="p">(</span><span class="n">log_train</span><span class="p">),</span><span class="n">brand_kmeans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">brand_kmeans</span><span class="p">,</span><span class="n">cat_kmeans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cat_kmeans</span><span class="p">)</span><span class="w">
-  </span><span class="n">final_train</span><span class="o">&lt;-</span><span class="n">merge_data</span><span class="p">(</span><span class="n">train_t1</span><span class="p">,</span><span class="n">train_t2</span><span class="p">,</span><span class="n">train_t3</span><span class="p">,</span><span class="n">train_t4</span><span class="p">)</span></code></pre></figure>
+  </span><span class="n">final_train</span><span class="o">&lt;-</span><span class="n">merge_data</span><span class="p">(</span><span class="n">train_t1</span><span class="p">,</span><span class="n">train_t2</span><span class="p">,</span><span class="n">train_t3</span><span class="p">,</span><span class="n">train_t4</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
 
 <p>In the above code, we split the whole 185 days into 4 parts.We also combine all the feature in 4 parts together by a merge_data function.</p>
 
-<figure class="highlight"><pre><code class="language-r" data-lang="r"><span class="n">merge_data</span><span class="o">&lt;-</span><span class="k">function</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span><span class="n">data2</span><span class="p">,</span><span class="n">data3</span><span class="p">,</span><span class="n">data4</span><span class="p">,</span><span class="n">data5</span><span class="p">,</span><span class="n">data6</span><span class="p">,</span><span class="n">data7</span><span class="p">)</span><span class="w">
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">merge_data</span><span class="o">&lt;-</span><span class="k">function</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span><span class="n">data2</span><span class="p">,</span><span class="n">data3</span><span class="p">,</span><span class="n">data4</span><span class="p">,</span><span class="n">data5</span><span class="p">,</span><span class="n">data6</span><span class="p">,</span><span class="n">data7</span><span class="p">)</span><span class="w">
 </span><span class="p">{</span><span class="w">
 </span><span class="n">final_log</span><span class="o">&lt;-</span><span class="n">merge</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span><span class="n">data2</span><span class="p">,</span><span class="n">by.x</span><span class="o">=</span><span class="s2">"user_id"</span><span class="p">,</span><span class="n">by.y</span><span class="o">=</span><span class="s2">"user_id"</span><span class="p">)</span><span class="w">
 </span><span class="n">final_log</span><span class="o">&lt;-</span><span class="n">merge</span><span class="p">(</span><span class="n">final_log</span><span class="p">,</span><span class="n">data3</span><span class="p">,</span><span class="n">by.x</span><span class="o">=</span><span class="s2">"user_id"</span><span class="p">,</span><span class="n">by.y</span><span class="o">=</span><span class="s2">"user_id"</span><span class="p">)</span><span class="w">
@@ -468,7 +469,8 @@
 </span><span class="n">final_log</span><span class="o">&lt;-</span><span class="n">merge</span><span class="p">(</span><span class="n">final_log</span><span class="p">,</span><span class="n">data7</span><span class="p">,</span><span class="n">by.x</span><span class="o">=</span><span class="s2">"user_id"</span><span class="p">,</span><span class="n">by.y</span><span class="o">=</span><span class="s2">"user_id"</span><span class="p">)</span><span class="w">
 </span><span class="c1">#final_log&lt;-merge(final_log,data7,by.x="user_id",by.y="user_id")</span><span class="w">
 </span><span class="nf">return</span><span class="p">(</span><span class="n">final_log</span><span class="p">)</span><span class="w">
-</span><span class="p">}</span></code></pre></figure>
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
 
 <p>we got our final dataframe final_train.Then we start to construct a classification model.</p>
 

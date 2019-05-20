@@ -2,6 +2,7 @@
 layout: post
 author: willXu
 tag: [Machine Learning,Data Mining,Competition]
+syntax: colorful
 ---
 ## 2015 TaoBao Challenge of User Classification
 
@@ -170,17 +171,18 @@ clean_data<-function(log,time=1:185,kmeans_k=6,user.all,brand_kmeans,cat_kmeans)
 
 The argument time in clean_data function can split the whole log\_train.csv into different part by time interval as your wish.We give a invoking example below.
 
-{% highlight R lineno %}
+``` R
+
  train_t1<-clean_data(log_train,time = 1:10,user.all = get_user(log_train),brand_kmeans = brand_kmeans,cat_kmeans = cat_kmeans)
   train_t2<-clean_data(log_train,time = 11:40,user.all = get_user(log_train),brand_kmeans = brand_kmeans,cat_kmeans = cat_kmeans)
   train_t3<-clean_data(log_train,time = 40:100,user.all = get_user(log_train),brand_kmeans = brand_kmeans,cat_kmeans = cat_kmeans)
   train_t4<-clean_data(log_train,time = 100:185,user.all = get_user(log_train),brand_kmeans = brand_kmeans,cat_kmeans = cat_kmeans)
   final_train<-merge_data(train_t1,train_t2,train_t3,train_t4)
-{% endhighlight %}
+```
 
 In the above code, we split the whole 185 days into 4 parts.We also combine all the feature in 4 parts together by a merge_data function.
 
-{% highlight R lineno %}
+```R
 merge_data<-function(data1,data2,data3,data4,data5,data6,data7)
 {
 final_log<-merge(data1,data2,by.x="user_id",by.y="user_id")
@@ -192,7 +194,7 @@ final_log<-merge(final_log,data7,by.x="user_id",by.y="user_id")
 #final_log<-merge(final_log,data7,by.x="user_id",by.y="user_id")
 return(final_log)
 }
-{% endhighlight %}
+```
 
 
 we got our final dataframe final_train.Then we start to construct a classification model.
