@@ -22,6 +22,6 @@ plugins:
   - jekyll-seo-tag
 title: "my awesome site"
 
-highlighter: pygments
+highlighter: rouge
 
 
