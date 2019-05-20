@@ -1,0 +1,629 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Competition summary</title>
+<link rel="stylesheet" href="/assets/css/styles.css">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+ 
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="my awesome site" />
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Competition summary | my awesome site</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Competition summary" />
+<meta name="author" content="willXu" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="2015 TaoBao Challenge of User Classification" />
+<meta property="og:description" content="2015 TaoBao Challenge of User Classification" />
+<link rel="canonical" href="http://localhost:4000/2019/05/19/competition-summary.html" />
+<meta property="og:url" content="http://localhost:4000/2019/05/19/competition-summary.html" />
+<meta property="og:site_name" content="my awesome site" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-05-19T00:00:00+08:00" />
+<script type="application/ld+json">
+{"description":"2015 TaoBao Challenge of User Classification","author":{"@type":"Person","name":"willXu"},"@type":"BlogPosting","url":"http://localhost:4000/2019/05/19/competition-summary.html","headline":"Competition summary","dateModified":"2019-05-19T00:00:00+08:00","datePublished":"2019-05-19T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2019/05/19/competition-summary.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      inlineMath: [['$','$']]
+    }
+  });
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+  </head>
+  <body>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div>
+        <ul class="nav navbar-nav">
+  
+  <li ><a href="/"><span class="glyphicon glyphicon-home"></span>Home</a></li>
+  
+  <li ><a href="/blog.html"><span class="glyphicon glyphicon-book"></span>Blog</a></li>
+  
+  <li ><a href="/staff.html"><span class="glyphicon glyphicon-globe"></span>Staff</a></li>
+  
+  <li ><a href="/mytags.html"><span class="glyphicon glyphicon-tags"></span>Tag</a></li>
+  
+  <li ><a href="/about.html"><span class="glyphicon glyphicon-user"></span>AboutMe</a></li>
+  
+</ul>
+</div>
+</div>
+</nav>
+
+<div class="container">
+   <div class="row">
+	  <h2>Competition summary</h2>
+
+<p>
+  19 May 2019
+  
+  
+    - <a href="/authors/willXu.html">will Xu | 许士亭</a>
+  
+</p>
+<div class="row">
+    
+    <a href="/mytags/#Machine Learning"><span class="label label-info">Machine Learning</span></a>
+  
+    
+    <a href="/mytags/#Data Mining"><span class="label label-info">Data Mining</span></a>
+  
+    
+    <a href="/mytags/#Competition"><span class="label label-info">Competition</span></a>
+  
+    
+</div>
+
+<h2 id="2015-taobao-challenge-of-user-classification">2015 TaoBao Challenge of User Classification</h2>
+
+<ul id="markdown-toc">
+  <li><a href="#2015-taobao-challenge-of-user-classification" id="markdown-toc-2015-taobao-challenge-of-user-classification">2015 TaoBao Challenge of User Classification</a>    <ul>
+      <li><a href="#problem-description" id="markdown-toc-problem-description">Problem Description</a>        <ul>
+          <li><a href="#data-description" id="markdown-toc-data-description">Data Description</a></li>
+        </ul>
+      </li>
+      <li><a href="#task" id="markdown-toc-task">TASK</a></li>
+      <li><a href="#evaluation" id="markdown-toc-evaluation">Evaluation</a></li>
+      <li><a href="#solution" id="markdown-toc-solution">Solution</a>        <ul>
+          <li><a href="#perception-of-question" id="markdown-toc-perception-of-question">Perception of Question</a>            <ul>
+              <li><a href="#major-diffrences-between-online-behaviors-of-12-classes-customers" id="markdown-toc-major-diffrences-between-online-behaviors-of-12-classes-customers">Major diffrences between online-behaviors of 12 classes customer’s</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#data-processing" id="markdown-toc-data-processing">Data processing</a></li>
+      <li><a href="#modeling" id="markdown-toc-modeling">Modeling</a></li>
+    </ul>
+  </li>
+</ul>
+
+<p>PengyangWang And I participated in a big data challenge game holded by Alibaba in our school,Beijing University of Posts and Telecommunications , in this autumn. This challenge required participants to classify customers of TaoBao,chinese Amazon, into 12 categories based on their online behaviors.Our solution had achieved 34% precision rate. In this article, we prefer to making a summarize of this challenge and our method.</p>
+
+<p><a href="https://github.com/xvshiting/BUPT_TAOBAO" title="github">code</a></p>
+
+<h3 id="problem-description">Problem Description</h3>
+
+<h4 id="data-description">Data Description</h4>
+
+<p>This is a Multi classification problem. We are given three files: log_train.csv, info_train.csv,log_test.csv.</p>
+
+<hr />
+
+<p>Data in file info_train.csv contains Id and class of all users appeared in log_train.csv. The structure of info_train.csv is given in the table below .</p>
+
+<center>  <i> Example</i>  </center>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">user_id</th>
+      <th style="text-align: center">class</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">254</td>
+      <td style="text-align: center">1</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">456</td>
+      <td style="text-align: center">3</td>
+    </tr>
+  </tbody>
+</table>
+
+<p></p>
+
+<center>  <i> Data Description</i>  </center>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Col Name</th>
+      <th style="text-align: center">Type</th>
+      <th style="text-align: center">Description</th>
+      <th style="text-align: center">Comment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">user_id</td>
+      <td style="text-align: center">int</td>
+      <td style="text-align: center">identify of user</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">class</td>
+      <td style="text-align: center">int</td>
+      <td style="text-align: center">class of user</td>
+      <td style="text-align: center">number range from 1 to 12</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<p>log_train.csv and log_test.csv have same data structure .The contents of this two files is user’s online-shopping behaviors during a year. The name and meaning of all colums in this two files is given below.</p>
+
+<center>  <i> Example</i>  </center>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">user_id</th>
+      <th style="text-align: center">item_id</th>
+      <th style="text-align: center">cat_id</th>
+      <th style="text-align: center">seller_id</th>
+      <th style="text-align: center">brand_id</th>
+      <th style="text-align: center">time_stamp</th>
+      <th style="text-align: center">action_type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">254</td>
+      <td style="text-align: center">1034</td>
+      <td style="text-align: center">1206</td>
+      <td style="text-align: center">1003</td>
+      <td style="text-align: center">34</td>
+      <td style="text-align: center">173</td>
+      <td style="text-align: center">0</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">254</td>
+      <td style="text-align: center">1498</td>
+      <td style="text-align: center">1085</td>
+      <td style="text-align: center">1243</td>
+      <td style="text-align: center">4241</td>
+      <td style="text-align: center">173</td>
+      <td style="text-align: center">1</td>
+    </tr>
+  </tbody>
+</table>
+
+<p></p>
+
+<center>  <i> Data Description</i>  </center>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Col Name</th>
+      <th style="text-align: center">Type</th>
+      <th style="text-align: center">Description</th>
+      <th style="text-align: center">Comment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">user_id</td>
+      <td style="text-align: center">int</td>
+      <td style="text-align: center">identify of user</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">item_id</td>
+      <td style="text-align: center">int</td>
+      <td style="text-align: center">identify of item</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">cat_id</td>
+      <td style="text-align: center">int</td>
+      <td style="text-align: center">Category Id of The Item</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">seller_id</td>
+      <td style="text-align: center">int</td>
+      <td style="text-align: center">Seller Id of The Item</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">brand_id</td>
+      <td style="text-align: center">int</td>
+      <td style="text-align: center">brand Id of the Item</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">time_stamp</td>
+      <td style="text-align: center">int</td>
+      <td style="text-align: center">When The Action Occured</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Action_type</td>
+      <td style="text-align: center">int</td>
+      <td style="text-align: center">Type Id of the action</td>
+      <td style="text-align: center">0-click,1-collect,2-Buy,3-Delete</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="task">TASK</h3>
+
+<p>This challenge required participants to classify all the users appeared in log_test.csvinto 12 categories based on user’s online-shopping behavior.</p>
+
+<hr />
+
+<h3 id="evaluation">Evaluation</h3>
+
+<p>The evaluation method is to calculate the precision rate of classification.The python code can be download <a href="https://github.com/xvshiting/BUPT_TAOBAO/blob/master/Evaluation%20algriothm.py" title="Evaluation code on github">here</a>.</p>
+
+<hr />
+
+<h3 id="solution">Solution</h3>
+
+<h4 id="perception-of-question">Perception of Question</h4>
+
+<p>Costumer’s number of all 12 categories in log_train.csv is given below</p>
+
+<center>  <i> User’s number of 12 categories </i>  </center>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">class</th>
+      <th style="text-align: center">1</th>
+      <th style="text-align: center">2</th>
+      <th style="text-align: center">3</th>
+      <th style="text-align: center">4</th>
+      <th style="text-align: center">5</th>
+      <th style="text-align: center">6</th>
+      <th style="text-align: center">7</th>
+      <th style="text-align: center">8</th>
+      <th style="text-align: center">9</th>
+      <th style="text-align: center">10</th>
+      <th style="text-align: center">11</th>
+      <th style="text-align: center">12</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">number</td>
+      <td style="text-align: center">12166</td>
+      <td style="text-align: center">26830</td>
+      <td style="text-align: center">18836</td>
+      <td style="text-align: center">10066</td>
+      <td style="text-align: center">8981</td>
+      <td style="text-align: center">1999</td>
+      <td style="text-align: center">6578</td>
+      <td style="text-align: center">11915</td>
+      <td style="text-align: center">8416</td>
+      <td style="text-align: center">4163</td>
+      <td style="text-align: center">3536</td>
+      <td style="text-align: center">973</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Class 2 has the highest numbers of users and class12 has the minimum ,only 937 ,users. The total number of users is 114459.</p>
+
+<h5 id="major-diffrences-between-online-behaviors-of-12-classes-customers">Major diffrences between online-behaviors of 12 classes customer’s</h5>
+
+<p>It’s important to understand all the key elements that can influence classification precision rate.According to our usual experience of online-shopping and the data we accessed from this competition,we concluded some potential meaningful features behavior of users:</p>
+
+<ul>
+  <li>
+    <p>Active Days of User</p>
+
+    <p>We defined this term as the total number of days that user has online active record.We calculated activity days of all users in training set and plot the result to visualize the data.The R code to compute the active days of user and the figure of 12 categories activity days are given below.</p>
+
+    <div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w"> </span><span class="n">user_active_days</span><span class="o">&lt;-</span><span class="n">sapply</span><span class="p">(</span><span class="n">train_user</span><span class="o">$</span><span class="n">V</span><span class="m">1</span><span class="p">,</span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">){</span><span class="nf">length</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">train_data</span><span class="p">[</span><span class="n">train_data</span><span class="o">$</span><span class="n">user_id</span><span class="o">==</span><span class="n">x</span><span class="p">,]</span><span class="o">$</span><span class="n">time_stamp</span><span class="p">))})</span><span class="w">
+</span></code></pre></div>    </div>
+
+    <center>  <i> Active Days of 12 Categories </i>  </center>
+  </li>
+</ul>
+
+<center><img src="../../../assets/image/taobao_01.png" /></center>
+<ul>
+  <li>
+    <p>Action frequency of specific period</p>
+
+    <p>In China,there are some essential date,such as Singles’ Day,National Day and Valentine’s Day,for online-consumer because of the discount. By analysis the log file, we found that people from different categories have different attitude towards those special date. For example, class 3 and 4 will more active in those period than ordinary days. In contrast, users in class 8 are more calm when faced the on sale.Even there is only a slightly variation between the 12 classes in this feature,but after we split those data into different time intervals,we can achieve a 13% precision rate by using this feature set(buying_frequency,clicking_frequency,action_frequency).</p>
+  </li>
+  <li>
+    <p>The ratio of Action Types in a time range</p>
+
+    <p>From the head of this article,we know the action type is divided into 3 types.After analysis,We discovered that it’s really rare for behaviors of colloect and delete. So we ignore this two action type and just focus on the buying_clicking ratio.This ratio is refer to before a customer do a buying action how many clicking action or how many items this user viewed. 
+  The formulation of computing the buying_clicking ratio of one period is given below.</p>
+  </li>
+</ul>
+
+<script type="math/tex; mode=display">buying\_clicking\_ratio = \frac{clicking\_frequency}{buying\_frequency}</script>
+
+<ul>
+  <li>
+    <p>Brand of consumer goods</p>
+
+    <p>Every record in log_train.csv have a feature named brand_idwhich represent the brand related with this action.We just consider buying_action ,we want to use the brand of items people consuming to classify users. We all know that in our life different brands are towards different group of people. So it’s also make sense that people from different categories will buy products from different brands.However,how to connect the brand with user’s categories is a problem.In our case we use K-meanson brand_id feature. 
+  K-means is a clustering algorithm in machine learning area. To use this on bran_id we require to construct a dataframe of brand_id.The dataframe is given below.Our data frame has 13 features, the first column is brand_id and the other features are the buying proportion of specific class users in 12 categories. 
+  There are 6304brand in this data.</p>
+
+    <center>  <i> Brand DataFrame  </i>  </center>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: center">brand_id</th>
+          <th style="text-align: center"><script type="math/tex">C_1</script></th>
+          <th style="text-align: center"><script type="math/tex">C_2</script></th>
+          <th style="text-align: center"><script type="math/tex">C_3</script></th>
+          <th style="text-align: center"><script type="math/tex">C_4</script></th>
+          <th style="text-align: center"><script type="math/tex">C_5</script></th>
+          <th style="text-align: center"><script type="math/tex">C_6</script></th>
+          <th style="text-align: center"><script type="math/tex">C_7</script></th>
+          <th style="text-align: center"><script type="math/tex">C_8</script></th>
+          <th style="text-align: center"><script type="math/tex">C_9</script></th>
+          <th style="text-align: center"><script type="math/tex">C_{10}</script></th>
+          <th style="text-align: center"><script type="math/tex">C_{11}</script></th>
+          <th style="text-align: center"><script type="math/tex">C_{12}</script></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center">234</td>
+          <td style="text-align: center">0.2</td>
+          <td style="text-align: center">0.1</td>
+          <td style="text-align: center">0</td>
+          <td style="text-align: center">0</td>
+          <td style="text-align: center">0</td>
+          <td style="text-align: center">0.4</td>
+          <td style="text-align: center">0</td>
+          <td style="text-align: center">0</td>
+          <td style="text-align: center">0</td>
+          <td style="text-align: center">0</td>
+          <td style="text-align: center">0</td>
+          <td style="text-align: center">0.2</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<script type="math/tex; mode=display">C_i\_brand_t = \frac{Numbers\_of\_Class_i\_Buying\_Brand_t}{\sum_{i=1}^12 Numbers\_of\_Class_i\_Buying\_Brand_t}</script>
+
+<p>After we construct this dataframe ,we are using K-meanson Brand DataFrame .R code of this process is given below.</p>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
+</span><span class="n">getKmeans_brand</span><span class="o">&lt;-</span><span class="k">function</span><span class="p">(</span><span class="n">log</span><span class="p">,</span><span class="n">k</span><span class="p">)</span><span class="w">
+</span><span class="p">{</span><span class="w">
+</span><span class="n">brand_class</span><span class="o">&lt;-</span><span class="n">table</span><span class="p">(</span><span class="n">log</span><span class="o">$</span><span class="n">brand_id</span><span class="p">,</span><span class="n">log</span><span class="o">$</span><span class="n">class</span><span class="p">)</span><span class="o">/</span><span class="n">rowSums</span><span class="p">(</span><span class="n">table</span><span class="p">(</span><span class="n">log</span><span class="o">$</span><span class="n">brand_id</span><span class="p">,</span><span class="n">log</span><span class="o">$</span><span class="n">class</span><span class="p">))</span><span class="w">
+
+</span><span class="n">brand_kmeans_k</span><span class="o">&lt;-</span><span class="n">kmeans</span><span class="p">(</span><span class="n">brand_class</span><span class="p">,</span><span class="n">centers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">k</span><span class="p">)</span><span class="w">
+
+</span><span class="n">brand_id</span><span class="o">&lt;-</span><span class="n">rownames</span><span class="p">(</span><span class="n">brand_class</span><span class="p">)</span><span class="w">
+</span><span class="n">brand_kmeans_k</span><span class="o">&lt;-</span><span class="n">data.frame</span><span class="p">(</span><span class="n">brand_id</span><span class="p">,</span><span class="n">brand_kmeans_k</span><span class="o">$</span><span class="n">cluster</span><span class="p">)</span><span class="w">
+</span><span class="n">return</span><span class="w"> </span><span class="p">(</span><span class="n">brand_kmeans_k</span><span class="p">)</span><span class="w">
+
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div></div>
+
+<p>After we cluster brand into 14 calsses,then we update brand_id with their newest calss_id.</p>
+
+<ul>
+  <li>Category of consumers goods 
+  We also adopt same process on the categories of item as well as brands of item.The idea is as the same as we propose in previous part.</li>
+</ul>
+
+<hr />
+
+<h3 id="data-processing">Data processing</h3>
+
+<p>All the R code of clean data process can be found <a href="https://github.com/xvshiting/BUPT_TAOBAO/blob/master/clean_data.R" title="Clean Data code on github">here</a>.</p>
+
+<p>clean_data&lt;-function(log,time=1:185,kmeans_k=6,user.all,brand_kmeans,cat_kmeans)
+The argument time in clean_data function can split the whole log_train.csv into different part by time interval as your wish.We give a invoking example below.</p>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
+ </span><span class="n">train_t1</span><span class="o">&lt;-</span><span class="n">clean_data</span><span class="p">(</span><span class="n">log_train</span><span class="p">,</span><span class="n">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span><span class="n">user.all</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_user</span><span class="p">(</span><span class="n">log_train</span><span class="p">),</span><span class="n">brand_kmeans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">brand_kmeans</span><span class="p">,</span><span class="n">cat_kmeans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cat_kmeans</span><span class="p">)</span><span class="w">
+  </span><span class="n">train_t2</span><span class="o">&lt;-</span><span class="n">clean_data</span><span class="p">(</span><span class="n">log_train</span><span class="p">,</span><span class="n">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">11</span><span class="o">:</span><span class="m">40</span><span class="p">,</span><span class="n">user.all</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_user</span><span class="p">(</span><span class="n">log_train</span><span class="p">),</span><span class="n">brand_kmeans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">brand_kmeans</span><span class="p">,</span><span class="n">cat_kmeans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cat_kmeans</span><span class="p">)</span><span class="w">
+  </span><span class="n">train_t3</span><span class="o">&lt;-</span><span class="n">clean_data</span><span class="p">(</span><span class="n">log_train</span><span class="p">,</span><span class="n">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">40</span><span class="o">:</span><span class="m">100</span><span class="p">,</span><span class="n">user.all</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_user</span><span class="p">(</span><span class="n">log_train</span><span class="p">),</span><span class="n">brand_kmeans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">brand_kmeans</span><span class="p">,</span><span class="n">cat_kmeans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cat_kmeans</span><span class="p">)</span><span class="w">
+  </span><span class="n">train_t4</span><span class="o">&lt;-</span><span class="n">clean_data</span><span class="p">(</span><span class="n">log_train</span><span class="p">,</span><span class="n">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="o">:</span><span class="m">185</span><span class="p">,</span><span class="n">user.all</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get_user</span><span class="p">(</span><span class="n">log_train</span><span class="p">),</span><span class="n">brand_kmeans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">brand_kmeans</span><span class="p">,</span><span class="n">cat_kmeans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cat_kmeans</span><span class="p">)</span><span class="w">
+  </span><span class="n">final_train</span><span class="o">&lt;-</span><span class="n">merge_data</span><span class="p">(</span><span class="n">train_t1</span><span class="p">,</span><span class="n">train_t2</span><span class="p">,</span><span class="n">train_t3</span><span class="p">,</span><span class="n">train_t4</span><span class="p">)</span><span class="w">
+
+</span></code></pre></div></div>
+
+<p>In the above code, we split the whole 185 days into 4 parts.We also combine all the feature in 4 parts together by a merge_data function.</p>
+
+<div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">merge_data</span><span class="o">&lt;-</span><span class="k">function</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span><span class="n">data2</span><span class="p">,</span><span class="n">data3</span><span class="p">,</span><span class="n">data4</span><span class="p">,</span><span class="n">data5</span><span class="p">,</span><span class="n">data6</span><span class="p">,</span><span class="n">data7</span><span class="p">)</span><span class="w">
+</span><span class="p">{</span><span class="w">
+</span><span class="n">final_log</span><span class="o">&lt;-</span><span class="n">merge</span><span class="p">(</span><span class="n">data1</span><span class="p">,</span><span class="n">data2</span><span class="p">,</span><span class="n">by.x</span><span class="o">=</span><span class="s2">"user_id"</span><span class="p">,</span><span class="n">by.y</span><span class="o">=</span><span class="s2">"user_id"</span><span class="p">)</span><span class="w">
+</span><span class="n">final_log</span><span class="o">&lt;-</span><span class="n">merge</span><span class="p">(</span><span class="n">final_log</span><span class="p">,</span><span class="n">data3</span><span class="p">,</span><span class="n">by.x</span><span class="o">=</span><span class="s2">"user_id"</span><span class="p">,</span><span class="n">by.y</span><span class="o">=</span><span class="s2">"user_id"</span><span class="p">)</span><span class="w">
+</span><span class="n">final_log</span><span class="o">&lt;-</span><span class="n">merge</span><span class="p">(</span><span class="n">final_log</span><span class="p">,</span><span class="n">data4</span><span class="p">,</span><span class="n">by.x</span><span class="o">=</span><span class="s2">"user_id"</span><span class="p">,</span><span class="n">by.y</span><span class="o">=</span><span class="s2">"user_id"</span><span class="p">)</span><span class="w">
+</span><span class="n">final_log</span><span class="o">&lt;-</span><span class="n">merge</span><span class="p">(</span><span class="n">final_log</span><span class="p">,</span><span class="n">data5</span><span class="p">,</span><span class="n">by.x</span><span class="o">=</span><span class="s2">"user_id"</span><span class="p">,</span><span class="n">by.y</span><span class="o">=</span><span class="s2">"user_id"</span><span class="p">)</span><span class="w">
+</span><span class="n">final_log</span><span class="o">&lt;-</span><span class="n">merge</span><span class="p">(</span><span class="n">final_log</span><span class="p">,</span><span class="n">data6</span><span class="p">,</span><span class="n">by.x</span><span class="o">=</span><span class="s2">"user_id"</span><span class="p">,</span><span class="n">by.y</span><span class="o">=</span><span class="s2">"user_id"</span><span class="p">)</span><span class="w">
+</span><span class="n">final_log</span><span class="o">&lt;-</span><span class="n">merge</span><span class="p">(</span><span class="n">final_log</span><span class="p">,</span><span class="n">data7</span><span class="p">,</span><span class="n">by.x</span><span class="o">=</span><span class="s2">"user_id"</span><span class="p">,</span><span class="n">by.y</span><span class="o">=</span><span class="s2">"user_id"</span><span class="p">)</span><span class="w">
+</span><span class="c1">#final_log&lt;-merge(final_log,data7,by.x="user_id",by.y="user_id")</span><span class="w">
+</span><span class="nf">return</span><span class="p">(</span><span class="n">final_log</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>we got our final dataframe final_train.Then we start to construct a classification model.</p>
+
+<hr />
+
+<h3 id="modeling">Modeling</h3>
+
+<p>We have tired many classification algorithm like Naive Bayes,Decision Tree,SVM ,Random forests,KNN and Adaboosting.We found that when using 5 descision trees in Adaboosting we got highest precision rate 34%.The modeling code can be found <a href="https://github.com/xvshiting/BUPT_TAOBAO/blob/master/modeling.py" title="model code on github">here</a>.</p>
+
+<center><img src="../../../assets/image/taobao_02.png" /></center>
+
+
+
+<div class="row">
+    
+    <a href="/mytags/#Machine Learning"><span class="label label-info">Machine Learning</span></a>
+  
+    
+    <a href="/mytags/#Data Mining"><span class="label label-info">Data Mining</span></a>
+  
+    
+    <a href="/mytags/#Competition"><span class="label label-info">Competition</span></a>
+  
+    
+</div>
+
+    </div>
+  </body>
+  <footer class="container-fluid foot-wrap">
+   <div class="container">
+    <div class="row">
+        <div class="row-content col-lg-2 col-sm-4 col-xs-6">
+     <h3>Subscribe</h3>
+                    <ul>
+                        <li><a href="#">Newsletter</a></li>
+                        <li><a href="#">RSS feed</a></li>
+                        <li><a href="#">RSS to Email</a></li>
+                        <li><a href="#">Product Hunt</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Pinterest</a></li>
+                        <li><a href="#">Google+</a></li>
+                    </ul>
+                </div>
+                <div class="row-content col-lg-2 col-sm-4 col-xs-6">
+                    <h3>BROWSE</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Gallery</a></li>
+                        <li><a href="#">Templates</a></li>
+                        <li><a href="#">Resources</a></li>
+                        <li><a href="#">OPL Themes</a></li>
+                    </ul>
+                </div>
+                <div class="row-content col-lg-2 col-sm-4 col-xs-6">
+                    <h3>INFORMATION</h3>
+                    <ul>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Why One Page?</a></li>
+                        <li><a href="#">OPL Blog</a></li>
+                        <li><a href="#">Product Hunt</a></li>
+                        <li><a href="#">Advertise</a></li>
+                        <li><a href="#">Submit</a></li>
+                        <li><a href="#">Award Ribbons</a></li>
+                        <li><a href="#">Roadmap</a></li>
+                    </ul>
+                </div>
+
+                <div class="row-content col-lg-2 col-sm-4 col-xs-6">
+                    <h3>RESOURCES</h3>
+                    <ul>
+                        <li><a href="#">Browse All</a></li>
+                        <li><a href="#">Design</a></li>
+                        <li><a href="#">Development</a></li>
+                        <li><a href="#">Hosting</a></li>
+                        <li><a href="#">Round Ups</a></li>
+                        <li><a href="#">Tutorials</a></li>
+                    </ul>
+
+                </div>
+                <div class="row-content col-lg-2 col-sm-4 col-xs-6">
+                    <h3>TRENDING</h3>
+                    <ul>
+                        <li><a href="#">Big Typography</a></li>
+                        <li><a href="#">Free Templates</a></li>
+                        <li><a href="#">Most Loved</a></li>
+                        <li><a href="#">Centrally Divided</a></li>
+                        <li><a href="#">Skrollr.js</a></li>
+                        <li><a href="#">Parallax Scrolling</a></li>
+                        <li><a href="#">Off-Canvas Menu</a></li>
+                        <li><a href="#">Molecules</a></li>
+                    </ul>
+                </div>
+                <div class="row-content col-lg-2 col-sm-4 col-xs-6">
+                    <h3>OPL THEMES</h3>
+                    <ul>
+                        <li><a href="#">Browse All</a></li>
+                        <li><a href="#">East Java</a></li>
+                        <li><a href="#">Clutterless</a></li>
+                        <li><a href="#">Mapped</a></li>
+                    </ul>
+                </div>
+
+</div>
+</div>
+</div>
+<ul class="social">
+                <li>
+                <a href="mailto:xvshiting@live.com" title="Github Profile">
+                    <span class="icon fa fa-send"></span>
+                </a>
+            </li>
+            <li>
+                <a href="https://twitter.com/xvshiting1" title="Twitter Profile">
+                    <span class="icon fa fa-twitter"></span>
+                </a>
+            </li>
+            <li>
+                <a href="#" title="Facebook Page">
+                    <span class="icon fa fa-facebook"></span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.linkedin.com/in/士亭-许-618191107/" title="LinkedIn Profile">
+                    <span class="icon fa fa-linkedin"></span>
+                </a>
+            </li>
+            <li>
+                <a href="#" title="Goole+ Profile">
+                    <span class="icon fa fa-google"></span>
+                </a>
+            </li>
+            <li>
+                <a href="http://www.github.com/xvshiting" title="Github Profile">
+                    <span class="icon fa fa-github"></span>
+                </a>
+            </li>
+             <li>
+                <a href="https://www.weibo.com/u/6004072387/home?wvr=5&uut=fin&from=reg" title="Github Profile">
+                    <span class="icon fa fa-weibo"></span>
+                </a>
+            </li>
+            <li>
+                <a href="#" title="Github Profile">
+                    <span class="icon fa fa-weixin"></span>
+                </a>
+            </li>
+        </ul>
+        <p align="center" style="margin-top: 20px;color:#878B91;">
+            Copyright &copy;2019 willXu1992.com
+        </p>
+
+</footer>
+
+</html>

@@ -1,0 +1,6 @@
+<div class="row">
+    {% for t in page.tag%}
+    <a href="/mytags/#{{t|slugize}}"><span class="label label-info">{{t}}</span></a>{% unless forloop.last %} {% endunless %}
+  
+    {% endfor %}
+</div>

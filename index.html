@@ -2,4 +2,13 @@
 layout: default
 title: Home
 ---
-<h1>{{ "Hello World!" | downcase }}</h1>
+<h2>Recent Posts</h2>
+{% assign maxShowNum = 3 %}
+<ul class="list-group">
+  {% for post in site.posts limit:maxShowNum %}
+
+      {% include post_abstract.html %}
+
+
+  {% endfor %}
+</ul>

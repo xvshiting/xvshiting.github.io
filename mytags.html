@@ -1,0 +1,24 @@
+---
+layout: default
+title: tag
+---
+
+<ul class="list-inline">
+    <li><strong>Tags:</strong></li>
+{% for tag in site.tags %}
+  <li > 
+    <a href="#{{ tag | first | slugize }} ">
+      <span class="label label-primary">{{ tag | first }}<span>
+    </a>
+  </li>
+{% endfor %}
+</ul>
+
+{% for tag in site.tags %} 
+<ul class="list-unstyled">
+    <li class="list-group-item"><h4 id="{{tag[0] | slugize }}" style="text-shadow: #777777 5px 3px 3px; color:black ">{{tag[0]}}</h4></li>
+    {% for post in tag[1]%}
+     {% include post_abstract.html %}
+    {% endfor %}
+</ul>
+{% endfor %}

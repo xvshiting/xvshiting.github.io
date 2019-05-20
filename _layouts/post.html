@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-<h1>{{ page.title }}</h1>
+<h2>{{ page.title }}</h2>
 
 <p>
   {{ page.date | date_to_string }}
@@ -10,5 +10,8 @@ layout: default
     - <a href="{{ author.url }}">{{ author.name }}</a>
   {% endif %}
 </p>
+{% include page_tags.html %}
 
 {{ content }}
+
+{% include page_tags.html %}

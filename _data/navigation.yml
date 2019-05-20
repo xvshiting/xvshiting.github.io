@@ -1,8 +1,16 @@
 - name: Home
   link: /
-- name: About
-  link: /about.html 
+  bs-icon: glyphicon glyphicon-home
 - name: Blog
   link: /blog.html
+  bs-icon: glyphicon glyphicon-book
 - name: Staff
   link: /staff.html
+  bs-icon: glyphicon glyphicon-globe
+- name: Tag
+  link: /mytags.html
+  bs-icon: glyphicon glyphicon-tags
+- name: AboutMe
+  link: /about.html 
+  bs-icon: glyphicon glyphicon-user
+
