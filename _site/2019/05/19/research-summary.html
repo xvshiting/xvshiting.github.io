@@ -1,0 +1,550 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Research summary</title>
+<link rel="stylesheet" type="text/css" href="/assets/css/rouge.css">
+<link rel="stylesheet" href="/assets/css/styles.css">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+ 
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link type="application/atom+xml" rel="alternate" href="/feed.xml" title="my awesome site" />
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Research summary | my awesome site</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Research summary" />
+<meta name="author" content="willXu" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="malicious software classification model based on CNN" />
+<meta property="og:description" content="malicious software classification model based on CNN" />
+<meta property="og:site_name" content="my awesome site" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-05-19T00:00:00+08:00" />
+<script type="application/ld+json">
+{"description":"malicious software classification model based on CNN","author":{"@type":"Person","name":"willXu"},"@type":"BlogPosting","url":"/2019/05/19/research-summary.html","headline":"Research summary","dateModified":"2019-05-19T00:00:00+08:00","datePublished":"2019-05-19T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"/2019/05/19/research-summary.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      inlineMath: [['$','$']]
+    }
+  });
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+  </head>
+  <body>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div>
+        <ul class="nav navbar-nav">
+  
+  <li ><a href="/"><span class="glyphicon glyphicon-home"></span>Home</a></li>
+  
+  <li ><a href="/blog.html"><span class="glyphicon glyphicon-book"></span>Blog</a></li>
+  
+  <li ><a href="/staff.html"><span class="glyphicon glyphicon-globe"></span>Staff</a></li>
+  
+  <li ><a href="/mytags.html"><span class="glyphicon glyphicon-tags"></span>Tag</a></li>
+  
+  <li ><a href="/about.html"><span class="glyphicon glyphicon-user"></span>AboutMe</a></li>
+  
+</ul>
+</div>
+</div>
+</nav>
+
+<div class="container">
+   <div class="row">
+	  <h2>Research summary</h2>
+
+<p>
+  19 May 2019
+  
+  
+    - <a href="/authors/willXu.html">will Xu | 许士亭</a>
+  
+</p>
+<div class="row">
+    
+    <a href="/mytags#Machine Learning"><span class="label label-info">Machine Learning</span></a>
+  
+    
+    <a href="/mytags#Virus Analysis"><span class="label label-info">Virus Analysis</span></a>
+  
+    
+    <a href="/mytags#Information Security"><span class="label label-info">Information Security</span></a>
+  
+    
+    <a href="/mytags#Deep Learning"><span class="label label-info">Deep Learning</span></a>
+  
+    
+</div>
+
+<h2 id="malicious-software-classification-model-based-on-cnn">malicious software classification model based on CNN</h2>
+
+<ul id="markdown-toc">
+  <li><a href="#malicious-software-classification-model-based-on-cnn" id="markdown-toc-malicious-software-classification-model-based-on-cnn">malicious software classification model based on CNN</a>    <ul>
+      <li><a href="#background" id="markdown-toc-background">BackGround</a></li>
+      <li><a href="#n-gram" id="markdown-toc-n-gram">n-gram</a></li>
+      <li><a href="#treat-softwares-as-images" id="markdown-toc-treat-softwares-as-images">Treat SoftWares as Images!</a>        <ul>
+          <li><a href="#an-important-paper" id="markdown-toc-an-important-paper">An Important Paper</a></li>
+        </ul>
+      </li>
+      <li><a href="#summaries" id="markdown-toc-summaries">Summaries</a>        <ul>
+          <li><a href="#summary-01" id="markdown-toc-summary-01"><strong>Summary 01</strong></a></li>
+          <li><a href="#summary-02" id="markdown-toc-summary-02"><strong>Summary 02</strong></a></li>
+          <li><a href="#summary-03" id="markdown-toc-summary-03"><strong>Summary 03</strong></a></li>
+        </ul>
+      </li>
+      <li><a href="#implementation" id="markdown-toc-implementation">Implementation</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="background">BackGround</h3>
+
+<p>This project had been done during my intership as an virus analyst in a Information Security Company in China in the summer of 2017 I was just got my master degree. This project means a lot to me. Not only because it was my first intership and it realted to my major ,Infromation security, and my interst ,machine learning, but also it was my first time to solve a practical problem by myself with deep learning model.</p>
+
+<p>In this artical, I will talk about the work I had done in the sequence of time ,from the first possible solution came to my mind to why I choose the CNN to solve this issue.</p>
+
+<p>The problem is that virus analysts in this company needs to handle a plenty of malicious softwares . They are required to decide the class of a specific malicious software in order to decide the way they should take to kill this virus. In that time, the way they adopted was to compare the software with their database which recorded features of tremendous amount of malicious softwares or compare the MD5 directly. This method needed a lot of human works and had lots of drawbacks.</p>
+
+<p>First,Malicious softwares always belied themselves by changing runing logic, adding redundant code, changing function name or changing the malicious behavior but using same hack method as before. There are thousands of ways to formulate a new malicious software by slight adjusting an original one which means the company needs to add features of those new viruses to their database and also means their classifcation engine could not handle the variety feature of malicious software.</p>
+
+<p>Second, extracting features of malicious software by human sometimes can be incorrect. Human beings always make mistakes especially in this tedious work , even facing lots of assembly code . Another situation is that some features which can be useful to classify one malicious family always not efficient to another one. Therefore, analysts and researchers taking resposiblity of the engine need to exploring the best set of features they should extract and gather from malicious softwares. It costs lots of time and would be a tedious work.</p>
+
+<p>So, they hired me want to solve this problem. Well, I have to admit they just want to explore possibility machine learning methods and may not count on me. However, my collegus in the company gave me lots of helps . My leader  had done some reserches before I attended. He wanted to solve this probelm using the n-gram algorithm which has been widely used in language model in NLP area at that time.</p>
+
+<hr />
+
+<h3 id="n-gram">n-gram</h3>
+
+<p>N-gram was widely used in NLP or Speech Recognition tasks due to its efficient and robust. For example, we always use 2-gram or 3-gram in langauge model. By inputting two words , a language model can output a word which has highest possibility behind these two words. A case in point is that, if we input <code class="highlighter-rouge">I  ride</code> into the model, it possiblely output <code class="highlighter-rouge">bike</code>. It decided by the material the laguage model trained on. So basically,  N-gram is to calculate appearence possiblity of all n words in its training set statistically. It needs a huge corpus and still could not cover all combination of words appearing in real world. Nevertheless, there are plenty ways of smoothing to deal with this problem, such as <code class="highlighter-rouge">Good Turning</code> and <code class="highlighter-rouge">Simple Linear Interpolation</code>.</p>
+
+<p><strong>Robert Moskovitch</strong> in his paper <em>Unknown Malcode Detection Using OPCODE Representation</em> presented methodology for the detection of unknown malicious code, based on text categorization concepts.They extracted sequences of OpCode expressions, which they term OpCode-n-grams. The vocabularies extracted were of 515, 39,011, 443,730, 1,769,641, 5,033,722 and 11,948,491, for 1-gram, 2-gram, 3gram, 4-gram, 5-gram and 6-gram, respectively. Later TF and TFIDF representations were calculated for each n-gram in each file. After that, they experiment some machine learning methods on those features.</p>
+
+<p><strong>D Krishna Sandeep Reddy · Arun K Pujari</strong> in his paper <em>N-gram analysis for computer virus detection</em> described a new feature selection measure, class-wise document frequency of byte n-grams. Then, they combine the classiﬁers,such as SVM and decision tree, to improve the performance of classiﬁcation.</p>
+
+<p>There are many papers showing that n-gram can be used to extract features from softwares’ source code. They all acheived good accuracy in many tasks. However, I still don’t want to use this method. First, it needs many viruses and the company would not give me so much malicious software at experimental period. Second, I prefer an end-to-end solution. N-gram only provides us a convinent way to construct features. But it is not convinent enough because you still need to attempt different machine learning algorithems after that.In other words, it is not graceful.</p>
+
+<h3 id="treat-softwares-as-images">Treat SoftWares as Images!</h3>
+
+<p>When I first time saw this concept, I was very excited! It is a novel method and that means we can visualize viruses. But after I searched some papers( actually, only one paper is important) using this concept, I started to be disappointed. Because in those paper , they used complex computer vision algorithems to extract features from images formed from malwares and then tried them with different machine learning algorithem. One abstacle for me was I did not familiar with those algorithems and that would cost me lot of time if I tried to acquire related knowledge. Another question was they are still not end-to-end solutions.</p>
+
+<h4 id="an-important-paper">An Important Paper</h4>
+
+<p><strong>L. Nataraj, S. Karthikeyan</strong> in <em>Malware Images: Visualization and Automatic Classification</em> proposed a simple yet effective method for visualizing and classifying malware using image processing techniques.</p>
+
+<ul>
+  <li>
+    <p><strong>VISUALIZATION</strong></p>
+
+    <p>In this paper,a given malware binary is read as a vector of 8 bit unsigned integers and then organized into a 2D array. This can be visualized as a gray scale image in the range [0,255] (0: black, 255: white). The width of the image is fixed and the height is allowed to vary depending on the file size.</p>
+
+    <center><img src="../../../assets/image/malwareCNN_01.png" height="100" width="400" /></center>
+    <center><i>Fig 1. Visualizing Malware as an Image</i></center>
+    <p />
+
+    <p>After visualization,They found that different sections (binary fragments) of the malware exhibit distinctive image textures. And they also found that images of different malware samples from a given family appear visually similar and distinct from those belonging to a different family like <em>Fig 2</em> showed.</p>
+
+    <center><img src="../../../assets/image/malwareCNN_02.png" height="400" width="400" /></center>
+    <center><i>Fig 2. Two Families </i></center>
+    <p />
+  </li>
+  <li>
+    <p><strong>Feature Vector and Classifier</strong></p>
+
+    <p>After authors saw the fig 2, they realized that they could use texture classification which is concerned identifying various uniformly textured regions in images.To compute texture features, they used <strong>GIST</strong> which uses a wavelet decomposition of an image. Then they used k-nearest neighbors with Euclidean distance for classification. They do a 10 fold cross validation, where under each test, a random subset of a class is used for training and testing.</p>
+  </li>
+  <li>
+    <p><strong>My Decision and Problems</strong></p>
+
+    <p>After I saw the visualization of malwares, I started to find a efficient way to do the images classification. And I resorted to CNN which had been widely used in computation vision at 2017. However, in the paper above stated, it said the width of images is fixed and the height can be varied. That could be a problem for CNN because it requires fixed input dimensions. My strategy is to scale those images into a fixed width and height.</p>
+
+    <p>In the paper, it recommended some width of image according to the file’s size. However, in my experiment, I found it was not a matter which width you scaled the image into when we used CNN as long as it keeps essential information. And because the larger images, the larger amout of params in the model and the more time costed, we need to trade off between the information keeped and time consumed when we decide the size of picture. And I found 32*32 images is a good choice.</p>
+  </li>
+</ul>
+
+<h3 id="summaries">Summaries</h3>
+
+<p>This chapter I will show some summaries I written during the work.</p>
+
+<h4 id="summary-01"><strong>Summary 01</strong></h4>
+
+<p>After reading plenty of papers about virus classification , we have decided to try to classify malware family with a visualization approach based on Deep Learning technic. 
+<strong>L. Nataraj</strong> in his paper <em>Malware Images: Visualization and Automatic Classification</em> proposed a novel method for visualizing and classifying malware using image processing techniques and got a 98% classification accuracy on a malware database of 9,458 samples with 25 different malware families. They transform the malware classification problem into an image classification issue. Consider the technics they used in their approach is obsolete and the Deep-Learning method is widely used in image procession area, so we want to use Deep-Leaning to classify malware family instead of extracting the GIST features of image and we want to do some experiments to test our thought.</p>
+
+<center><img src="../../../assets/image/malwareCNN_03.jpeg" height="100" width="400" /></center>
+<center><i>Fig 3. Structure of Deep-Learning Project </i></center>
+<p />
+
+<p>Before building our Deep-leaning model, we need to construct a robust Input Pipeline. This pipeline not only be used in training our model but also will be used when we classify malware with our constructed Deep-leaning model. For our situation, the Input Pipeline have two main sub-steps ,1) convert a software into an image 2)label the image to build a dataset. In this week I have finished the python code of this two steps.</p>
+
+<center><img src="../../../assets/image/malwareCNN_04.png" height="100" width="400" /></center>
+<center><i>Fig 4. Two steps of Input Pipeline </i></center>
+<p />
+
+<ul>
+  <li>
+    <p><strong>step1: Data Processing: Convert files into Images</strong></p>
+
+    <center><img src="../../../assets/image/malwareCNN_05.jpeg" height="200" width="500" /></center>
+    <center><i>Fig 5. raw files and File directory structure </i></center>
+    <p />
+
+    <center><img src="../../../assets/image/malwareCNN_06.jpeg" height="200" width="500" /></center>
+    <center><i>Fig 6. image files and File directory structure </i></center>
+    <p />
+
+    <center><img src="../../../assets/image/malwareCNN_07.jpeg" height="50" width="300" /></center>
+    <center><i>Fig 7. Our code </i></center>
+    <p />
+
+    <p>Our code need input a parameter dir_path, in this case it is <em>“C:\\Users\\intern_v\\Desktop\\sample”</em> . The program will go through all the sub folders under the dir_path, and create folders having same name under Image folder. The Image folder is in a level as same as Sample folder and it will be created in the beginning when our program is running.
+  For each files in the sub-folder the program will convert it into an image which size is 512*512. Every .png files produced have the same name of the raw file.</p>
+  </li>
+  <li>
+    <p><strong>Step2: Data processing: Database Constructing</strong></p>
+
+    <center><img src="../../../assets/image/malwareCNN_08.jpeg" height="200" width="500" /></center>
+    <center><i>Fig 8. image label </i></center>
+    <p />
+
+    <p>As we have 11 kinds of malwares, we need to build a 11-dimensions vector to represent the label of every malware. ( This technic named one-hot)</p>
+
+    <center><img src="../../../assets/image/malwareCNN_09.jpeg" height="200" width="500" /></center>
+    <center><i>Fig 9. code split data </i></center>
+    <p />
+
+    <p>We split the Dataset into 3 parts : training data, test data and validation data. The proportion of three parts is 3:2:1.</p>
+
+    <center><img src="../../../assets/image/malwareCNN_10.jpeg" height="200" width="500" /></center>
+    <center><i>Fig 10. code </i></center>
+    <p />
+
+    <p>Our dataset support next_batch operation, and we can get a fix number of samples ( image+lable) with this operation.</p>
+
+    <center><img src="../../../assets/image/malwareCNN_11.jpeg" height="200" width="500" /></center>
+    <center><i>Fig 11. code </i></center>
+    <p />
+
+    <p>We use pickle package in python to save this dataset to our disk,.</p>
+  </li>
+</ul>
+
+<h4 id="summary-02"><strong>Summary 02</strong></h4>
+
+<p>In this week, I have tried plenty of machine learning methods(eg. KNN, Random Forest, GaussianNB and Deep-Learning  ) on our Dataset . The classification accuracy of every algorithm is showed in Table 1 and Fig 12, Fig 13 and Fig4.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Algorithm</th>
+      <th style="text-align: center">Accuracy on test data</th>
+      <th style="text-align: center">Accuracy on training data</th>
+      <th style="text-align: center">picture size</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">KNN(k=5)</td>
+      <td style="text-align: center">53%</td>
+      <td style="text-align: center">50%</td>
+      <td style="text-align: center">512*512</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">GaussianNB</td>
+      <td style="text-align: center">78%</td>
+      <td style="text-align: center">78%</td>
+      <td style="text-align: center">512*512</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">RandomForest（60 trees GINI）</td>
+      <td style="text-align: center">83%</td>
+      <td style="text-align: center">94%</td>
+      <td style="text-align: center">512*512</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">ExtraTreesClassifier（60-trees GINI ）</td>
+      <td style="text-align: center">83%</td>
+      <td style="text-align: center">95%</td>
+      <td style="text-align: center">512*512</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">KNN(k=5)</td>
+      <td style="text-align: center">57%</td>
+      <td style="text-align: center">58%</td>
+      <td style="text-align: center">256*256</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">GaussianNB</td>
+      <td style="text-align: center">79.8%</td>
+      <td style="text-align: center">76.7%</td>
+      <td style="text-align: center">256*256</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">RandomForest （60 trees GINI）</td>
+      <td style="text-align: center">80%</td>
+      <td style="text-align: center">81%</td>
+      <td style="text-align: center">256*256</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">ExtraTreesClassifier（60-trees GINI ）</td>
+      <td style="text-align: center">81.5%</td>
+      <td style="text-align: center">82.5%</td>
+      <td style="text-align: center">256*256</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">KNN(k=5)</td>
+      <td style="text-align: center">72%</td>
+      <td style="text-align: center">73%</td>
+      <td style="text-align: center">128*128</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">GaussianNB</td>
+      <td style="text-align: center">75%</td>
+      <td style="text-align: center">80%</td>
+      <td style="text-align: center">128*128</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">RandomForest （60 trees GINI）</td>
+      <td style="text-align: center">78%</td>
+      <td style="text-align: center">80%</td>
+      <td style="text-align: center">128*128</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">ExtraTreesClassifier（60-trees GINI ）</td>
+      <td style="text-align: center">78%</td>
+      <td style="text-align: center">80%</td>
+      <td style="text-align: center">128*128</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">KNN(k=5)</td>
+      <td style="text-align: center">82%</td>
+      <td style="text-align: center">85%</td>
+      <td style="text-align: center">28*28</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">GaussianNB</td>
+      <td style="text-align: center">74%</td>
+      <td style="text-align: center">80%</td>
+      <td style="text-align: center">28*28</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">RandomForest （60 trees GINI）</td>
+      <td style="text-align: center">80%</td>
+      <td style="text-align: center">81%</td>
+      <td style="text-align: center">28*28</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">ExtraTreesClassifier（60-trees GINI ）</td>
+      <td style="text-align: center">81%</td>
+      <td style="text-align: center">81%</td>
+      <td style="text-align: center">28*28</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">CNN</td>
+      <td style="text-align: center">85%</td>
+      <td style="text-align: center">84%</td>
+      <td style="text-align: center">28*28</td>
+    </tr>
+  </tbody>
+</table>
+
+<center><i>Table 1 The accuracy of machine leaning algorithms </i></center>
+<p />
+
+<center><img src="../../../assets/image/malwareCNN_12.png" height="200" width="400" /></center>
+<center><i>Fig 12. Accuracy of algorithms running on test Dataset </i></center>
+<p />
+
+<center><img src="../../../assets/image/malwareCNN_13.png" height="200" width="400" /></center>
+<center><i>Fig 13. Accuracy of algorithms running on training Dataset </i></center>
+<p />
+
+<center><img src="../../../assets/image/malwareCNN_14.png" height="230" width="400" /></center>
+<center><i>Fig 14. Accuracy </i></center>
+<center>(For every pair of bar which have the same color, the left one is the accuracy on test data and the right one is the accuracy on training data. For each kind of algorithm, there are three pairs of bar related to the picture size.)</center>
+<p />
+
+<p>We achieve the highest accuracy on test dataset 85% with CNN ( Convolutional Neural Network). CNN is a widely used model in Deep-learning. The accuracy on training dataset is 84% with CNN. The CNN model is not over fitting like random forest and it can only be adopted when our picture is small due to the huge number of parameters which used to represent the weight and bias in the CNN model. But we still got an 85% accuracy rate with 28*28 picture size.</p>
+
+<h4 id="summary-03"><strong>Summary 03</strong></h4>
+
+<p>This week I try to improve the performance of our CNN model. I have done this in three aspects: 1) add convolutional layer between concolutional layer and maxpool layer,2) add L2 loss of weights and 3) take a method of Data Augmentation. The first two has a little improvement on the accuracy and the last one raised the accuracy up from 85% to 90%.</p>
+
+<ul>
+  <li>
+    <p>Data Augmentation
+  Deep learning always has good classification ability with huge data set. Consider I only have 1000 malwares, I decided to create more data with those malwares.
+  Our CNN model needs a 32<em>32 size picture as its input, so I transform those malwares into 32</em>32 pictures and those pictures alone have been used in our experiments before I take the Data Augmentation approach. But when came to the Data Augmentation, the size of our data set increases 60 times. 
+  In data augmentation, we transform our malwares into <script type="math/tex">S*S</script> size pictures <script type="math/tex">S\in[33,44]</script> . Then for each  size picture I cut into five 32*32 size images. The way I cut the picture is showed in the figure below.</p>
+
+    <center><img src="../../../assets/image/malwareCNN_15.png" height="400" width="400" /></center>
+    <center><i>Fig 15. Data Augmentation </i></center>
+    <center>(Cutting one image into 5 32*32 size images, from top left, right top, left bottom, right bottom and the middle of the image) </center>
+    <p />
+
+    <p>After this process, our dataset has 60,000 samples and we got a accuracy above 90%. I think we can achieve a higher accuracy rate after do more training steps on this huge dataset.</p>
+  </li>
+</ul>
+
+<h3 id="implementation">Implementation</h3>
+
+<p>To convient analysts to use this model, I also construct a cs programe.</p>
+
+<p>The code and instruction can be found <a href="https://github.com/xvshiting/MFC-CNN" title="Github">here</a>!</p>
+
+
+
+<div class="row">
+    
+    <a href="/mytags#Machine Learning"><span class="label label-info">Machine Learning</span></a>
+  
+    
+    <a href="/mytags#Virus Analysis"><span class="label label-info">Virus Analysis</span></a>
+  
+    
+    <a href="/mytags#Information Security"><span class="label label-info">Information Security</span></a>
+  
+    
+    <a href="/mytags#Deep Learning"><span class="label label-info">Deep Learning</span></a>
+  
+    
+</div>
+
+    </div>
+  </body>
+  <footer class="container-fluid foot-wrap">
+   <div class="container">
+    <div class="row">
+        <div class="row-content col-lg-2 col-sm-4 col-xs-6">
+     <h3>Subscribe</h3>
+                    <ul>
+                        <li><a href="#">Newsletter</a></li>
+                        <li><a href="#">RSS feed</a></li>
+                        <li><a href="#">RSS to Email</a></li>
+                        <li><a href="#">Product Hunt</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Pinterest</a></li>
+                        <li><a href="#">Google+</a></li>
+                    </ul>
+                </div>
+                <div class="row-content col-lg-2 col-sm-4 col-xs-6">
+                    <h3>BROWSE</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Gallery</a></li>
+                        <li><a href="#">Templates</a></li>
+                        <li><a href="#">Resources</a></li>
+                        <li><a href="#">OPL Themes</a></li>
+                    </ul>
+                </div>
+                <div class="row-content col-lg-2 col-sm-4 col-xs-6">
+                    <h3>INFORMATION</h3>
+                    <ul>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Why One Page?</a></li>
+                        <li><a href="#">OPL Blog</a></li>
+                        <li><a href="#">Product Hunt</a></li>
+                        <li><a href="#">Advertise</a></li>
+                        <li><a href="#">Submit</a></li>
+                        <li><a href="#">Award Ribbons</a></li>
+                        <li><a href="#">Roadmap</a></li>
+                    </ul>
+                </div>
+
+                <div class="row-content col-lg-2 col-sm-4 col-xs-6">
+                    <h3>RESOURCES</h3>
+                    <ul>
+                        <li><a href="#">Browse All</a></li>
+                        <li><a href="#">Design</a></li>
+                        <li><a href="#">Development</a></li>
+                        <li><a href="#">Hosting</a></li>
+                        <li><a href="#">Round Ups</a></li>
+                        <li><a href="#">Tutorials</a></li>
+                    </ul>
+
+                </div>
+                <div class="row-content col-lg-2 col-sm-4 col-xs-6">
+                    <h3>TRENDING</h3>
+                    <ul>
+                        <li><a href="#">Big Typography</a></li>
+                        <li><a href="#">Free Templates</a></li>
+                        <li><a href="#">Most Loved</a></li>
+                        <li><a href="#">Centrally Divided</a></li>
+                        <li><a href="#">Skrollr.js</a></li>
+                        <li><a href="#">Parallax Scrolling</a></li>
+                        <li><a href="#">Off-Canvas Menu</a></li>
+                        <li><a href="#">Molecules</a></li>
+                    </ul>
+                </div>
+                <div class="row-content col-lg-2 col-sm-4 col-xs-6">
+                    <h3>OPL THEMES</h3>
+                    <ul>
+                        <li><a href="#">Browse All</a></li>
+                        <li><a href="#">East Java</a></li>
+                        <li><a href="#">Clutterless</a></li>
+                        <li><a href="#">Mapped</a></li>
+                    </ul>
+                </div>
+
+</div>
+</div>
+</div>
+<ul class="social">
+                <li>
+                <a href="mailto:xvshiting@live.com" title="Github Profile">
+                    <span class="icon fa fa-send"></span>
+                </a>
+            </li>
+            <li>
+                <a href="https://twitter.com/xvshiting1" title="Twitter Profile">
+                    <span class="icon fa fa-twitter"></span>
+                </a>
+            </li>
+            <li>
+                <a href="#" title="Facebook Page">
+                    <span class="icon fa fa-facebook"></span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.linkedin.com/in/士亭-许-618191107/" title="LinkedIn Profile">
+                    <span class="icon fa fa-linkedin"></span>
+                </a>
+            </li>
+            <li>
+                <a href="#" title="Goole+ Profile">
+                    <span class="icon fa fa-google"></span>
+                </a>
+            </li>
+            <li>
+                <a href="http://www.github.com/xvshiting" title="Github Profile">
+                    <span class="icon fa fa-github"></span>
+                </a>
+            </li>
+             <li>
+                <a href="https://www.weibo.com/u/6004072387/home?wvr=5&uut=fin&from=reg" title="Github Profile">
+                    <span class="icon fa fa-weibo"></span>
+                </a>
+            </li>
+            <li>
+                <a href="#" title="Github Profile">
+                    <span class="icon fa fa-weixin"></span>
+                </a>
+            </li>
+        </ul>
+        <p align="center" style="margin-top: 20px;color:#878B91;">
+            Copyright &copy;2019 willXu1992.com
+        </p>
+
+</footer>
+
+</html>
