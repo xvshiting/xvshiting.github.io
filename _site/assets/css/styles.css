@@ -58,3 +58,26 @@ ul.social > li > a {
   ul.social > li > a:hover {
     text-decoration: none;
     background-color: #0066FF; }
+
+.imgtest {
+  margin: 0px 20px;
+  overflow: hidden; }
+
+.list_ul figcaption p {
+  font-size: 12px;
+  color: #aaa; }
+
+.imgtest figure div {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border-radius: 100px;
+  border: 2px solid #fff;
+  overflow: hidden;
+  -webkit-box-shadow: 0 0 3px #ccc;
+  box-shadow: 0 0 3px #ccc; }
+
+.imgtest img {
+  width: 100%;
+  min-height: 100%;
+  text-align: center; }

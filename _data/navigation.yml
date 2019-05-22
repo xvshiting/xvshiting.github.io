@@ -10,7 +10,7 @@
 - name: Tag
   link: /mytags.html
   bs-icon: glyphicon glyphicon-tags
-- name: AboutMe
+- name: About
   link: /about.html 
   bs-icon: glyphicon glyphicon-user
 

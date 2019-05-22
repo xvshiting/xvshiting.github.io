@@ -2,6 +2,17 @@
     <div class="container-fluid">
         <div>
         <ul class="nav navbar-nav">
+            <li>
+            <div class="imgtest">
+  
+ <figure>
+   
+<div>
+<img src="../../../assets/image/CV/cv4.png" />
+</div>  
+</figure>
+ </div>  
+</li>
   {% for item in site.data.navigation %}
   <li {% if page.url == item.link %}class="active"{% endif %}><a href="{{ item.link }}"><span class="{{item.bs-icon}}"></span>{{ item.name }}</a></li>
   {% endfor %}
