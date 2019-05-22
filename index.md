@@ -5,7 +5,7 @@ title: Home
 ### Biography
 
 
-[Viewing My CV][CV]
+[View My CV][CV]
 
 
 
@@ -15,7 +15,7 @@ title: Home
 
 <span style="color:grey"><i> --- I think NLP  as well as Deep Learning could not only can help machines better understand human beings , but also help human beings to know themselves better.</i></span>
 
-<span style="color:grey">If you have any opportunities suit me, please contact me !!!</span>
+<span style="color:grey">If you have any opportunity suits me, please contact me !!!</span>
 
 
 
