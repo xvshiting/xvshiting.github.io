@@ -13,7 +13,7 @@ title: Home
 **My research interests** are *machine learning, NLP, Deep Learning and Data Mining*. I think those researching areas provide us with new lights to perceive data we have and the world we live. So I am very interested in erecting novel models and admiring effects it bring to the world. I have also worked on *Information Security related to malicious software classification* before.
 
 
-[[Contact]][mail] [[CV]][CV] 
+[[Contact]][mail] &emsp; [[CV]][CV] 
 
 
 ***
@@ -25,18 +25,18 @@ title: Home
 
 ***
 
-### Working & Intership
+### Working 
 
-- 2017.09 - 2018.11 **Pachira Information Technology Beijing Co., Ltd.**
+- 2017.09 - 2018.11 &emsp; **Pachira Information Technology Beijing Co., Ltd.**
 
     - Improved Role accuracy of results of speech translation model with seq2seq model based on semantic information.
     - Participated in building a system based on the Question-Answer model to extract user information from conversations.
 
 <p/>
 
-- 2017.03 - 2017.07    **Kaspersky Lab, Beijing, China** (Intership)
+- 2017.03 - 2017.07   &emsp; **Kaspersky Lab, Beijing, China** &emsp;(Intership)
 
-    - Designed a malicious software’s families classification model based on CNN.  [[Details]][kas blog]
+    - Designed a malicious software’s families classification model based on CNN. &emsp; [[Details]][kas blog]
 
     - Implemented a CS system (based on tornado) to help analysts to train and
 invoke the model.        
@@ -46,15 +46,15 @@ invoke the model.
 
 ### Education
 
-- 2014.09 - 2017.03    **Master of Science, School CyberSpace Security(Former School of Computer Science), Stanford University**
+- 2014.09 - 2017.03  &emsp; **Master of Science, School CyberSpace Security(Former School of Computer Science), Stanford University**
 
-- 2010.09 - 2014.07    **Bachelor of Engineering, Computer Science Department, ShanDong University of Technology**
+- 2010.09 - 2014.07 &emsp; **Bachelor of Engineering, Computer Science Department, ShanDong University of Technology**
 
 ***
 
 ### Awards
 
-- 2014.9-2017.3      The First Honor Graduate Scholarship for 3 consecutive years
+- 2014.9-2017.3 &emsp; The First Honor Graduate Scholarship for 3 consecutive years
 
 ***
 
