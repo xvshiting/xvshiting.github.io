@@ -52,6 +52,12 @@ invoke the model.
 
 ***
 
+### Awards
+
+- 2014.9-2017.3 The First Honor Graduate Scholarship for 3 consecutive years
+
+***
+
 
 [CV]: ../../../assets/pdf/willXu_cv.pdf
 [paper1]:http://ieeexplore.ieee.org/document/7917194/
