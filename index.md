@@ -47,7 +47,7 @@ title: Home
 
 ### Education
 
-- <font style="color:grey"><small>2014.09 - 2017.03 </small> &emsp; Master of Science, School CyberSpace Security(Former School of Computer Science), Stanford University</font>
+- <font style="color:grey"><small>2014.09 - 2017.03 </small> &emsp; Master of Science, School CyberSpace Security(Former School of Computer Science), BeiJing University of Posts and Telecommunications</font>
 
 - <font style="color:grey"><small>2010.09 - 2014.07</small> &emsp; Bachelor of Engineering, Computer Science Department, ShanDong University of Technology</font>
 
