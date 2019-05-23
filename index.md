@@ -54,7 +54,7 @@ invoke the model.
 
 ### Awards
 
-- 2014.9-2017.3 The First Honor Graduate Scholarship for 3 consecutive years
+- 2014.9-2017.3      The First Honor Graduate Scholarship for 3 consecutive years
 
 ***
 
