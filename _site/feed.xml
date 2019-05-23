@@ -1,414 +1,711 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-05-23T22:06:08+08:00</updated><id>/feed.xml</id><title type="html">my awesome site</title><entry><title type="html">Competition summary</title><link href="/2019/05/19/competition-summary.html" rel="alternate" type="text/html" title="Competition summary" /><published>2019-05-19T00:00:00+08:00</published><updated>2019-05-19T00:00:00+08:00</updated><id>/2019/05/19/competition%20summary</id><content type="html" xml:base="/2019/05/19/competition-summary.html">## 2015 TaoBao Challenge of User Classification
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-05-23T22:06:52+08:00</updated><id>/feed.xml</id><title type="html">my awesome site</title><entry><title type="html">Competition summary</title><link href="/2019/05/19/competition-summary.html" rel="alternate" type="text/html" title="Competition summary" /><published>2019-05-19T00:00:00+08:00</published><updated>2019-05-19T00:00:00+08:00</updated><id>/2019/05/19/competition%20summary</id><content type="html" xml:base="/2019/05/19/competition-summary.html">&lt;h2 id=&quot;2015-taobao-challenge-of-user-classification&quot;&gt;2015 TaoBao Challenge of User Classification&lt;/h2&gt;
 
-* toc
-{:toc}
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#2015-taobao-challenge-of-user-classification&quot; id=&quot;markdown-toc-2015-taobao-challenge-of-user-classification&quot;&gt;2015 TaoBao Challenge of User Classification&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#problem-description&quot; id=&quot;markdown-toc-problem-description&quot;&gt;Problem Description&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#data-description&quot; id=&quot;markdown-toc-data-description&quot;&gt;Data Description&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#task&quot; id=&quot;markdown-toc-task&quot;&gt;TASK&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#evaluation&quot; id=&quot;markdown-toc-evaluation&quot;&gt;Evaluation&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#solution&quot; id=&quot;markdown-toc-solution&quot;&gt;Solution&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#perception-of-question&quot; id=&quot;markdown-toc-perception-of-question&quot;&gt;Perception of Question&lt;/a&gt;            &lt;ul&gt;
+              &lt;li&gt;&lt;a href=&quot;#major-diffrences-between-online-behaviors-of-12-classes-customers&quot; id=&quot;markdown-toc-major-diffrences-between-online-behaviors-of-12-classes-customers&quot;&gt;Major diffrences between online-behaviors of 12 classes customer’s&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#data-processing&quot; id=&quot;markdown-toc-data-processing&quot;&gt;Data processing&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#modeling&quot; id=&quot;markdown-toc-modeling&quot;&gt;Modeling&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
-PengyangWang And I participated in a big data challenge game holded by Alibaba in our school,Beijing University of Posts and Telecommunications , in this autumn. This challenge required participants to classify customers of TaoBao,chinese Amazon, into 12 categories based on their online behaviors.Our solution had achieved 34% precision rate. In this article, we prefer to making a summarize of this challenge and our method.
+&lt;p&gt;PengyangWang And I participated in a big data challenge game holded by Alibaba in our school,Beijing University of Posts and Telecommunications , in this autumn. This challenge required participants to classify customers of TaoBao,chinese Amazon, into 12 categories based on their online behaviors.Our solution had achieved 34% precision rate. In this article, we prefer to making a summarize of this challenge and our method.&lt;/p&gt;
 
-[code][all code]
+&lt;p&gt;&lt;a href=&quot;https://github.com/xvshiting/BUPT_TAOBAO&quot; title=&quot;github&quot;&gt;code&lt;/a&gt;&lt;/p&gt;
 
-### Problem Description
+&lt;h3 id=&quot;problem-description&quot;&gt;Problem Description&lt;/h3&gt;
 
-#### Data Description
+&lt;h4 id=&quot;data-description&quot;&gt;Data Description&lt;/h4&gt;
 
-This is a Multi classification problem. We are given three files: log_train.csv, info_train.csv,log_test.csv.
+&lt;p&gt;This is a Multi classification problem. We are given three files: log_train.csv, info_train.csv,log_test.csv.&lt;/p&gt;
 
-***
+&lt;hr /&gt;
 
-Data in file info_train.csv contains Id and class of all users appeared in log_train.csv. The structure of info_train.csv is given in the table below .
+&lt;p&gt;Data in file info_train.csv contains Id and class of all users appeared in log_train.csv. The structure of info_train.csv is given in the table below .&lt;/p&gt;
 
- &lt;center&gt;  &lt;i&gt; Example&lt;/i&gt;  &lt;/center&gt; 
+&lt;center&gt;  &lt;i&gt; Example&lt;/i&gt;  &lt;/center&gt;
 
-|user_id|class|
-|:-:|:-:|
-|254|1|
-|456|3|
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;user_id&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;class&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;254&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;456&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;p&gt;&lt;/p&gt;
 
-&lt;center&gt;  &lt;i&gt; Data Description&lt;/i&gt;  &lt;/center&gt; 
+&lt;center&gt;  &lt;i&gt; Data Description&lt;/i&gt;  &lt;/center&gt;
 
-|Col Name  |  Type  |  Description |Comment|
-|:-:|:-:|:-:| :-:|
-|user_id| int |identify of user| |   
-|class |  int |class of user |   number range from 1 to 12|
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Col Name&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Type&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Description&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Comment&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;user_id&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;int&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;identify of user&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;class&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;int&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;class of user&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;number range from 1 to 12&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
-***
+&lt;hr /&gt;
 
-log_train.csv and log_test.csv have same data structure .The contents of this two files is user’s online-shopping behaviors during a year. The name and meaning of all colums in this two files is given below.
+&lt;p&gt;log_train.csv and log_test.csv have same data structure .The contents of this two files is user’s online-shopping behaviors during a year. The name and meaning of all colums in this two files is given below.&lt;/p&gt;
 
-&lt;center&gt;  &lt;i&gt; Example&lt;/i&gt;  &lt;/center&gt; 
+&lt;center&gt;  &lt;i&gt; Example&lt;/i&gt;  &lt;/center&gt;
 
-
-|user_id| item_id |cat_id|  seller_id|   brand_id |   time_stamp | action_type|
-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|254| 1034  |  1206  |  1003  |  34  |173 |0|
-|254 |1498    |1085    |1243    |4241    |173 |1|
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;user_id&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;item_id&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;cat_id&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;seller_id&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;brand_id&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;time_stamp&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;action_type&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;254&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1034&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1206&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1003&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;34&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;173&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;254&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1498&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1085&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1243&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;4241&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;173&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;p&gt;&lt;/p&gt;
 
-&lt;center&gt;  &lt;i&gt; Data Description&lt;/i&gt;  &lt;/center&gt; 
+&lt;center&gt;  &lt;i&gt; Data Description&lt;/i&gt;  &lt;/center&gt;
 
-|Col Name  |  Type  |  Description |Comment|
-|:-:|:-:|:-:| :-:|
-|user_id |int| identify of user|    
-|item_id| int |identify of item    |
-|cat_id | int |Category Id of The Item |
-|seller_id  | int |Seller Id of The Item  | 
-|brand_id  |  int |brand Id of the Item   | 
-|time_stamp  |int |When The Action Occured |
-|Action_type| int |Type Id of the action |  0-click,1-collect,2-Buy,3-Delete|
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Col Name&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Type&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Description&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Comment&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;user_id&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;int&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;identify of user&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;item_id&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;int&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;identify of item&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;cat_id&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;int&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Category Id of The Item&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;seller_id&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;int&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Seller Id of The Item&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;brand_id&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;int&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;brand Id of the Item&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;time_stamp&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;int&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;When The Action Occured&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Action_type&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;int&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Type Id of the action&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;0-click,1-collect,2-Buy,3-Delete&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
+&lt;hr /&gt;
 
-***
+&lt;h3 id=&quot;task&quot;&gt;TASK&lt;/h3&gt;
 
-### TASK
+&lt;p&gt;This challenge required participants to classify all the users appeared in log_test.csvinto 12 categories based on user’s online-shopping behavior.&lt;/p&gt;
 
-This challenge required participants to classify all the users appeared in log_test.csvinto 12 categories based on user’s online-shopping behavior.
+&lt;hr /&gt;
 
-***
+&lt;h3 id=&quot;evaluation&quot;&gt;Evaluation&lt;/h3&gt;
 
-### Evaluation
+&lt;p&gt;The evaluation method is to calculate the precision rate of classification.The python code can be download &lt;a href=&quot;https://github.com/xvshiting/BUPT_TAOBAO/blob/master/Evaluation%20algriothm.py&quot; title=&quot;Evaluation code on github&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
- The evaluation method is to calculate the precision rate of classification.The python code can be download [here][Evaluation Code].
+&lt;hr /&gt;
 
-***
+&lt;h3 id=&quot;solution&quot;&gt;Solution&lt;/h3&gt;
 
-### Solution
+&lt;h4 id=&quot;perception-of-question&quot;&gt;Perception of Question&lt;/h4&gt;
 
-#### Perception of Question
+&lt;p&gt;Costumer’s number of all 12 categories in log_train.csv is given below&lt;/p&gt;
 
- Costumer’s number of all 12 categories in log_train.csv is given below
+&lt;center&gt;  &lt;i&gt; User’s number of 12 categories &lt;/i&gt;  &lt;/center&gt;
 
- &lt;center&gt;  &lt;i&gt; User’s number of 12 categories &lt;/i&gt;  &lt;/center&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;class&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;1&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;2&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;3&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;4&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;5&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;6&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;7&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;8&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;9&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;10&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;11&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;12&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;number&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;12166&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;26830&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;18836&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;10066&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;8981&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1999&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;6578&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;11915&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;8416&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;4163&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3536&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;973&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
- |class | 1|   2|   3|   4 |  5 |  6|   7 |  8 |  9 |  10|  11|  12 |
- |:-:|:-:|:-:| :-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
- |number|  12166 |  26830|   18836|   10066|   8981|    1999 |   6578 |   11915 |  8416|    4163 |   3536|    973|
+&lt;p&gt;Class 2 has the highest numbers of users and class12 has the minimum ,only 937 ,users. The total number of users is 114459.&lt;/p&gt;
 
- Class 2 has the highest numbers of users and class12 has the minimum ,only 937 ,users. The total number of users is 114459.
+&lt;h5 id=&quot;major-diffrences-between-online-behaviors-of-12-classes-customers&quot;&gt;Major diffrences between online-behaviors of 12 classes customer’s&lt;/h5&gt;
 
-##### Major diffrences between online-behaviors of 12 classes customer’s
+&lt;p&gt;It’s important to understand all the key elements that can influence classification precision rate.According to our usual experience of online-shopping and the data we accessed from this competition,we concluded some potential meaningful features behavior of users:&lt;/p&gt;
 
- It’s important to understand all the key elements that can influence classification precision rate.According to our usual experience of online-shopping and the data we accessed from this competition,we concluded some potential meaningful features behavior of users:
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Active Days of User&lt;/p&gt;
 
-- Active Days of User
+    &lt;p&gt;We defined this term as the total number of days that user has online active record.We calculated activity days of all users in training set and plot the result to visualize the data.The R code to compute the active days of user and the figure of 12 categories activity days are given below.&lt;/p&gt;
 
-    We defined this term as the total number of days that user has online active record.We calculated activity days of all users in training set and plot the result to visualize the data.The R code to compute the active days of user and the figure of 12 categories activity days are given below.
+    &lt;div class=&quot;language-R highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user_active_days&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sapply&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train_user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;V&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;unique&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train_data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user_id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time_stamp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))})&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
 
-    ```R
- user_active_days&lt;-sapply(train_user$V1,function(x){length(unique(train_data[train_data$user_id==x,]$time_stamp))})
-    ```
+    &lt;center&gt;  &lt;i&gt; Active Days of 12 Categories &lt;/i&gt;  &lt;/center&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
-     &lt;center&gt;  &lt;i&gt; Active Days of 12 Categories &lt;/i&gt;  &lt;/center&gt;
+&lt;center&gt;&lt;img src=&quot;../../../assets/image/taobao_01.png&quot; /&gt;&lt;/center&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Action frequency of specific period&lt;/p&gt;
 
-&lt;center&gt;&lt;img src =&quot;../../../assets/image/taobao_01.png&quot;&gt;&lt;/center&gt;
-- Action frequency of specific period 
+    &lt;p&gt;In China,there are some essential date,such as Singles’ Day,National Day and Valentine’s Day,for online-consumer because of the discount. By analysis the log file, we found that people from different categories have different attitude towards those special date. For example, class 3 and 4 will more active in those period than ordinary days. In contrast, users in class 8 are more calm when faced the on sale.Even there is only a slightly variation between the 12 classes in this feature,but after we split those data into different time intervals,we can achieve a 13% precision rate by using this feature set(buying_frequency,clicking_frequency,action_frequency).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The ratio of Action Types in a time range&lt;/p&gt;
 
-    In China,there are some essential date,such as Singles’ Day,National Day and Valentine’s Day,for online-consumer because of the discount. By analysis the log file, we found that people from different categories have different attitude towards those special date. For example, class 3 and 4 will more active in those period than ordinary days. In contrast, users in class 8 are more calm when faced the on sale.Even there is only a slightly variation between the 12 classes in this feature,but after we split those data into different time intervals,we can achieve a 13% precision rate by using this feature set(buying_frequency,clicking_frequency,action_frequency).
+    &lt;p&gt;From the head of this article,we know the action type is divided into 3 types.After analysis,We discovered that it’s really rare for behaviors of colloect and delete. So we ignore this two action type and just focus on the buying_clicking ratio.This ratio is refer to before a customer do a buying action how many clicking action or how many items this user viewed. 
+  The formulation of computing the buying_clicking ratio of one period is given below.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
-- The ratio of Action Types in a time range 
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;buying\_clicking\_ratio = \frac{clicking\_frequency}{buying\_frequency}&lt;/script&gt;
 
-    From the head of this article,we know the action type is divided into 3 types.After analysis,We discovered that it’s really rare for behaviors of colloect and delete. So we ignore this two action type and just focus on the buying_clicking ratio.This ratio is refer to before a customer do a buying action how many clicking action or how many items this user viewed. 
-    The formulation of computing the buying_clicking ratio of one period is given below.
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Brand of consumer goods&lt;/p&gt;
 
-$$ buying\_clicking\_ratio = \frac{clicking\_frequency}{buying\_frequency} $$
-
-
-- Brand of consumer goods
-
-    Every record in log_train.csv have a feature named brand_idwhich represent the brand related with this action.We just consider buying_action ,we want to use the brand of items people consuming to classify users. We all know that in our life different brands are towards different group of people. So it’s also make sense that people from different categories will buy products from different brands.However,how to connect the brand with user’s categories is a problem.In our case we use K-meanson brand_id feature. 
-    K-means is a clustering algorithm in machine learning area. To use this on bran_id we require to construct a dataframe of brand_id.The dataframe is given below.Our data frame has 13 features, the first column is brand_id and the other features are the buying proportion of specific class users in 12 categories. 
-    There are 6304brand in this data. 
+    &lt;p&gt;Every record in log_train.csv have a feature named brand_idwhich represent the brand related with this action.We just consider buying_action ,we want to use the brand of items people consuming to classify users. We all know that in our life different brands are towards different group of people. So it’s also make sense that people from different categories will buy products from different brands.However,how to connect the brand with user’s categories is a problem.In our case we use K-meanson brand_id feature. 
+  K-means is a clustering algorithm in machine learning area. To use this on bran_id we require to construct a dataframe of brand_id.The dataframe is given below.Our data frame has 13 features, the first column is brand_id and the other features are the buying proportion of specific class users in 12 categories. 
+  There are 6304brand in this data.&lt;/p&gt;
 
     &lt;center&gt;  &lt;i&gt; Brand DataFrame  &lt;/i&gt;  &lt;/center&gt;
 
-   | brand_id |$$C_1$$|$$C_2$$|$$C_3$$|$$C_4$$|$$C_5$$|$$C_6$$|$$C_7$$|$$C_8$$|$$C_9$$|$$C_{10}$$|$$C_{11}$$|$$C_{12}$$|           
-   |:-:|:-:|:-:| :-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|                                
-|234| 0.2| 0.1| 0 |  0|   0|   0.4| 0 |  0 |  0 |  0 |  0 |  0.2|
+    &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th style=&quot;text-align: center&quot;&gt;brand_id&lt;/th&gt;
+          &lt;th style=&quot;text-align: center&quot;&gt;&lt;script type=&quot;math/tex&quot;&gt;C_1&lt;/script&gt;&lt;/th&gt;
+          &lt;th style=&quot;text-align: center&quot;&gt;&lt;script type=&quot;math/tex&quot;&gt;C_2&lt;/script&gt;&lt;/th&gt;
+          &lt;th style=&quot;text-align: center&quot;&gt;&lt;script type=&quot;math/tex&quot;&gt;C_3&lt;/script&gt;&lt;/th&gt;
+          &lt;th style=&quot;text-align: center&quot;&gt;&lt;script type=&quot;math/tex&quot;&gt;C_4&lt;/script&gt;&lt;/th&gt;
+          &lt;th style=&quot;text-align: center&quot;&gt;&lt;script type=&quot;math/tex&quot;&gt;C_5&lt;/script&gt;&lt;/th&gt;
+          &lt;th style=&quot;text-align: center&quot;&gt;&lt;script type=&quot;math/tex&quot;&gt;C_6&lt;/script&gt;&lt;/th&gt;
+          &lt;th style=&quot;text-align: center&quot;&gt;&lt;script type=&quot;math/tex&quot;&gt;C_7&lt;/script&gt;&lt;/th&gt;
+          &lt;th style=&quot;text-align: center&quot;&gt;&lt;script type=&quot;math/tex&quot;&gt;C_8&lt;/script&gt;&lt;/th&gt;
+          &lt;th style=&quot;text-align: center&quot;&gt;&lt;script type=&quot;math/tex&quot;&gt;C_9&lt;/script&gt;&lt;/th&gt;
+          &lt;th style=&quot;text-align: center&quot;&gt;&lt;script type=&quot;math/tex&quot;&gt;C_{10}&lt;/script&gt;&lt;/th&gt;
+          &lt;th style=&quot;text-align: center&quot;&gt;&lt;script type=&quot;math/tex&quot;&gt;C_{11}&lt;/script&gt;&lt;/th&gt;
+          &lt;th style=&quot;text-align: center&quot;&gt;&lt;script type=&quot;math/tex&quot;&gt;C_{12}&lt;/script&gt;&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;234&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;0.2&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;0.1&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;0&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;0&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;0&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;0.4&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;0&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;0&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;0&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;0&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;0&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;0.2&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;C_i\_brand_t = \frac{Numbers\_of\_Class_i\_Buying\_Brand_t}{\sum_{i=1}^12 Numbers\_of\_Class_i\_Buying\_Brand_t}&lt;/script&gt;
 
-$$ C_i\_brand_t = \frac{Numbers\_of\_Class_i\_Buying\_Brand_t}{\sum_{i=1}^12 Numbers\_of\_Class_i\_Buying\_Brand_t} $$
+&lt;p&gt;After we construct this dataframe ,we are using K-meanson Brand DataFrame .R code of this process is given below.&lt;/p&gt;
 
+&lt;div class=&quot;language-R highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getKmeans_brand&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;brand_class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;table&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;brand_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rowSums&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;table&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;brand_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 
-After we construct this dataframe ,we are using K-meanson Brand DataFrame .R code of this process is given below.
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;brand_kmeans_k&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kmeans&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;brand_class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;centers&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 
-``` R
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;brand_id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rownames&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;brand_class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;brand_kmeans_k&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data.frame&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;brand_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;brand_kmeans_k&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cluster&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;brand_kmeans_k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 
-getKmeans_brand&lt;-function(log,k)
-{
-brand_class&lt;-table(log$brand_id,log$class)/rowSums(table(log$brand_id,log$class))
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 
-brand_kmeans_k&lt;-kmeans(brand_class,centers = k)
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-brand_id&lt;-rownames(brand_class)
-brand_kmeans_k&lt;-data.frame(brand_id,brand_kmeans_k$cluster)
-return (brand_kmeans_k)
+&lt;p&gt;After we cluster brand into 14 calsses,then we update brand_id with their newest calss_id.&lt;/p&gt;
 
-}
+&lt;ul&gt;
+  &lt;li&gt;Category of consumers goods 
+  We also adopt same process on the categories of item as well as brands of item.The idea is as the same as we propose in previous part.&lt;/li&gt;
+&lt;/ul&gt;
 
-```
+&lt;hr /&gt;
 
-After we cluster brand into 14 calsses,then we update brand_id with their newest calss_id.
+&lt;h3 id=&quot;data-processing&quot;&gt;Data processing&lt;/h3&gt;
 
- - Category of consumers goods 
-  We also adopt same process on the categories of item as well as brands of item.The idea is as the same as we propose in previous part.
+&lt;p&gt;All the R code of clean data process can be found &lt;a href=&quot;https://github.com/xvshiting/BUPT_TAOBAO/blob/master/clean_data.R&quot; title=&quot;Clean Data code on github&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
+&lt;p&gt;clean_data&amp;lt;-function(log,time=1:185,kmeans_k=6,user.all,brand_kmeans,cat_kmeans)&lt;/p&gt;
 
-***
+&lt;p&gt;The argument time in clean_data function can split the whole log_train.csv into different part by time interval as your wish.We give a invoking example below.&lt;/p&gt;
 
-### Data processing
+&lt;div class=&quot;language-R highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;w&quot;&gt;
+ &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train_t1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;clean_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;log_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user.all&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;log_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;brand_kmeans&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;brand_kmeans&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cat_kmeans&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cat_kmeans&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train_t2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;clean_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;log_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;11&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;40&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user.all&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;log_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;brand_kmeans&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;brand_kmeans&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cat_kmeans&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cat_kmeans&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train_t3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;clean_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;log_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;40&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user.all&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;log_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;brand_kmeans&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;brand_kmeans&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cat_kmeans&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cat_kmeans&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train_t4&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;clean_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;log_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;m&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;185&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user.all&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;log_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;brand_kmeans&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;brand_kmeans&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cat_kmeans&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cat_kmeans&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;final_train&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;merge_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train_t1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train_t2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train_t3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train_t4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-All the R code of clean data process can be found [here][clean code].
+&lt;p&gt;In the above code, we split the whole 185 days into 4 parts.We also combine all the feature in 4 parts together by a merge_data function.&lt;/p&gt;
 
-clean_data&lt;-function(log,time=1:185,kmeans_k=6,user.all,brand_kmeans,cat_kmeans)
+&lt;div class=&quot;language-R highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;merge_data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;final_log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;merge&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;by.x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;user_id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;by.y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;user_id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;final_log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;merge&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;final_log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;by.x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;user_id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;by.y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;user_id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;final_log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;merge&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;final_log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;by.x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;user_id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;by.y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;user_id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;final_log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;merge&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;final_log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;by.x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;user_id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;by.y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;user_id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;final_log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;merge&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;final_log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;by.x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;user_id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;by.y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;user_id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;final_log&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;merge&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;final_log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;by.x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;user_id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;by.y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;user_id&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;#final_log&amp;lt;-merge(final_log,data7,by.x=&quot;user_id&quot;,by.y=&quot;user_id&quot;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;final_log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-The argument time in clean_data function can split the whole log\_train.csv into different part by time interval as your wish.We give a invoking example below.
+&lt;p&gt;we got our final dataframe final_train.Then we start to construct a classification model.&lt;/p&gt;
 
-``` R
+&lt;hr /&gt;
 
- train_t1&lt;-clean_data(log_train,time = 1:10,user.all = get_user(log_train),brand_kmeans = brand_kmeans,cat_kmeans = cat_kmeans)
-  train_t2&lt;-clean_data(log_train,time = 11:40,user.all = get_user(log_train),brand_kmeans = brand_kmeans,cat_kmeans = cat_kmeans)
-  train_t3&lt;-clean_data(log_train,time = 40:100,user.all = get_user(log_train),brand_kmeans = brand_kmeans,cat_kmeans = cat_kmeans)
-  train_t4&lt;-clean_data(log_train,time = 100:185,user.all = get_user(log_train),brand_kmeans = brand_kmeans,cat_kmeans = cat_kmeans)
-  final_train&lt;-merge_data(train_t1,train_t2,train_t3,train_t4)
-```
+&lt;h3 id=&quot;modeling&quot;&gt;Modeling&lt;/h3&gt;
 
-In the above code, we split the whole 185 days into 4 parts.We also combine all the feature in 4 parts together by a merge_data function.
+&lt;p&gt;We have tired many classification algorithm like Naive Bayes,Decision Tree,SVM ,Random forests,KNN and Adaboosting.We found that when using 5 descision trees in Adaboosting we got highest precision rate 34%.The modeling code can be found &lt;a href=&quot;https://github.com/xvshiting/BUPT_TAOBAO/blob/master/modeling.py&quot; title=&quot;model code on github&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
-```R
-merge_data&lt;-function(data1,data2,data3,data4,data5,data6,data7)
-{
-final_log&lt;-merge(data1,data2,by.x=&quot;user_id&quot;,by.y=&quot;user_id&quot;)
-final_log&lt;-merge(final_log,data3,by.x=&quot;user_id&quot;,by.y=&quot;user_id&quot;)
-final_log&lt;-merge(final_log,data4,by.x=&quot;user_id&quot;,by.y=&quot;user_id&quot;)
-final_log&lt;-merge(final_log,data5,by.x=&quot;user_id&quot;,by.y=&quot;user_id&quot;)
-final_log&lt;-merge(final_log,data6,by.x=&quot;user_id&quot;,by.y=&quot;user_id&quot;)
-final_log&lt;-merge(final_log,data7,by.x=&quot;user_id&quot;,by.y=&quot;user_id&quot;)
-#final_log&lt;-merge(final_log,data7,by.x=&quot;user_id&quot;,by.y=&quot;user_id&quot;)
-return(final_log)
-}
-```
+&lt;center&gt;&lt;img src=&quot;../../../assets/image/taobao_02.png&quot; /&gt;&lt;/center&gt;</content><author><name>willXu</name></author><category term="Machine Learning" /><category term="Data Mining" /><category term="Competition" /><summary type="html">2015 TaoBao Challenge of User Classification</summary></entry><entry><title type="html">Research summary</title><link href="/2019/05/19/research-summary.html" rel="alternate" type="text/html" title="Research summary" /><published>2019-05-19T00:00:00+08:00</published><updated>2019-05-19T00:00:00+08:00</updated><id>/2019/05/19/research%20summary</id><content type="html" xml:base="/2019/05/19/research-summary.html">&lt;h2 id=&quot;malicious-software-classification-model-based-on-cnn&quot;&gt;malicious software classification model based on CNN&lt;/h2&gt;
 
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#malicious-software-classification-model-based-on-cnn&quot; id=&quot;markdown-toc-malicious-software-classification-model-based-on-cnn&quot;&gt;malicious software classification model based on CNN&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#background&quot; id=&quot;markdown-toc-background&quot;&gt;BackGround&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#n-gram&quot; id=&quot;markdown-toc-n-gram&quot;&gt;n-gram&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#treat-softwares-as-images&quot; id=&quot;markdown-toc-treat-softwares-as-images&quot;&gt;Treat SoftWares as Images!&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#an-important-paper&quot; id=&quot;markdown-toc-an-important-paper&quot;&gt;An Important Paper&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#summaries&quot; id=&quot;markdown-toc-summaries&quot;&gt;Summaries&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#summary-01&quot; id=&quot;markdown-toc-summary-01&quot;&gt;&lt;strong&gt;Summary 01&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#summary-02&quot; id=&quot;markdown-toc-summary-02&quot;&gt;&lt;strong&gt;Summary 02&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#summary-03&quot; id=&quot;markdown-toc-summary-03&quot;&gt;&lt;strong&gt;Summary 03&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#implementation&quot; id=&quot;markdown-toc-implementation&quot;&gt;Implementation&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
-we got our final dataframe final_train.Then we start to construct a classification model.
+&lt;h3 id=&quot;background&quot;&gt;BackGround&lt;/h3&gt;
 
-***
+&lt;p&gt;This project had been done during my intership as an virus analyst in a Information Security Company in China in the summer of 2017 I was just got my master degree. This project means a lot to me. Not only because it was my first intership and it realted to my major ,Infromation security, and my interst ,machine learning, but also it was my first time to solve a practical problem by myself with deep learning model.&lt;/p&gt;
 
-### Modeling
+&lt;p&gt;In this artical, I will talk about the work I had done in the sequence of time ,from the first possible solution came to my mind to why I choose the CNN to solve this issue.&lt;/p&gt;
 
-We have tired many classification algorithm like Naive Bayes,Decision Tree,SVM ,Random forests,KNN and Adaboosting.We found that when using 5 descision trees in Adaboosting we got highest precision rate 34%.The modeling code can be found [here][model code].
+&lt;p&gt;The problem is that virus analysts in this company needs to handle a plenty of malicious softwares . They are required to decide the class of a specific malicious software in order to decide the way they should take to kill this virus. In that time, the way they adopted was to compare the software with their database which recorded features of tremendous amount of malicious softwares or compare the MD5 directly. This method needed a lot of human works and had lots of drawbacks.&lt;/p&gt;
 
-&lt;center&gt;&lt;img src=&quot;../../../assets/image/taobao_02.png&quot;&gt;&lt;/center&gt;
+&lt;p&gt;First,Malicious softwares always belied themselves by changing runing logic, adding redundant code, changing function name or changing the malicious behavior but using same hack method as before. There are thousands of ways to formulate a new malicious software by slight adjusting an original one which means the company needs to add features of those new viruses to their database and also means their classifcation engine could not handle the variety feature of malicious software.&lt;/p&gt;
 
-[all code]:https://github.com/xvshiting/BUPT_TAOBAO &quot;github&quot;
-[Evaluation Code]:https://github.com/xvshiting/BUPT_TAOBAO/blob/master/Evaluation%20algriothm.py &quot;Evaluation code on github&quot;
-[clean code]:https://github.com/xvshiting/BUPT_TAOBAO/blob/master/clean_data.R &quot;Clean Data code on github&quot;
-[model code]:https://github.com/xvshiting/BUPT_TAOBAO/blob/master/modeling.py &quot;model code on github&quot;</content><author><name>willXu</name></author><category term="Machine Learning" /><category term="Data Mining" /><category term="Competition" /><summary type="html">2015 TaoBao Challenge of User Classification</summary></entry><entry><title type="html">Research summary</title><link href="/2019/05/19/research-summary.html" rel="alternate" type="text/html" title="Research summary" /><published>2019-05-19T00:00:00+08:00</published><updated>2019-05-19T00:00:00+08:00</updated><id>/2019/05/19/research%20summary</id><content type="html" xml:base="/2019/05/19/research-summary.html">## malicious software classification model based on CNN
+&lt;p&gt;Second, extracting features of malicious software by human sometimes can be incorrect. Human beings always make mistakes especially in this tedious work , even facing lots of assembly code . Another situation is that some features which can be useful to classify one malicious family always not efficient to another one. Therefore, analysts and researchers taking resposiblity of the engine need to exploring the best set of features they should extract and gather from malicious softwares. It costs lots of time and would be a tedious work.&lt;/p&gt;
 
-* toc
-{:toc}
+&lt;p&gt;So, they hired me want to solve this problem. Well, I have to admit they just want to explore possibility machine learning methods and may not count on me. However, my collegus in the company gave me lots of helps . My leader  had done some reserches before I attended. He wanted to solve this probelm using the n-gram algorithm which has been widely used in language model in NLP area at that time.&lt;/p&gt;
 
+&lt;hr /&gt;
 
+&lt;h3 id=&quot;n-gram&quot;&gt;n-gram&lt;/h3&gt;
 
-### BackGround
+&lt;p&gt;N-gram was widely used in NLP or Speech Recognition tasks due to its efficient and robust. For example, we always use 2-gram or 3-gram in langauge model. By inputting two words , a language model can output a word which has highest possibility behind these two words. A case in point is that, if we input &lt;code class=&quot;highlighter-rouge&quot;&gt;I  ride&lt;/code&gt; into the model, it possiblely output &lt;code class=&quot;highlighter-rouge&quot;&gt;bike&lt;/code&gt;. It decided by the material the laguage model trained on. So basically,  N-gram is to calculate appearence possiblity of all n words in its training set statistically. It needs a huge corpus and still could not cover all combination of words appearing in real world. Nevertheless, there are plenty ways of smoothing to deal with this problem, such as &lt;code class=&quot;highlighter-rouge&quot;&gt;Good Turning&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;Simple Linear Interpolation&lt;/code&gt;.&lt;/p&gt;
 
+&lt;p&gt;&lt;strong&gt;Robert Moskovitch&lt;/strong&gt; in his paper &lt;em&gt;Unknown Malcode Detection Using OPCODE Representation&lt;/em&gt; presented methodology for the detection of unknown malicious code, based on text categorization concepts.They extracted sequences of OpCode expressions, which they term OpCode-n-grams. The vocabularies extracted were of 515, 39,011, 443,730, 1,769,641, 5,033,722 and 11,948,491, for 1-gram, 2-gram, 3gram, 4-gram, 5-gram and 6-gram, respectively. Later TF and TFIDF representations were calculated for each n-gram in each file. After that, they experiment some machine learning methods on those features.&lt;/p&gt;
 
-This project had been done during my intership as an virus analyst in a Information Security Company in China in the summer of 2017 I was just got my master degree. This project means a lot to me. Not only because it was my first intership and it realted to my major ,Infromation security, and my interst ,machine learning, but also it was my first time to solve a practical problem by myself with deep learning model. 
+&lt;p&gt;&lt;strong&gt;D Krishna Sandeep Reddy · Arun K Pujari&lt;/strong&gt; in his paper &lt;em&gt;N-gram analysis for computer virus detection&lt;/em&gt; described a new feature selection measure, class-wise document frequency of byte n-grams. Then, they combine the classiﬁers,such as SVM and decision tree, to improve the performance of classiﬁcation.&lt;/p&gt;
 
-In this artical, I will talk about the work I had done in the sequence of time ,from the first possible solution came to my mind to why I choose the CNN to solve this issue.  
+&lt;p&gt;There are many papers showing that n-gram can be used to extract features from softwares’ source code. They all acheived good accuracy in many tasks. However, I still don’t want to use this method. First, it needs many viruses and the company would not give me so much malicious software at experimental period. Second, I prefer an end-to-end solution. N-gram only provides us a convinent way to construct features. But it is not convinent enough because you still need to attempt different machine learning algorithems after that.In other words, it is not graceful.&lt;/p&gt;
 
-The problem is that virus analysts in this company needs to handle a plenty of malicious softwares . They are required to decide the class of a specific malicious software in order to decide the way they should take to kill this virus. In that time, the way they adopted was to compare the software with their database which recorded features of tremendous amount of malicious softwares or compare the MD5 directly. This method needed a lot of human works and had lots of drawbacks. 
+&lt;h3 id=&quot;treat-softwares-as-images&quot;&gt;Treat SoftWares as Images!&lt;/h3&gt;
 
-First,Malicious softwares always belied themselves by changing runing logic, adding redundant code, changing function name or changing the malicious behavior but using same hack method as before. There are thousands of ways to formulate a new malicious software by slight adjusting an original one which means the company needs to add features of those new viruses to their database and also means their classifcation engine could not handle the variety feature of malicious software.
+&lt;p&gt;When I first time saw this concept, I was very excited! It is a novel method and that means we can visualize viruses. But after I searched some papers( actually, only one paper is important) using this concept, I started to be disappointed. Because in those paper , they used complex computer vision algorithems to extract features from images formed from malwares and then tried them with different machine learning algorithem. One abstacle for me was I did not familiar with those algorithems and that would cost me lot of time if I tried to acquire related knowledge. Another question was they are still not end-to-end solutions.&lt;/p&gt;
 
-Second, extracting features of malicious software by human sometimes can be incorrect. Human beings always make mistakes especially in this tedious work , even facing lots of assembly code . Another situation is that some features which can be useful to classify one malicious family always not efficient to another one. Therefore, analysts and researchers taking resposiblity of the engine need to exploring the best set of features they should extract and gather from malicious softwares. It costs lots of time and would be a tedious work.
+&lt;h4 id=&quot;an-important-paper&quot;&gt;An Important Paper&lt;/h4&gt;
 
-So, they hired me want to solve this problem. Well, I have to admit they just want to explore possibility machine learning methods and may not count on me. However, my collegus in the company gave me lots of helps . My leader  had done some reserches before I attended. He wanted to solve this probelm using the n-gram algorithm which has been widely used in language model in NLP area at that time.
+&lt;p&gt;&lt;strong&gt;L. Nataraj, S. Karthikeyan&lt;/strong&gt; in &lt;em&gt;Malware Images: Visualization and Automatic Classification&lt;/em&gt; proposed a simple yet effective method for visualizing and classifying malware using image processing techniques.&lt;/p&gt;
 
-***
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;VISUALIZATION&lt;/strong&gt;&lt;/p&gt;
 
-### n-gram
-
-
-N-gram was widely used in NLP or Speech Recognition tasks due to its efficient and robust. For example, we always use 2-gram or 3-gram in langauge model. By inputting two words , a language model can output a word which has highest possibility behind these two words. A case in point is that, if we input `I  ride` into the model, it possiblely output `bike`. It decided by the material the laguage model trained on. So basically,  N-gram is to calculate appearence possiblity of all n words in its training set statistically. It needs a huge corpus and still could not cover all combination of words appearing in real world. Nevertheless, there are plenty ways of smoothing to deal with this problem, such as `Good Turning` and `Simple Linear Interpolation`.
-
-**Robert Moskovitch** in his paper *Unknown Malcode Detection Using OPCODE Representation* presented methodology for the detection of unknown malicious code, based on text categorization concepts.They extracted sequences of OpCode expressions, which they term OpCode-n-grams. The vocabularies extracted were of 515, 39,011, 443,730, 1,769,641, 5,033,722 and 11,948,491, for 1-gram, 2-gram, 3gram, 4-gram, 5-gram and 6-gram, respectively. Later TF and TFIDF representations were calculated for each n-gram in each file. After that, they experiment some machine learning methods on those features.
-
-**D Krishna Sandeep Reddy · Arun K Pujari** in his paper *N-gram analysis for computer virus detection* described a new feature selection measure, class-wise document frequency of byte n-grams. Then, they combine the classiﬁers,such as SVM and decision tree, to improve the performance of classiﬁcation.
-
-There are many papers showing that n-gram can be used to extract features from softwares' source code. They all acheived good accuracy in many tasks. However, I still don't want to use this method. First, it needs many viruses and the company would not give me so much malicious software at experimental period. Second, I prefer an end-to-end solution. N-gram only provides us a convinent way to construct features. But it is not convinent enough because you still need to attempt different machine learning algorithems after that.In other words, it is not graceful.
-
-### Treat SoftWares as Images!
-
-When I first time saw this concept, I was very excited! It is a novel method and that means we can visualize viruses. But after I searched some papers( actually, only one paper is important) using this concept, I started to be disappointed. Because in those paper , they used complex computer vision algorithems to extract features from images formed from malwares and then tried them with different machine learning algorithem. One abstacle for me was I did not familiar with those algorithems and that would cost me lot of time if I tried to acquire related knowledge. Another question was they are still not end-to-end solutions.
-
-#### An Important Paper
-
-**L. Nataraj, S. Karthikeyan** in *Malware Images: Visualization and Automatic Classification* proposed a simple yet effective method for visualizing and classifying malware using image processing techniques.
-
-- **VISUALIZATION**
-
-    In this paper,a given malware binary is read as a vector of 8 bit unsigned integers and then organized into a 2D array. This can be visualized as a gray scale image in the range [0,255] (0: black, 255: white). The width of the image is fixed and the height is allowed to vary depending on the file size. 
+    &lt;p&gt;In this paper,a given malware binary is read as a vector of 8 bit unsigned integers and then organized into a 2D array. This can be visualized as a gray scale image in the range [0,255] (0: black, 255: white). The width of the image is fixed and the height is allowed to vary depending on the file size.&lt;/p&gt;
 
     &lt;center&gt;&lt;img src=&quot;../../../assets/image/malwareCNN_01.png&quot; height=&quot;100&quot; width=&quot;400&quot; /&gt;&lt;/center&gt;
     &lt;center&gt;&lt;i&gt;Fig 1. Visualizing Malware as an Image&lt;/i&gt;&lt;/center&gt;
-    &lt;p/&gt;
-    After visualization,They found that different sections (binary fragments) of the malware exhibit distinctive image textures. And they also found that images of different malware samples from a given family appear visually similar and distinct from those belonging to a different family like *Fig 2* showed.
+    &lt;p /&gt;
 
-    
+    &lt;p&gt;After visualization,They found that different sections (binary fragments) of the malware exhibit distinctive image textures. And they also found that images of different malware samples from a given family appear visually similar and distinct from those belonging to a different family like &lt;em&gt;Fig 2&lt;/em&gt; showed.&lt;/p&gt;
 
     &lt;center&gt;&lt;img src=&quot;../../../assets/image/malwareCNN_02.png&quot; height=&quot;400&quot; width=&quot;400&quot; /&gt;&lt;/center&gt;
     &lt;center&gt;&lt;i&gt;Fig 2. Two Families &lt;/i&gt;&lt;/center&gt;
-    &lt;p/&gt;
+    &lt;p /&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Feature Vector and Classifier&lt;/strong&gt;&lt;/p&gt;
 
-- **Feature Vector and Classifier**
+    &lt;p&gt;After authors saw the fig 2, they realized that they could use texture classification which is concerned identifying various uniformly textured regions in images.To compute texture features, they used &lt;strong&gt;GIST&lt;/strong&gt; which uses a wavelet decomposition of an image. Then they used k-nearest neighbors with Euclidean distance for classification. They do a 10 fold cross validation, where under each test, a random subset of a class is used for training and testing.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;My Decision and Problems&lt;/strong&gt;&lt;/p&gt;
 
-    After authors saw the fig 2, they realized that they could use texture classification which is concerned identifying various uniformly textured regions in images.To compute texture features, they used **GIST** which uses a wavelet decomposition of an image. Then they used k-nearest neighbors with Euclidean distance for classification. They do a 10 fold cross validation, where under each test, a random subset of a class is used for training and testing.
+    &lt;p&gt;After I saw the visualization of malwares, I started to find a efficient way to do the images classification. And I resorted to CNN which had been widely used in computation vision at 2017. However, in the paper above stated, it said the width of images is fixed and the height can be varied. That could be a problem for CNN because it requires fixed input dimensions. My strategy is to scale those images into a fixed width and height.&lt;/p&gt;
 
-- **My Decision and Problems**
+    &lt;p&gt;In the paper, it recommended some width of image according to the file’s size. However, in my experiment, I found it was not a matter which width you scaled the image into when we used CNN as long as it keeps essential information. And because the larger images, the larger amout of params in the model and the more time costed, we need to trade off between the information keeped and time consumed when we decide the size of picture. And I found 32*32 images is a good choice.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
-    After I saw the visualization of malwares, I started to find a efficient way to do the images classification. And I resorted to CNN which had been widely used in computation vision at 2017. However, in the paper above stated, it said the width of images is fixed and the height can be varied. That could be a problem for CNN because it requires fixed input dimensions. My strategy is to scale those images into a fixed width and height. 
+&lt;h3 id=&quot;summaries&quot;&gt;Summaries&lt;/h3&gt;
 
-    In the paper, it recommended some width of image according to the file's size. However, in my experiment, I found it was not a matter which width you scaled the image into when we used CNN as long as it keeps essential information. And because the larger images, the larger amout of params in the model and the more time costed, we need to trade off between the information keeped and time consumed when we decide the size of picture. And I found 32\*32 images is a good choice. 
+&lt;p&gt;This chapter I will show some summaries I written during the work.&lt;/p&gt;
 
+&lt;h4 id=&quot;summary-01&quot;&gt;&lt;strong&gt;Summary 01&lt;/strong&gt;&lt;/h4&gt;
 
-
-### Summaries
-
-This chapter I will show some summaries I written during the work.
-
-#### **Summary 01**
-
-After reading plenty of papers about virus classification , we have decided to try to classify malware family with a visualization approach based on Deep Learning technic. 
-**L. Nataraj** in his paper *Malware Images: Visualization and Automatic Classification* proposed a novel method for visualizing and classifying malware using image processing techniques and got a 98% classification accuracy on a malware database of 9,458 samples with 25 different malware families. They transform the malware classification problem into an image classification issue. Consider the technics they used in their approach is obsolete and the Deep-Learning method is widely used in image procession area, so we want to use Deep-Leaning to classify malware family instead of extracting the GIST features of image and we want to do some experiments to test our thought. 
+&lt;p&gt;After reading plenty of papers about virus classification , we have decided to try to classify malware family with a visualization approach based on Deep Learning technic. 
+&lt;strong&gt;L. Nataraj&lt;/strong&gt; in his paper &lt;em&gt;Malware Images: Visualization and Automatic Classification&lt;/em&gt; proposed a novel method for visualizing and classifying malware using image processing techniques and got a 98% classification accuracy on a malware database of 9,458 samples with 25 different malware families. They transform the malware classification problem into an image classification issue. Consider the technics they used in their approach is obsolete and the Deep-Learning method is widely used in image procession area, so we want to use Deep-Leaning to classify malware family instead of extracting the GIST features of image and we want to do some experiments to test our thought.&lt;/p&gt;
 
 &lt;center&gt;&lt;img src=&quot;../../../assets/image/malwareCNN_03.jpeg&quot; height=&quot;100&quot; width=&quot;400&quot; /&gt;&lt;/center&gt;
 &lt;center&gt;&lt;i&gt;Fig 3. Structure of Deep-Learning Project &lt;/i&gt;&lt;/center&gt;
-&lt;p/&gt;
+&lt;p /&gt;
 
-
-Before building our Deep-leaning model, we need to construct a robust Input Pipeline. This pipeline not only be used in training our model but also will be used when we classify malware with our constructed Deep-leaning model. For our situation, the Input Pipeline have two main sub-steps ,1) convert a software into an image 2)label the image to build a dataset. In this week I have finished the python code of this two steps. 
+&lt;p&gt;Before building our Deep-leaning model, we need to construct a robust Input Pipeline. This pipeline not only be used in training our model but also will be used when we classify malware with our constructed Deep-leaning model. For our situation, the Input Pipeline have two main sub-steps ,1) convert a software into an image 2)label the image to build a dataset. In this week I have finished the python code of this two steps.&lt;/p&gt;
 
 &lt;center&gt;&lt;img src=&quot;../../../assets/image/malwareCNN_04.png&quot; height=&quot;100&quot; width=&quot;400&quot; /&gt;&lt;/center&gt;
 &lt;center&gt;&lt;i&gt;Fig 4. Two steps of Input Pipeline &lt;/i&gt;&lt;/center&gt;
-&lt;p/&gt;
+&lt;p /&gt;
 
-- **step1: Data Processing: Convert files into Images**
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;step1: Data Processing: Convert files into Images&lt;/strong&gt;&lt;/p&gt;
 
     &lt;center&gt;&lt;img src=&quot;../../../assets/image/malwareCNN_05.jpeg&quot; height=&quot;200&quot; width=&quot;500&quot; /&gt;&lt;/center&gt;
     &lt;center&gt;&lt;i&gt;Fig 5. raw files and File directory structure &lt;/i&gt;&lt;/center&gt;
-    &lt;p/&gt;
+    &lt;p /&gt;
 
     &lt;center&gt;&lt;img src=&quot;../../../assets/image/malwareCNN_06.jpeg&quot; height=&quot;200&quot; width=&quot;500&quot; /&gt;&lt;/center&gt;
     &lt;center&gt;&lt;i&gt;Fig 6. image files and File directory structure &lt;/i&gt;&lt;/center&gt;
-    &lt;p/&gt;
+    &lt;p /&gt;
 
     &lt;center&gt;&lt;img src=&quot;../../../assets/image/malwareCNN_07.jpeg&quot; height=&quot;50&quot; width=&quot;300&quot; /&gt;&lt;/center&gt;
     &lt;center&gt;&lt;i&gt;Fig 7. Our code &lt;/i&gt;&lt;/center&gt;
-    &lt;p/&gt;
+    &lt;p /&gt;
 
-
-    Our code need input a parameter dir_path, in this case it is *&quot;C:\\\\Users\\\\intern\_v\\\\Desktop\\\\sample&quot;* . The program will go through all the sub folders under the dir_path, and create folders having same name under Image folder. The Image folder is in a level as same as Sample folder and it will be created in the beginning when our program is running.
-    For each files in the sub-folder the program will convert it into an image which size is 512*512. Every .png files produced have the same name of the raw file.
-
-
-- **Step2: Data processing: Database Constructing**
-
+    &lt;p&gt;Our code need input a parameter dir_path, in this case it is &lt;em&gt;“C:\\Users\\intern_v\\Desktop\\sample”&lt;/em&gt; . The program will go through all the sub folders under the dir_path, and create folders having same name under Image folder. The Image folder is in a level as same as Sample folder and it will be created in the beginning when our program is running.
+  For each files in the sub-folder the program will convert it into an image which size is 512*512. Every .png files produced have the same name of the raw file.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Step2: Data processing: Database Constructing&lt;/strong&gt;&lt;/p&gt;
 
     &lt;center&gt;&lt;img src=&quot;../../../assets/image/malwareCNN_08.jpeg&quot; height=&quot;200&quot; width=&quot;500&quot; /&gt;&lt;/center&gt;
     &lt;center&gt;&lt;i&gt;Fig 8. image label &lt;/i&gt;&lt;/center&gt;
-    &lt;p/&gt;
+    &lt;p /&gt;
 
-    As we have 11 kinds of malwares, we need to build a 11-dimensions vector to represent the label of every malware. ( This technic named one-hot)
+    &lt;p&gt;As we have 11 kinds of malwares, we need to build a 11-dimensions vector to represent the label of every malware. ( This technic named one-hot)&lt;/p&gt;
 
     &lt;center&gt;&lt;img src=&quot;../../../assets/image/malwareCNN_09.jpeg&quot; height=&quot;200&quot; width=&quot;500&quot; /&gt;&lt;/center&gt;
     &lt;center&gt;&lt;i&gt;Fig 9. code split data &lt;/i&gt;&lt;/center&gt;
-    &lt;p/&gt;
+    &lt;p /&gt;
 
-    We split the Dataset into 3 parts : training data, test data and validation data. The proportion of three parts is 3:2:1.
+    &lt;p&gt;We split the Dataset into 3 parts : training data, test data and validation data. The proportion of three parts is 3:2:1.&lt;/p&gt;
 
     &lt;center&gt;&lt;img src=&quot;../../../assets/image/malwareCNN_10.jpeg&quot; height=&quot;200&quot; width=&quot;500&quot; /&gt;&lt;/center&gt;
     &lt;center&gt;&lt;i&gt;Fig 10. code &lt;/i&gt;&lt;/center&gt;
-    &lt;p/&gt;
+    &lt;p /&gt;
 
-    Our dataset support next_batch operation, and we can get a fix number of samples ( image+lable) with this operation.
+    &lt;p&gt;Our dataset support next_batch operation, and we can get a fix number of samples ( image+lable) with this operation.&lt;/p&gt;
 
     &lt;center&gt;&lt;img src=&quot;../../../assets/image/malwareCNN_11.jpeg&quot; height=&quot;200&quot; width=&quot;500&quot; /&gt;&lt;/center&gt;
     &lt;center&gt;&lt;i&gt;Fig 11. code &lt;/i&gt;&lt;/center&gt;
-    &lt;p/&gt;
+    &lt;p /&gt;
 
-    We use pickle package in python to save this dataset to our disk,.
+    &lt;p&gt;We use pickle package in python to save this dataset to our disk,.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
+&lt;h4 id=&quot;summary-02&quot;&gt;&lt;strong&gt;Summary 02&lt;/strong&gt;&lt;/h4&gt;
 
-#### **Summary 02**
+&lt;p&gt;In this week, I have tried plenty of machine learning methods(eg. KNN, Random Forest, GaussianNB and Deep-Learning  ) on our Dataset . The classification accuracy of every algorithm is showed in Table 1 and Fig 12, Fig 13 and Fig4.&lt;/p&gt;
 
-In this week, I have tried plenty of machine learning methods(eg. KNN, Random Forest, GaussianNB and Deep-Learning  ) on our Dataset . The classification accuracy of every algorithm is showed in Table 1 and Fig 12, Fig 13 and Fig4.
-
-|Algorithm |  Accuracy on test data |  Accuracy on training data |  picture size|
-|:-:| :-:| :-:| :-:|
-|KNN(k=5) |   53% |50% |512*512|
-|GaussianNB  |78% |78% |512*512|
-|RandomForest（60 trees GINI）|    83% |94% |512*512|
-|ExtraTreesClassifier（60-trees GINI ）|    83% |95% |512*512|
-|KNN(k=5) |   57% |58% |256*256|
-|GaussianNB | 79.8%  | 76.7% |  256*256|
-|RandomForest （60 trees GINI） |   80% |81% |256*256|
-|ExtraTreesClassifier（60-trees GINI ）   | 81.5% |  82.5%  | 256*256|
-|KNN(k=5)  |  72% |73%| 128*128|
-|GaussianNB  |75% |80% |128*128|
-|RandomForest （60 trees GINI） |   78% |80% |128*128|
-|ExtraTreesClassifier（60-trees GINI ）|    78% |80% |128*128|
-|KNN(k=5) |   82% |85%| 28*28|
-|GaussianNB | 74%| 80% |28*28|
-|RandomForest （60 trees GINI） |   80% |81% |28*28|
-|ExtraTreesClassifier（60-trees GINI ）|    81% |81% |28*28|
-|CNN |85% |84% |28*28|
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Algorithm&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Accuracy on test data&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Accuracy on training data&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;picture size&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;KNN(k=5)&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;53%&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;50%&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;512*512&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;GaussianNB&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;78%&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;78%&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;512*512&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;RandomForest（60 trees GINI）&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;83%&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;94%&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;512*512&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;ExtraTreesClassifier（60-trees GINI ）&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;83%&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;95%&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;512*512&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;KNN(k=5)&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;57%&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;58%&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;256*256&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;GaussianNB&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;79.8%&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;76.7%&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;256*256&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;RandomForest （60 trees GINI）&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;80%&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;81%&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;256*256&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;ExtraTreesClassifier（60-trees GINI ）&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;81.5%&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;82.5%&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;256*256&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;KNN(k=5)&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;72%&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;73%&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;128*128&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;GaussianNB&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;75%&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;80%&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;128*128&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;RandomForest （60 trees GINI）&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;78%&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;80%&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;128*128&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;ExtraTreesClassifier（60-trees GINI ）&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;78%&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;80%&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;128*128&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;KNN(k=5)&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;82%&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;85%&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;28*28&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;GaussianNB&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;74%&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;80%&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;28*28&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;RandomForest （60 trees GINI）&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;80%&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;81%&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;28*28&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;ExtraTreesClassifier（60-trees GINI ）&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;81%&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;81%&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;28*28&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;CNN&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;85%&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;84%&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;28*28&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;center&gt;&lt;i&gt;Table 1 The accuracy of machine leaning algorithms &lt;/i&gt;&lt;/center&gt;
-&lt;p/&gt;
-
+&lt;p /&gt;
 
 &lt;center&gt;&lt;img src=&quot;../../../assets/image/malwareCNN_12.png&quot; height=&quot;200&quot; width=&quot;400&quot; /&gt;&lt;/center&gt;
 &lt;center&gt;&lt;i&gt;Fig 12. Accuracy of algorithms running on test Dataset &lt;/i&gt;&lt;/center&gt;
-&lt;p/&gt;
+&lt;p /&gt;
 
-&lt;center&gt;&lt;img src=&quot;../../../assets/image/malwareCNN_13.png&quot; height=&quot;200&quot; width=&quot;400&quot;/&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src=&quot;../../../assets/image/malwareCNN_13.png&quot; height=&quot;200&quot; width=&quot;400&quot; /&gt;&lt;/center&gt;
 &lt;center&gt;&lt;i&gt;Fig 13. Accuracy of algorithms running on training Dataset &lt;/i&gt;&lt;/center&gt;
-&lt;p/&gt;
+&lt;p /&gt;
 
-&lt;center&gt;&lt;img src=&quot;../../../assets/image/malwareCNN_14.png&quot;  height=&quot;230&quot; width=&quot;400&quot; /&gt;&lt;/center&gt;
+&lt;center&gt;&lt;img src=&quot;../../../assets/image/malwareCNN_14.png&quot; height=&quot;230&quot; width=&quot;400&quot; /&gt;&lt;/center&gt;
 &lt;center&gt;&lt;i&gt;Fig 14. Accuracy &lt;/i&gt;&lt;/center&gt;
 &lt;center&gt;(For every pair of bar which have the same color, the left one is the accuracy on test data and the right one is the accuracy on training data. For each kind of algorithm, there are three pairs of bar related to the picture size.)&lt;/center&gt;
-&lt;p/&gt;
+&lt;p /&gt;
 
+&lt;p&gt;We achieve the highest accuracy on test dataset 85% with CNN ( Convolutional Neural Network). CNN is a widely used model in Deep-learning. The accuracy on training dataset is 84% with CNN. The CNN model is not over fitting like random forest and it can only be adopted when our picture is small due to the huge number of parameters which used to represent the weight and bias in the CNN model. But we still got an 85% accuracy rate with 28*28 picture size.&lt;/p&gt;
 
-We achieve the highest accuracy on test dataset 85% with CNN ( Convolutional Neural Network). CNN is a widely used model in Deep-learning. The accuracy on training dataset is 84% with CNN. The CNN model is not over fitting like random forest and it can only be adopted when our picture is small due to the huge number of parameters which used to represent the weight and bias in the CNN model. But we still got an 85% accuracy rate with 28*28 picture size.
+&lt;h4 id=&quot;summary-03&quot;&gt;&lt;strong&gt;Summary 03&lt;/strong&gt;&lt;/h4&gt;
 
+&lt;p&gt;This week I try to improve the performance of our CNN model. I have done this in three aspects: 1) add convolutional layer between concolutional layer and maxpool layer,2) add L2 loss of weights and 3) take a method of Data Augmentation. The first two has a little improvement on the accuracy and the last one raised the accuracy up from 85% to 90%.&lt;/p&gt;
 
-#### **Summary 03**
-
-This week I try to improve the performance of our CNN model. I have done this in three aspects: 1) add convolutional layer between concolutional layer and maxpool layer,2) add L2 loss of weights and 3) take a method of Data Augmentation. The first two has a little improvement on the accuracy and the last one raised the accuracy up from 85% to 90%.
-
-
-- Data Augmentation
-    Deep learning always has good classification ability with huge data set. Consider I only have 1000 malwares, I decided to create more data with those malwares.
-    Our CNN model needs a 32*32 size picture as its input, so I transform those malwares into 32*32 pictures and those pictures alone have been used in our experiments before I take the Data Augmentation approach. But when came to the Data Augmentation, the size of our data set increases 60 times. 
-    In data augmentation, we transform our malwares into $$ S*S $$ size pictures $$S\in[33,44]$$ . Then for each  size picture I cut into five 32*32 size images. The way I cut the picture is showed in the figure below.
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Data Augmentation
+  Deep learning always has good classification ability with huge data set. Consider I only have 1000 malwares, I decided to create more data with those malwares.
+  Our CNN model needs a 32&lt;em&gt;32 size picture as its input, so I transform those malwares into 32&lt;/em&gt;32 pictures and those pictures alone have been used in our experiments before I take the Data Augmentation approach. But when came to the Data Augmentation, the size of our data set increases 60 times. 
+  In data augmentation, we transform our malwares into &lt;script type=&quot;math/tex&quot;&gt;S*S&lt;/script&gt; size pictures &lt;script type=&quot;math/tex&quot;&gt;S\in[33,44]&lt;/script&gt; . Then for each  size picture I cut into five 32*32 size images. The way I cut the picture is showed in the figure below.&lt;/p&gt;
 
     &lt;center&gt;&lt;img src=&quot;../../../assets/image/malwareCNN_15.png&quot; height=&quot;400&quot; width=&quot;400&quot; /&gt;&lt;/center&gt;
     &lt;center&gt;&lt;i&gt;Fig 15. Data Augmentation &lt;/i&gt;&lt;/center&gt;
     &lt;center&gt;(Cutting one image into 5 32*32 size images, from top left, right top, left bottom, right bottom and the middle of the image) &lt;/center&gt;
-    &lt;p/&gt;
+    &lt;p /&gt;
 
-    After this process, our dataset has 60,000 samples and we got a accuracy above 90%. I think we can achieve a higher accuracy rate after do more training steps on this huge dataset. 
+    &lt;p&gt;After this process, our dataset has 60,000 samples and we got a accuracy above 90%. I think we can achieve a higher accuracy rate after do more training steps on this huge dataset.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
-### Implementation
-    
-To convient analysts to use this model, I also construct a cs programe.
+&lt;h3 id=&quot;implementation&quot;&gt;Implementation&lt;/h3&gt;
 
-The code and instruction can be found [here][code]!
+&lt;p&gt;To convient analysts to use this model, I also construct a cs programe.&lt;/p&gt;
 
-
-
-[code]: https://github.com/xvshiting/MFC-CNN &quot;Github&quot;</content><author><name>willXu</name></author><category term="Machine Learning" /><category term="Virus Analysis" /><category term="Information Security" /><category term="Deep Learning" /><summary type="html">malicious software classification model based on CNN</summary></entry></feed>
+&lt;p&gt;The code and instruction can be found &lt;a href=&quot;https://github.com/xvshiting/MFC-CNN&quot; title=&quot;Github&quot;&gt;here&lt;/a&gt;!&lt;/p&gt;</content><author><name>willXu</name></author><category term="Machine Learning" /><category term="Virus Analysis" /><category term="Information Security" /><category term="Deep Learning" /><summary type="html">malicious software classification model based on CNN</summary></entry></feed>
