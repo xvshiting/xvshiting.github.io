@@ -60,6 +60,12 @@ title: Home
 ***
 
 
+### Others
+
+- <font style="color:grey"> I have been performing magic for nearly ten years. My favourite class of magic is card magic because it can be shown in almost any conditions like on desks or standing up. I had been president of magic club in my undergraduated college for 2 years and performed stage magic many times for the Welcome Party for the Freshmen. My favourite card magician is shin lim since his magic effects are so visual that like real magic and I also like his rhythm of performance, his choice of the background music and his emotion conveyed in his masterpiece. He is also the champion of FISM which is Olympic game in magic area. I also like cardistry, emerging in recent ten years, an finger activity using cards.</font>
+
+
+
 [CV]: ../../../assets/pdf/willXu_cv.pdf
 [paper1]:http://ieeexplore.ieee.org/document/7917194/
 [smartData]:http://umc.uestc.edu.cn/conference/cybermatics2016/SmartData2016/index.php
