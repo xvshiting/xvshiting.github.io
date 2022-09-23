@@ -12,20 +12,22 @@
  
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link type="application/atom+xml" rel="alternate" href="/feed.xml" title="my awesome site" />
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="my awesome site" />
     <!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>Research summary | my awesome site</title>
-<meta name="generator" content="Jekyll v3.8.5" />
+<meta name="generator" content="Jekyll v3.9.2" />
 <meta property="og:title" content="Research summary" />
 <meta name="author" content="willXu" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="malicious software classification model based on CNN" />
 <meta property="og:description" content="malicious software classification model based on CNN" />
+<link rel="canonical" href="http://localhost:4000/2019/05/19/research-summary.html" />
+<meta property="og:url" content="http://localhost:4000/2019/05/19/research-summary.html" />
 <meta property="og:site_name" content="my awesome site" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2019-05-19T00:00:00+08:00" />
 <script type="application/ld+json">
-{"description":"malicious software classification model based on CNN","author":{"@type":"Person","name":"willXu"},"@type":"BlogPosting","url":"/2019/05/19/research-summary.html","headline":"Research summary","dateModified":"2019-05-19T00:00:00+08:00","datePublished":"2019-05-19T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"/2019/05/19/research-summary.html"},"@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","headline":"Research summary","description":"malicious software classification model based on CNN","datePublished":"2019-05-19T00:00:00+08:00","dateModified":"2019-05-19T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2019/05/19/research-summary.html"},"url":"http://localhost:4000/2019/05/19/research-summary.html","author":{"@type":"Person","name":"willXu"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <script type="text/x-mathjax-config">
@@ -136,7 +138,7 @@
 
 <h3 id="n-gram">n-gram</h3>
 
-<p>N-gram was widely used in NLP or Speech Recognition tasks due to its efficient and robust. For example, we always use 2-gram or 3-gram in langauge model. By inputting two words , a language model can output a word which has highest possibility behind these two words. A case in point is that, if we input <code class="highlighter-rouge">I  ride</code> into the model, it possiblely output <code class="highlighter-rouge">bike</code>. It decided by the material the laguage model trained on. So basically,  N-gram is to calculate appearence possiblity of all n words in its training set statistically. It needs a huge corpus and still could not cover all combination of words appearing in real world. Nevertheless, there are plenty ways of smoothing to deal with this problem, such as <code class="highlighter-rouge">Good Turning</code> and <code class="highlighter-rouge">Simple Linear Interpolation</code>.</p>
+<p>N-gram was widely used in NLP or Speech Recognition tasks due to its efficient and robust. For example, we always use 2-gram or 3-gram in langauge model. By inputting two words , a language model can output a word which has highest possibility behind these two words. A case in point is that, if we input <code class="language-plaintext highlighter-rouge">I  ride</code> into the model, it possiblely output <code class="language-plaintext highlighter-rouge">bike</code>. It decided by the material the laguage model trained on. So basically,  N-gram is to calculate appearence possiblity of all n words in its training set statistically. It needs a huge corpus and still could not cover all combination of words appearing in real world. Nevertheless, there are plenty ways of smoothing to deal with this problem, such as <code class="language-plaintext highlighter-rouge">Good Turning</code> and <code class="language-plaintext highlighter-rouge">Simple Linear Interpolation</code>.</p>
 
 <p><strong>Robert Moskovitch</strong> in his paper <em>Unknown Malcode Detection Using OPCODE Representation</em> presented methodology for the detection of unknown malicious code, based on text categorization concepts.They extracted sequences of OpCode expressions, which they term OpCode-n-grams. The vocabularies extracted were of 515, 39,011, 443,730, 1,769,641, 5,033,722 and 11,948,491, for 1-gram, 2-gram, 3gram, 4-gram, 5-gram and 6-gram, respectively. Later TF and TFIDF representations were calculated for each n-gram in each file. After that, they experiment some machine learning methods on those features.</p>
 

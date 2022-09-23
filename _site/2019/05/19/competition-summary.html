@@ -12,20 +12,22 @@
  
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link type="application/atom+xml" rel="alternate" href="/feed.xml" title="my awesome site" />
+<link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="my awesome site" />
     <!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>Competition summary | my awesome site</title>
-<meta name="generator" content="Jekyll v3.8.5" />
+<meta name="generator" content="Jekyll v3.9.2" />
 <meta property="og:title" content="Competition summary" />
 <meta name="author" content="willXu" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="2015 TaoBao Challenge of User Classification" />
 <meta property="og:description" content="2015 TaoBao Challenge of User Classification" />
+<link rel="canonical" href="http://localhost:4000/2019/05/19/competition-summary.html" />
+<meta property="og:url" content="http://localhost:4000/2019/05/19/competition-summary.html" />
 <meta property="og:site_name" content="my awesome site" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2019-05-19T00:00:00+08:00" />
 <script type="application/ld+json">
-{"description":"2015 TaoBao Challenge of User Classification","author":{"@type":"Person","name":"willXu"},"@type":"BlogPosting","url":"/2019/05/19/competition-summary.html","headline":"Competition summary","dateModified":"2019-05-19T00:00:00+08:00","datePublished":"2019-05-19T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"/2019/05/19/competition-summary.html"},"@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","headline":"Competition summary","description":"2015 TaoBao Challenge of User Classification","datePublished":"2019-05-19T00:00:00+08:00","dateModified":"2019-05-19T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2019/05/19/competition-summary.html"},"url":"http://localhost:4000/2019/05/19/competition-summary.html","author":{"@type":"Person","name":"willXu"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <script type="text/x-mathjax-config">
@@ -351,7 +353,7 @@
 
     <p>We defined this term as the total number of days that user has online active record.We calculated activity days of all users in training set and plot the result to visualize the data.The R code to compute the active days of user and the figure of 12 categories activity days are given below.</p>
 
-    <div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w"> </span><span class="n">user_active_days</span><span class="o">&lt;-</span><span class="n">sapply</span><span class="p">(</span><span class="n">train_user</span><span class="o">$</span><span class="n">V</span><span class="m">1</span><span class="p">,</span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">){</span><span class="nf">length</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">train_data</span><span class="p">[</span><span class="n">train_data</span><span class="o">$</span><span class="n">user_id</span><span class="o">==</span><span class="n">x</span><span class="p">,]</span><span class="o">$</span><span class="n">time_stamp</span><span class="p">))})</span><span class="w">
+    <div class="language-R highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w"> </span><span class="n">user_active_days</span><span class="o">&lt;-</span><span class="n">sapply</span><span class="p">(</span><span class="n">train_user</span><span class="o">$</span><span class="n">V1</span><span class="p">,</span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">){</span><span class="nf">length</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">train_data</span><span class="p">[</span><span class="n">train_data</span><span class="o">$</span><span class="n">user_id</span><span class="o">==</span><span class="n">x</span><span class="p">,]</span><span class="o">$</span><span class="n">time_stamp</span><span class="p">))})</span><span class="w">
 </span></code></pre></div>    </div>
 
     <center>  <i> Active Days of 12 Categories </i>  </center>
