@@ -34,46 +34,52 @@ title: Home
   <!-- Publications Section -->
   <section class="section">
     <h2 class="section-title"><i class="fa fa-file-text-o"></i> Publications</h2>
-    <ul class="publication-list">
+
+    <h3 class="pub-subtitle">Journal Papers</h3>
+    <ol class="publication-list">
       <li>
         <span class="pub-year">2026</span>
         <strong>Xu, Shiting.</strong>
         <a href="https://link.springer.com/article/10.1186/s42400-025-00481-3">VIMAR: vision-language informed malware analysis and reasoning model.</a>
-        Cybersecurity, 9, 49, 2026.
+        <em>Cybersecurity</em>, 9, 49, 2026.
         <span class="pub-type journal">journal</span>
       </li>
       <li>
         <span class="pub-year">2025</span>
         <strong>Xu, Shiting.</strong>
         <a href="https://doi.org/10.1016/j.ins.2025.122470">DEEP-CWS: Distilling Efficient pre-trained models with Early exit and Pruning for scalable Chinese Word Segmentation.</a>
-        Information Sciences, 719, 122470, 2025.
+        <em>Information Sciences</em>, 719, 122470, 2025.
         <span class="pub-type journal">journal</span>
       </li>
+    </ol>
+
+    <h3 class="pub-subtitle">Conference Papers</h3>
+    <ol class="publication-list">
       <li>
         <span class="pub-year">2021</span>
         <strong>Xu, Shiting,</strong> et al.
         <a href="https://link.springer.com/chapter/10.1007/978-3-030-78292-4_36">Automatic Task Requirements Writing Evaluation via Machine Reading Comprehension.</a>
-        International Conference on Artificial Intelligence in Education. Springer, Cham, 2021.
+        <em>AIED</em>, 2021.
         <a href="/assets/pdf/paper/202101.pdf" class="pub-pdf">[pdf]</a>
         <span class="pub-type conference">conference</span>
       </li>
       <li>
         <span class="pub-year">2020</span>
-        <strong>Xu, Shiting,</strong> Wenbiao Ding, and Zitao Liu.
-        <a href="https://link.springer.com/chapter/10.1007/978-3-030-52240-7_62">Automatic dialogic instruction detection for k-12 online one-on-one classes.</a>
-        International conference on artificial intelligence in education. Springer, Cham, 2020.
+        <strong>Xu, Shiting,</strong> W. Ding, and Z. Liu.
+        <a href="https://link.springer.com/chapter/10.1007/978-3-030-52240-7_62">Automatic Dialogic Instruction Detection for K-12 Online One-on-One Classes.</a>
+        <em>AIED</em>, 2020.
         <a href="/assets/pdf/paper/202001.pdf" class="pub-pdf">[pdf]</a>
         <span class="pub-type conference">conference</span>
       </li>
       <li>
         <span class="pub-year">2017</span>
-        <strong>Xu, Shiting,</strong> Xinyu Ma, Yuandong Liu, and Qiang Sheng.
+        <strong>Xu, Shiting,</strong> X. Ma, Y. Liu, and Q. Sheng.
         <a href="http://ieeexplore.ieee.org/document/7917194/">Malicious Application Dynamic Detection in Real-Time API Analysis.</a>
-        In 2016 IEEE International Conference on Internet of Things (iThings) and IEEE Green Computing and Communications (GreenCom) and IEEE Cyber, Physical and Social Computing (CPSCom) and IEEE Smart Data (SmartData), pp. 788-794. IEEE, 2016.
+        <em>IEEE iThings-GreenCom-CPSCom-SmartData</em>, pp. 788-794, 2016.
         <a href="/assets/pdf/paper/5880a788.pdf" class="pub-pdf">[pdf]</a>
         <span class="pub-type conference">conference</span>
       </li>
-    </ul>
+    </ol>
   </section>
 
   <!-- Projects Section -->
