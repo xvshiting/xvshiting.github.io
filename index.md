@@ -56,6 +56,13 @@ title: Home
     <h3 class="pub-subtitle">Conference Papers</h3>
     <ol class="publication-list">
       <li>
+        <span class="pub-year">2024</span>
+        <strong>S. Xu.</strong>
+        <a href="https://doi.org/10.1145/3654823.3654872">BED: Chinese Word Segmentation Model Based on Boundary-Enhanced Decoder.</a>
+        <em>CACML</em>, 2024.
+        <span class="pub-type conference">conference</span>
+      </li>
+      <li>
         <span class="pub-year">2021</span>
         <strong>S. Xu,</strong> et al.
         <a href="https://link.springer.com/chapter/10.1007/978-3-030-78292-4_36">Automatic Task Requirements Writing Evaluation via Machine Reading Comprehension.</a>
