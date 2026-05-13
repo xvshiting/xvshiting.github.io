@@ -2,10 +2,28 @@
 layout: default
 title: Blog
 ---
-<h2>Latest Posts</h1>
+<div class="blog-page">
+  <h1 class="page-title"><i class="fa fa-book"></i> Blog</h1>
 
-<ul class = "list-group">
-  {% for post in site.posts %}
-    {% include post_abstract.html %}
-  {% endfor %}
-</ul>
+  <!-- Category filter -->
+  <div class="tag-cloud">
+    {% for tag in site.tags %}
+    <a href="/mytags.html#{{ tag.first | slugize }}" class="tag">{{ tag.first }} ({{ tag.last.size }})</a>
+    {% endfor %}
+  </div>
+
+  <ul class="post-list full-post-list">
+    {% for post in site.posts %}
+    <li>
+      <span class="post-date">{{ post.date | date_to_string }}</span>
+      <a href="{{ post.url }}">{{ post.title }}</a>
+      {% for t in post.tag %}
+      <a href="/mytags.html#{{ t | slugize }}" class="tag">{{ t }}</a>
+      {% endfor %}
+      {% if post.excerpt %}
+      <p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 150 }}</p>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</div>

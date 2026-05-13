@@ -1,6 +1,12 @@
+title: "Xu Shiting | 许士亭"
+description: "Personal homepage - NLP, Deep Learning, Data Mining"
+url: "https://xvshiting.github.io"
+baseurl: ""
+
 collections:
   authors:
-      output: true
+    output: true
+
 defaults:
   - scope:
       path: ""
@@ -16,10 +22,55 @@ defaults:
       path: ""
     values:
       layout: "default"
+
 plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
-title: "my awesome site"
 
 highlighter: rouge
+markdown: kramdown
+kramdown:
+  input: GFM
+
+exclude:
+  - newpost.sh
+  - update_bio.sh
+  - publish.sh
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+
+# Navigation
+nav:
+  - name: Home
+    link: /
+    icon: fa-home
+  - name: Blog
+    link: /blog.html
+    icon: fa-book
+  - name: Tags
+    link: /mytags.html
+    icon: fa-tags
+  - name: About
+    link: /about.html
+    icon: fa-user
+
+# Author info (used across the site)
+author:
+  name: "Xu Shiting (许士亭)"
+  name_en: "Will Xu"
+  email: xvshiting@live.com
+  github: xvshiting
+  twitter: xvshiting1
+  linkedin: "士亭-许-618191107"
+  position: "Lecturer"
+  department: "Department of Cyberspace Security"
+  university: "Shandong University of Political Science and Law"
+  avatar: /assets/image/CV/cv5.png
+  cv: /assets/pdf/willXu_cv.pdf
+  interests:
+    - Machine Learning
+    - NLP
+    - Deep Learning
+    - Data Mining

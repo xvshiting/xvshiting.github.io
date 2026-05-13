@@ -2,101 +2,147 @@
 layout: default
 title: Home
 ---
-### Breif Bio
+<div class="home">
+  <!-- Bio Section -->
+  <section class="section bio-section">
+    <p class="bio-quote"><em>"NLP as well as Deep Learning could not only help machines better understand human beings, but also help us to know ourselves better."</em></p>
+    <p>
+      My name is <strong>Xu Shiting (许士亭)</strong>, also known as <strong>Will Xu</strong>.
+      I am a lecturer at the <strong>Department of Cyberspace Security</strong> in <strong>Shandong University of Political Science and Law</strong>.
+    </p>
+    <p>
+      My research interests are <em>Machine Learning</em>, <em>NLP</em>, <em>Deep Learning</em> and <em>Data Mining</em>.
+      I am very interested in erecting novel models and admiring effects they bring to the world.
+      I have also worked on <em>Information Security related to malicious software classification</em>.
+    </p>
+    <div class="bio-links">
+      <a href="mailto:{{ site.author.email }}" class="btn"><i class="fa fa-envelope"></i> Contact</a>
+      <a href="{{ site.author.cv }}" class="btn"><i class="fa fa-file-pdf-o"></i> CV</a>
+      <a href="https://github.com/{{ site.author.github }}" class="btn"><i class="fa fa-github"></i> GitHub</a>
+    </div>
+  </section>
 
-<span style="color:grey"><i> --- NLP  as well as Deep Learning could not only help machines better understand human beings , but also help us to know ourselves better.</i></span>
+  <!-- News Section -->
+  <section class="section">
+    <h2 class="section-title"><i class="fa fa-bullhorn"></i> News</h2>
+    <ul class="news-list">
+      <!-- NEWS_ITEMS -->
+      <li><span class="news-date">2022-09-01</span> I am a lecturer at Department of Cyberspace Security in Shandong University of Political Science and Law.</li>
+    </ul>
+  </section>
 
+  <!-- Publications Section -->
+  <section class="section">
+    <h2 class="section-title"><i class="fa fa-file-text-o"></i> Publications</h2>
+    <ul class="publication-list">
+      <li>
+        <span class="pub-year">2021</span>
+        <strong>Xu, Shiting,</strong> et al.
+        <a href="https://link.springer.com/chapter/10.1007/978-3-030-78292-4_36">Automatic Task Requirements Writing Evaluation via Machine Reading Comprehension.</a>
+        International Conference on Artificial Intelligence in Education. Springer, Cham, 2021.
+        <a href="/assets/pdf/paper/202101.pdf" class="pub-pdf">[pdf]</a>
+        <span class="pub-type conference">conference</span>
+      </li>
+      <li>
+        <span class="pub-year">2020</span>
+        <strong>Xu, Shiting,</strong> Wenbiao Ding, and Zitao Liu.
+        <a href="https://link.springer.com/chapter/10.1007/978-3-030-52240-7_62">Automatic dialogic instruction detection for k-12 online one-on-one classes.</a>
+        International conference on artificial intelligence in education. Springer, Cham, 2020.
+        <a href="/assets/pdf/paper/202001.pdf" class="pub-pdf">[pdf]</a>
+        <span class="pub-type conference">conference</span>
+      </li>
+      <li>
+        <span class="pub-year">2017</span>
+        <strong>Xu, Shiting,</strong> Xinyu Ma, Yuandong Liu, and Qiang Sheng.
+        <a href="http://ieeexplore.ieee.org/document/7917194/">Malicious Application Dynamic Detection in Real-Time API Analysis.</a>
+        In 2016 IEEE International Conference on Internet of Things (iThings) and IEEE Green Computing and Communications (GreenCom) and IEEE Cyber, Physical and Social Computing (CPSCom) and IEEE Smart Data (SmartData), pp. 788-794. IEEE, 2016.
+        <a href="/assets/pdf/paper/5880a788.pdf" class="pub-pdf">[pdf]</a>
+        <span class="pub-type conference">conference</span>
+      </li>
+    </ul>
+  </section>
 
+  <!-- Experience Section -->
+  <section class="section">
+    <h2 class="section-title"><i class="fa fa-briefcase"></i> Experience</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-date">2021.09 – 2022.07</div>
+        <div class="timeline-content">
+          <h3>Du Xiao Man <span class="timeline-location">Beijing, China</span></h3>
+          <p>Responsible for NLP infrastructure. Focused on Chinese Word Segmentation Task.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">2019.08 – 2021.09</div>
+        <div class="timeline-content">
+          <h3>Tomorrow Advanced Life <span class="timeline-location">Beijing, China</span></h3>
+          <p>Working on Chinese writing judgement system. Developed Chinese Word Correction model based on pre-trained language model.</p>
+          <p>Working on English writing evaluation, responsible for the whole system. Focused on English Grammar Correction task based on Transformer architecture. Also built a prompt writing task evaluation model based on MRC technology.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">2017.09 – 2018.11</div>
+        <div class="timeline-content">
+          <h3>Pachira Information Technology <span class="timeline-location">Beijing, China</span></h3>
+          <p>Improved Role accuracy of speech translation model with seq2seq model based on semantic information.</p>
+          <p>Participated in building a system based on Question-Answer model to extract user information from conversations.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">2017.03 – 2017.07</div>
+        <div class="timeline-content">
+          <h3>Kaspersky Lab <span class="timeline-location">Beijing, China</span> <span class="tag">Internship</span></h3>
+          <p>Designed a malicious software family classification model based on CNN. <a href="/2019/05/19/research-summary.html">[Details]</a></p>
+          <p>Implemented a CS system (based on tornado) to help analysts train and invoke the model.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-**My** name is **xu shiting(许士亭)** or **will xu**, reasearch in NLP or data mining related area.
+  <!-- Education Section -->
+  <section class="section">
+    <h2 class="section-title"><i class="fa fa-graduation-cap"></i> Education</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-date">2014.09 – 2017.03</div>
+        <div class="timeline-content">
+          <h3>Master of Science</h3>
+          <p>School of Cyberspace Security (Former School of Computer Science), Beijing University of Posts and Telecommunications</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">2010.09 – 2014.07</div>
+        <div class="timeline-content">
+          <h3>Bachelor of Engineering</h3>
+          <p>Computer Science Department, Shandong University of Technology</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
- I am a lecturer at Department of Cyberspace Security in Shandong University of Political Science and Law.
+  <!-- Awards Section -->
+  <section class="section">
+    <h2 class="section-title"><i class="fa fa-trophy"></i> Awards</h2>
+    <ul class="simple-list">
+      <li>2014.9 – 2017.3 &ensp; The First Honor Graduate Scholarship for 3 consecutive years</li>
+    </ul>
+  </section>
 
-**My research interests** are *machine learning, NLP, Deep Learning and Data Mining*. I think those researching areas provide us with new lights to perceive data we have and the world we live. So I am very interested in erecting novel models and admiring effects it bring to the world. I have also worked on *Information Security related to malicious software classification* before.
-
-[[Contact]][mail] &emsp; [[CV]][CV] 
-
-***
-### News!!!
-
-- ⏰ 2022-09-01  🕍 I am a lecturer at Department of Cyberspace Security in Shandong University of Political Science and Law.  
-
-
-
-
-
-
-***
-
-### Publications
-
-- 2021 &emsp; **Xu, Shiting,** et al. [<font size="4"> Automatic Task Requirements Writing Evaluation via Machine Reading Comprehension. </font>][paper202101] International Conference on Artificial Intelligence in Education. Springer, Cham, 2021. &emsp; [<font style="color:red">[pdf]</font>][paper202101pdf] &emsp; <mark><font style="color:green" >conference</font ></mark>
-
-- 2020 &emsp; **Xu, Shiting,** Wenbiao Ding, and Zitao Liu. [<font size="4"> Automatic dialogic instruction detection for k-12 online one-on-one classes. </font>][paper202001] International conference on artificial intelligence in education. Springer, Cham, 2020. &emsp; [<font style="color:red">[pdf]</font>][paper202001pdf] &emsp; <mark><font style="color:green" >conference</font ></mark>
-
-- 2017 &emsp; **Xu, Shiting,** Xinyu Ma, Yuandong Liu, and Qiang Sheng. [<font size="4"> Malicious Application Dynamic Detection in Real-Time API Analysis.</font>][paper1] In 2016 IEEE International Conference on Internet of Things (iThings) and IEEE Green Computing and Communications (GreenCom) and IEEE Cyber, Physical and Social Computing (CPSCom) and [IEEE Smart Data (SmartData)][smartData], pp. 788-794. IEEE, 2016.&emsp;[<font style="color:red">[pdf]</font>][paper1 pdf] &emsp; <mark><font style="color:green" >conference</font ></mark>
-
-
-
-
-***
-
-### Working 
-
-- <font style="color:grey">2021.09 - 2022.07 &emsp; Du Xiao Man (Beijing, China) </font>
-    - <font style="color:grey">Responsible for NLP infrastructure. Focused at Chinese Word Segmentation Task.</font>
-<p/>
-
-- <font style="color:grey">2019.08 - 2021.09 &emsp; Tomorrow Advanced Life (Beijing, China) </font>
-
-    - <font style="color:grey">Working on Chinese writing judgement system. Developed Chinese word Correction model based on pre-triained language model.</font>
-    - <font style="color:grey">Working on Enlighs writing evaluation, responsible for the whole system. And personally focused at English Grammar Correction task. Developed a English Grammar Correction model based on Transformer architecture. Also build an prompt writing task evaluation model based on MRC technology.</font>
-
-<p/>
-
-- <font style="color:grey">2017.09 - 2018.11 &emsp; Pachira Information Technology Beijing Co., Ltd.</font>
-
-    - <font style="color:grey">Improved Role accuracy of results of speech translation model with seq2seq model based on semantic information.</font>
-    - <font style="color:grey">Participated in building a system based on the Question-Answer model to extract user information from conversations.</font>
-
-<p/>
-
-- <font style="color:grey">2017.03 - 2017.07   &emsp; Kaspersky Lab, Beijing, China &emsp;(Intership)</font>
-
-    - <nobr><font style="color:grey"> Designed a malicious software’s families classification model based on CNN. &emsp;</font> &emsp;<a href="/2019/05/19/research-summary.html"> [Details]</a></nobr>
-
-    - <font style="color:grey">Implemented a CS system (based on tornado) to help analysts to train and invoke the model.   </font>  
-
-
-***
-
-### Education
-
-- <font style="color:grey"><small>2014.09 - 2017.03 </small> &emsp; Master of Science, School CyberSpace Security(Former School of Computer Science), BeiJing University of Posts and Telecommunications</font>
-
-- <font style="color:grey"><small>2010.09 - 2014.07</small> &emsp; Bachelor of Engineering, Computer Science Department, ShanDong University of Technology</font>
-
-***
-
-### Awards
-
-- <font style="color:grey">2014.9-2017.3 &emsp; The First Honor Graduate Scholarship for 3 consecutive years</font>
-
-***
-
-
-### Others
-
-- <font style="color:grey"> I have been performing magic for nearly ten years. My favourite class of magic is card magic because it can be shown in almost any conditions like on desks or standing up. I had been president of magic club in my undergraduated college for 2 years and performed stage magic many times for the Welcome Party for the Freshmen. My favourite card magician is shin lim since his magic effects are so visual that like real magic and I also like his rhythm of performance, his choice of the background music and his emotion conveyed in his masterpiece. He is also the champion of FISM which is Olympic game in magic area. I also like cardistry, emerging in recent ten years, an finger activity using cards.</font>
-
-
-
-[CV]: ../../../assets/pdf/willXu_cv.pdf
-[paper202101]:https://link.springer.com/chapter/10.1007/978-3-030-78292-4_36
-[paper202101pdf]:../../../assets/pdf/paper/202101.pdf
-[paper202001]:https://link.springer.com/chapter/10.1007/978-3-030-52240-7_62
-[paper202001pdf]:../../../assets/pdf/paper/202001.pdf
-[paper1]:http://ieeexplore.ieee.org/document/7917194/
-[smartData]:http://umc.uestc.edu.cn/conference/cybermatics2016/SmartData2016/index.php
-[paper1 pdf]:../../../assets/pdf/paper/5880a788.pdf
-[mail]:mailto:xvshiting@live.com "xvshiting@live.com"
+  <!-- Blog Section -->
+  <section class="section">
+    <h2 class="section-title"><i class="fa fa-pencil"></i> Recent Posts</h2>
+    <ul class="post-list">
+      {% for post in site.posts limit:5 %}
+      <li>
+        <span class="post-date">{{ post.date | date_to_string }}</span>
+        <a href="{{ post.url }}">{{ post.title }}</a>
+        {% for t in post.tag %}
+        <a href="/mytags.html#{{ t | slugize }}" class="tag">{{ t }}</a>
+        {% endfor %}
+      </li>
+      {% endfor %}
+    </ul>
+    <a href="/blog.html" class="see-all">View all posts →</a>
+  </section>
+</div>

@@ -1,22 +1,37 @@
-<nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
-        <div>
-        <ul class="nav navbar-nav">
-            <li>
-            <div class="imgtest">
-  
- <figure>
-   
-<div>
-<img src="../../../assets/image/CV/cv5.png" />
-</div>  
-</figure>
- </div>  
-</li>
-  {% for item in site.data.navigation %}
-  <li {% if page.url == item.link %}class="active"{% endif %}><a href="{{ item.link }}"><span class="{{item.bs-icon}}"></span>{{ item.name }}</a></li>
-  {% endfor %}
-</ul>
-</div>
-</div>
+<nav class="sidebar">
+  <div class="sidebar-header">
+    <a href="/">
+      <img src="{{ site.author.avatar }}" alt="{{ site.author.name }}" class="avatar">
+    </a>
+    <h2 class="site-title"><a href="/">{{ site.author.name }}</a></h2>
+    <p class="site-subtitle">{{ site.author.position }}, {{ site.author.university }}</p>
+  </div>
+
+  <ul class="nav-links">
+    {% for item in site.nav %}
+    <li>
+      <a href="{{ item.link }}" {% if page.url == item.link %}class="active"{% endif %}>
+        <i class="fa {{ item.icon }}"></i> {{ item.name }}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+
+  <ul class="social-links">
+    {% if site.author.email %}
+    <li><a href="mailto:{{ site.author.email }}" title="Email"><i class="fa fa-envelope"></i></a></li>
+    {% endif %}
+    {% if site.author.github %}
+    <li><a href="https://github.com/{{ site.author.github }}" title="GitHub"><i class="fa fa-github"></i></a></li>
+    {% endif %}
+    {% if site.author.twitter %}
+    <li><a href="https://twitter.com/{{ site.author.twitter }}" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+    {% endif %}
+    {% if site.author.linkedin %}
+    <li><a href="https://www.linkedin.com/in/{{ site.author.linkedin }}" title="LinkedIn"><i class="fa fa-linkedin"></i></a></li>
+    {% endif %}
+    {% if site.author.cv %}
+    <li><a href="{{ site.author.cv }}" title="CV"><i class="fa fa-file-pdf-o"></i></a></li>
+    {% endif %}
+  </ul>
 </nav>
