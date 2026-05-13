@@ -10,7 +10,7 @@ title: Projects
     {% for project in sorted_projects %}
     <div class="card{% if project.highlight %} card-highlight{% endif %}">
       <div class="card-header">
-        <h3 class="card-title">{{ project.name }}</h3>
+        <h3 class="card-title"><a href="{{ project.url }}">{{ project.name }}</a></h3>
         {% if project.highlight %}
         <span class="card-badge"><i class="fa fa-star"></i> Featured</span>
         {% endif %}
@@ -22,9 +22,7 @@ title: Projects
         {% endfor %}
       </div>
       <div class="card-links">
-        {% if project.url %}
-        <a href="{{ project.url }}" class="btn"><i class="fa fa-link"></i> View</a>
-        {% endif %}
+        <a href="{{ project.url }}" class="btn"><i class="fa fa-file-o"></i> Details</a>
         {% if project.github %}
         <a href="https://github.com/{{ project.github }}" class="btn btn-outline"><i class="fa fa-github"></i> Source</a>
         {% endif %}

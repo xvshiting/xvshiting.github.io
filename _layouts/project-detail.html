@@ -1,0 +1,39 @@
+---
+layout: default
+---
+<article class="research-detail">
+  <header class="post-header">
+    <h1 class="post-title">{{ page.name }}</h1>
+    <div class="post-tags">
+      {% for t in page.tags %}
+      <a href="/mytags.html#{{ t | slugize }}" class="tag">{{ t }}</a>
+      {% endfor %}
+    </div>
+  </header>
+
+  <div class="research-links">
+    {% if page.url %}
+    <a href="{{ page.url }}" class="btn" target="_blank"><i class="fa fa-external-link"></i> Project Page</a>
+    {% endif %}
+    {% if page.github %}
+    <a href="https://github.com/{{ page.github }}" class="btn btn-outline"><i class="fa fa-github"></i> Source Code</a>
+    {% endif %}
+  </div>
+
+  <div class="post-content">
+    {{ content }}
+  </div>
+
+  <div class="share-buttons">
+    <span class="share-label">Share:</span>
+    <a class="share-btn share-twitter" href="https://twitter.com/intent/tweet?text={{ page.name | url_encode }}&url={{ page.url | absolute_url }}" target="_blank" rel="noopener" title="Share on Twitter">
+      <i class="fa fa-twitter"></i> Twitter
+    </a>
+    <a class="share-btn share-linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absolute_url }}" target="_blank" rel="noopener" title="Share on LinkedIn">
+      <i class="fa fa-linkedin"></i> LinkedIn
+    </a>
+    <a class="share-btn share-copy" href="#" onclick="navigator.clipboard.writeText('{{ page.url | absolute_url }}');this.textContent='Copied!';setTimeout(()=>this.innerHTML='<i class=\\'fa fa-link\\'></i> Copy Link',2000);return false;" title="Copy link">
+      <i class="fa fa-link"></i> Copy Link
+    </a>
+  </div>
+</article>

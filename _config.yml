@@ -14,7 +14,7 @@ collections:
   authors:
     output: true
   projects:
-    output: false
+    output: true
   research:
     output: true
 
@@ -30,6 +30,11 @@ defaults:
     values:
       layout: "post"
       image: /assets/image/CV/cv5.png
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: "project-detail"
   - scope:
       path: ""
       type: "research"
