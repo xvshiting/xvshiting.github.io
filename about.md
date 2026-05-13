@@ -24,7 +24,7 @@ title: About
     </p>
 
     <div class="bio-links">
-      <a href="javascript:void(0)" onclick="this.href='mailto:'+'xvshiting'+'@'+'live.com'" class="btn"><i class="fa fa-envelope"></i> Email</a>
+      <a href="mailto:xvshiting-at-live-dot-com" class="btn"><i class="fa fa-envelope"></i> Email</a>
       <a href="{{ site.author.cv }}" class="btn"><i class="fa fa-file-pdf-o"></i> CV</a>
       <a href="https://github.com/{{ site.author.github }}" class="btn"><i class="fa fa-github"></i> GitHub</a>
       <a href="https://twitter.com/{{ site.author.twitter }}" class="btn"><i class="fa fa-twitter"></i> Twitter</a>
