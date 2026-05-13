@@ -32,6 +32,7 @@
   </head>
   <body>
     <button class="menu-toggle" aria-label="Menu">☰</button>
+    <button class="sidebar-show" aria-label="Show sidebar" title="Show sidebar">≡</button>
     <div class="layout">
       {% include navigation.html %}
       <main class="content">
@@ -42,10 +43,48 @@
       <p>&copy; {{ 'now' | date: "%Y" }} {{ site.author.name }}. Powered by Jekyll.</p>
     </footer>
 
-    <!-- Mobile nav toggle -->
     <script>
+      var sidebar = document.querySelector('.sidebar');
+      var content = document.querySelector('.content');
+      var footer = document.querySelector('.site-footer');
+      var showBtn = document.querySelector('.sidebar-show');
+
+      function hideSidebar() {
+        sidebar.classList.add('hidden');
+        content.classList.add('full');
+        footer.classList.add('full');
+        showBtn.classList.add('visible');
+      }
+
+      function showSidebar() {
+        sidebar.classList.remove('hidden');
+        content.classList.remove('full');
+        footer.classList.remove('full');
+        showBtn.classList.remove('visible');
+      }
+
       document.querySelector('.menu-toggle')?.addEventListener('click', function() {
-        document.querySelector('.sidebar').classList.toggle('open');
+        if (window.innerWidth <= 768) {
+          sidebar.classList.toggle('open');
+        } else {
+          if (sidebar.classList.contains('hidden')) {
+            showSidebar();
+          } else {
+            hideSidebar();
+          }
+        }
+      });
+
+      document.querySelector('.sidebar-close')?.addEventListener('click', function() {
+        if (window.innerWidth <= 768) {
+          sidebar.classList.remove('open');
+        } else {
+          hideSidebar();
+        }
+      });
+
+      showBtn?.addEventListener('click', function() {
+        showSidebar();
       });
     </script>
   </body>
