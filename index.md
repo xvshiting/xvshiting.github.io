@@ -43,6 +43,13 @@ title: Home
         <span class="pub-type journal">journal</span>
       </li>
       <li>
+        <span class="pub-year">2025</span>
+        <strong>Xu, Shiting.</strong>
+        <a href="https://doi.org/10.1016/j.ins.2025.122470">DEEP-CWS: Distilling Efficient pre-trained models with Early exit and Pruning for scalable Chinese Word Segmentation.</a>
+        Information Sciences, 719, 122470, 2025.
+        <span class="pub-type journal">journal</span>
+      </li>
+      <li>
         <span class="pub-year">2021</span>
         <strong>Xu, Shiting,</strong> et al.
         <a href="https://link.springer.com/chapter/10.1007/978-3-030-78292-4_36">Automatic Task Requirements Writing Evaluation via Machine Reading Comprehension.</a>
