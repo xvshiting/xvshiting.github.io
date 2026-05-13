@@ -62,6 +62,23 @@ title: Home
     </ul>
   </section>
 
+  <!-- Projects Section -->
+  <section class="section">
+    <h2 class="section-title"><i class="fa fa-github"></i> Projects</h2>
+    <ul class="project-list">
+      <li class="project-card">
+        <div class="project-name"><a href="https://github.com/xvshiting/BUPT_TAOBAO">BUPT_TAOBAO</a></div>
+        <div class="project-desc">Customer classification on TaoBao user behavior data using machine learning (Adaboost, K-means).</div>
+        <div class="project-tags">
+          <span class="tag">Machine Learning</span>
+          <span class="tag">Data Mining</span>
+          <span class="tag">R</span>
+        </div>
+      </li>
+    </ul>
+    <a href="https://github.com/xvshiting?tab=repositories" class="see-all">View all projects on GitHub →</a>
+  </section>
+
   <!-- Experience Section -->
   <section class="section">
     <h2 class="section-title"><i class="fa fa-briefcase"></i> Experience</h2>

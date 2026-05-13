@@ -2,6 +2,13 @@ title: "Xu Shiting | 许士亭"
 description: "Personal homepage - NLP, Deep Learning, Data Mining"
 url: "https://xvshiting.github.io"
 baseurl: ""
+logo: /assets/image/CV/cv5.png
+social:
+  name: Xu Shiting
+  links:
+    - https://github.com/xvshiting
+    - https://twitter.com/xvshiting1
+    - https://www.linkedin.com/in/士亭-许-618191107
 
 collections:
   authors:
@@ -18,6 +25,7 @@ defaults:
       type: "posts"
     values:
       layout: "post"
+      image: /assets/image/CV/cv5.png
   - scope:
       path: ""
     values:
@@ -32,6 +40,9 @@ highlighter: rouge
 markdown: kramdown
 kramdown:
   input: GFM
+
+feed:
+  path: /feed.xml
 
 exclude:
   - newpost.sh
@@ -52,6 +63,9 @@ nav:
   - name: Tags
     link: /mytags.html
     icon: fa-tags
+  - name: Search
+    link: /search.html
+    icon: fa-search
   - name: About
     link: /about.html
     icon: fa-user
