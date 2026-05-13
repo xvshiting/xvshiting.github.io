@@ -36,6 +36,13 @@ title: Home
     <h2 class="section-title"><i class="fa fa-file-text-o"></i> Publications</h2>
     <ul class="publication-list">
       <li>
+        <span class="pub-year">2026</span>
+        <strong>Xu, Shiting.</strong>
+        <a href="https://link.springer.com/article/10.1186/s42400-025-00481-3">VIMAR: vision-language informed malware analysis and reasoning model.</a>
+        Cybersecurity, 9, 49, 2026.
+        <span class="pub-type journal">journal</span>
+      </li>
+      <li>
         <span class="pub-year">2021</span>
         <strong>Xu, Shiting,</strong> et al.
         <a href="https://link.springer.com/chapter/10.1007/978-3-030-78292-4_36">Automatic Task Requirements Writing Evaluation via Machine Reading Comprehension.</a>
