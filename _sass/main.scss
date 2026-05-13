@@ -654,6 +654,15 @@ img {
   }
 }
 
+.btn-xhs {
+  background: #ff2442;
+  border-color: #ff2442;
+  &:hover {
+    background: #e6203a;
+    border-color: #e6203a;
+  }
+}
+
 /* ===== Research Page ===== */
 .research-topics {
   margin-top: 40px;
@@ -1068,9 +1077,23 @@ img {
     display: block;
   }
 
-  .sidebar-close {
-    display: none;
+.sidebar-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.5);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.2s;
+  &:hover {
+    color: #fff;
+    background: rgba(255,255,255,0.1);
   }
+}
 
   .sidebar {
     transform: translateX(-100%);
