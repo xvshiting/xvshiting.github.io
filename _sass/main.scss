@@ -640,6 +640,51 @@ img {
 }
 
 /* ===== Tags Page ===== */
+.tag-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.tag-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 14px;
+  background: #fff;
+  color: $text-light;
+  border: 1px solid $border;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  &:hover {
+    border-color: $accent;
+    color: $accent;
+  }
+  &.active {
+    background: $accent;
+    color: #fff;
+    border-color: $accent;
+  }
+}
+
+.tag-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  font-size: 0.7rem;
+  background: rgba(0,0,0,0.08);
+  padding: 0 4px;
+  .tag-filter-btn.active & {
+    background: rgba(255,255,255,0.3);
+  }
+}
+
 .tag-section {
   margin-bottom: 30px;
   .section-title {

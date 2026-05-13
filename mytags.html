@@ -5,14 +5,15 @@ title: Tags
 <div class="tags-page">
   <h1 class="page-title"><i class="fa fa-tags"></i> Tags</h1>
 
-  <div class="tag-cloud">
+  <div class="tag-filter">
+    <button class="tag-filter-btn active" data-tag="all">All</button>
     {% for tag in site.tags %}
-    <a href="#{{ tag.first | slugize }}" class="tag">{{ tag.first }} ({{ tag.last.size }})</a>
+    <button class="tag-filter-btn" data-tag="{{ tag.first | slugize }}">{{ tag.first }} <span class="tag-count">{{ tag.last.size }}</span></button>
     {% endfor %}
   </div>
 
   {% for tag in site.tags %}
-  <section class="tag-section" id="{{ tag.first | slugize }}">
+  <section class="tag-section" data-tag="{{ tag.first | slugize }}">
     <h2 class="section-title">{{ tag.first }}</h2>
     <ul class="post-list">
       {% for post in tag.last %}
@@ -25,3 +26,23 @@ title: Tags
   </section>
   {% endfor %}
 </div>
+
+<script>
+  var buttons = document.querySelectorAll('.tag-filter-btn');
+  var sections = document.querySelectorAll('.tag-section');
+
+  buttons.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      buttons.forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var tag = btn.getAttribute('data-tag');
+      if (tag === 'all') {
+        sections.forEach(function(s) { s.style.display = ''; });
+      } else {
+        sections.forEach(function(s) {
+          s.style.display = s.getAttribute('data-tag') === tag ? '' : 'none';
+        });
+      }
+    });
+  });
+</script>
