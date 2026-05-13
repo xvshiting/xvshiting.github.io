@@ -18,6 +18,40 @@ layout: default
     </div>
   </header>
 
+  {% if page.series %}
+  <div class="series-box">
+    <div class="series-box-header">
+      <i class="fa fa-book"></i> Series: <a href="/series.html">{{ page.series }}</a>
+    </div>
+    <ol class="series-box-toc">
+      {% assign series_posts = site.posts | where: 'series', page.series | sort: 'series_order' %}
+      {% for sp in series_posts %}
+      <li{% if sp.url == page.url %} class="active"{% endif %}>
+        <a href="{{ sp.url }}">{{ sp.title }}</a>
+      </li>
+      {% endfor %}
+    </ol>
+    {% assign series_posts = site.posts | where: 'series', page.series | sort: 'series_order' %}
+    {% assign prev_in_series = nil %}
+    {% assign next_in_series = nil %}
+    {% for sp in series_posts %}
+      {% if sp.series_order < page.series_order %}
+        {% assign prev_in_series = sp %}
+      {% elsif sp.series_order > page.series_order and next_in_series == nil %}
+        {% assign next_in_series = sp %}
+      {% endif %}
+    {% endfor %}
+    <div class="series-box-nav">
+      {% if prev_in_series %}
+      <a href="{{ prev_in_series.url }}" class="series-nav-prev"><i class="fa fa-arrow-left"></i> {{ prev_in_series.title | truncate: 35 }}</a>
+      {% endif %}
+      {% if next_in_series %}
+      <a href="{{ next_in_series.url }}" class="series-nav-next">{{ next_in_series.title | truncate: 35 }} <i class="fa fa-arrow-right"></i></a>
+      {% endif %}
+    </div>
+  </div>
+  {% endif %}
+
   <div class="post-content">
     {{ content }}
   </div>

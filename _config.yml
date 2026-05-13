@@ -13,6 +13,10 @@ social:
 collections:
   authors:
     output: true
+  projects:
+    output: false
+  research:
+    output: true
 
 defaults:
   - scope:
@@ -28,6 +32,11 @@ defaults:
       image: /assets/image/CV/cv5.png
   - scope:
       path: ""
+      type: "research"
+    values:
+      layout: "research-detail"
+  - scope:
+      path: ""
     values:
       layout: "default"
 
@@ -35,6 +44,8 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
+
+google_site_verification: # paste your verification code here from Google Search Console
 
 highlighter: rouge
 markdown: kramdown
@@ -63,6 +74,15 @@ nav:
   - name: Tags
     link: /mytags.html
     icon: fa-tags
+  - name: Research
+    link: /research.html
+    icon: fa-flask
+  - name: Projects
+    link: /projects.html
+    icon: fa-code
+  - name: Series
+    link: /series.html
+    icon: fa-book
   - name: Search
     link: /search.html
     icon: fa-search

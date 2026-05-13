@@ -1,0 +1,39 @@
+---
+layout: default
+title: Projects
+---
+<div class="projects-page">
+  <h1 class="page-title"><i class="fa fa-code"></i> Projects</h1>
+
+  {% assign sorted_projects = site.projects | sort: 'name' %}
+  <div class="card-grid">
+    {% for project in sorted_projects %}
+    <div class="card{% if project.highlight %} card-highlight{% endif %}">
+      <div class="card-header">
+        <h3 class="card-title">{{ project.name }}</h3>
+        {% if project.highlight %}
+        <span class="card-badge"><i class="fa fa-star"></i> Featured</span>
+        {% endif %}
+      </div>
+      <p class="card-desc">{{ project.description }}</p>
+      <div class="card-tags">
+        {% for t in project.tags %}
+        <span class="tag">{{ t }}</span>
+        {% endfor %}
+      </div>
+      <div class="card-links">
+        {% if project.url %}
+        <a href="{{ project.url }}" class="btn"><i class="fa fa-link"></i> View</a>
+        {% endif %}
+        {% if project.github %}
+        <a href="https://github.com/{{ project.github }}" class="btn btn-outline"><i class="fa fa-github"></i> Source</a>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="section" style="margin-top: 32px;">
+    <a href="https://github.com/xvshiting?tab=repositories" class="see-all"><i class="fa fa-github"></i> View all projects on GitHub →</a>
+  </div>
+</div>

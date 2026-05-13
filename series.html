@@ -1,0 +1,36 @@
+---
+layout: default
+title: Series
+---
+<div class="series-page">
+  <h1 class="page-title"><i class="fa fa-book"></i> Series</h1>
+  <p class="series-intro">Deep-dive topics explored across multiple posts.</p>
+
+  {% assign all_series = '' | split: '' %}
+  {% for post in site.posts %}
+    {% if post.series %}
+      {% assign all_series = all_series | push: post.series %}
+    {% endif %}
+  {% endfor %}
+  {% assign unique_series = all_series | uniq | sort %}
+
+  {% if unique_series.size == 0 %}
+    <p>No series yet. Stay tuned!</p>
+  {% endif %}
+
+  {% for s in unique_series %}
+  <div class="series-card">
+    <h2 class="series-card-title"><i class="fa fa-folder-open"></i> {{ s }}</h2>
+    <ol class="series-toc">
+      {% assign series_posts = site.posts | where: 'series', s | sort: 'series_order' %}
+      {% for post in series_posts %}
+      <li>
+        <a href="{{ post.url }}">{{ post.title }}</a>
+        {% if post.series_order %}<span class="series-chapter">Chapter {{ post.series_order }}</span>{% endif %}
+        <span class="post-date">{{ post.date | date_to_string }}</span>
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+  {% endfor %}
+</div>

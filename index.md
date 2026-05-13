@@ -84,19 +84,34 @@ title: Home
 
   <!-- Projects Section -->
   <section class="section">
-    <h2 class="section-title"><i class="fa fa-github"></i> Projects</h2>
-    <ul class="project-list">
-      <li class="project-card">
-        <div class="project-name"><a href="https://github.com/xvshiting/BUPT_TAOBAO">BUPT_TAOBAO</a></div>
-        <div class="project-desc">Customer classification on TaoBao user behavior data using machine learning (Adaboost, K-means).</div>
-        <div class="project-tags">
-          <span class="tag">Machine Learning</span>
-          <span class="tag">Data Mining</span>
-          <span class="tag">R</span>
+    <h2 class="section-title"><i class="fa fa-code"></i> Projects</h2>
+    <div class="card-grid">
+      {% for project in site.projects %}
+      <div class="card{% if project.highlight %} card-highlight{% endif %}">
+        <div class="card-header">
+          <h3 class="card-title">{{ project.name }}</h3>
+          {% if project.highlight %}
+          <span class="card-badge"><i class="fa fa-star"></i></span>
+          {% endif %}
         </div>
-      </li>
-    </ul>
-    <a href="https://github.com/xvshiting?tab=repositories" class="see-all">View all projects on GitHub →</a>
+        <p class="card-desc">{{ project.description }}</p>
+        <div class="card-tags">
+          {% for t in project.tags %}
+          <span class="tag">{{ t }}</span>
+          {% endfor %}
+        </div>
+        <div class="card-links">
+          {% if project.url %}
+          <a href="{{ project.url }}" class="btn"><i class="fa fa-link"></i> View</a>
+          {% endif %}
+          {% if project.github %}
+          <a href="https://github.com/{{ project.github }}" class="btn btn-outline"><i class="fa fa-github"></i> Source</a>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <a href="/projects.html" class="see-all">View all projects →</a>
   </section>
 
   <!-- Experience Section -->

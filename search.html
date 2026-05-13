@@ -19,6 +19,10 @@ title: Search
     searchResultTemplate: '<li><span class="post-date">{date}</span> <a href="{url}">{title}</a></li>',
     noResultsText: '<li>No results found</li>',
     limit: 10,
-    fuzzy: false
+    fuzzy: true,
+    searchFields: ['title', 'tags', 'excerpt'],
+    tokenize: function(input) {
+      return input.trim().split(/\s+/).filter(function(t) { return t.length > 0; });
+    }
   });
 </script>

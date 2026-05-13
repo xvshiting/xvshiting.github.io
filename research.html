@@ -1,0 +1,81 @@
+---
+layout: default
+title: Research
+---
+<div class="research-page">
+  <h1 class="page-title"><i class="fa fa-flask"></i> Research</h1>
+
+  <h3 class="pub-subtitle">Journal Papers</h3>
+  <ol class="publication-list">
+    {% assign journals = site.research | where: 'type', 'journal' | sort: 'year' | reverse %}
+    {% for r in journals %}
+    <li>
+      <strong>S. Xu.</strong>
+      {% if r.output %}
+      <a href="{{ r.url }}">{{ r.name }}</a>
+      {% else %}
+      {{ r.name }}
+      {% endif %}
+      {% if r.venue %}<em>{{ r.venue }}</em>,{% endif %} {{ r.year }}
+      <span class="pub-type journal">journal</span>
+      <p class="card-desc">{{ r.description | truncate: 180 }}</p>
+      <div class="research-item-links">
+        {% if r.output %}
+        <a href="{{ r.url }}" class="btn"><i class="fa fa-file-o"></i> Details</a>
+        {% endif %}
+        {% if r.url_paper %}
+        <a href="{{ r.url_paper }}" class="btn btn-outline" target="_blank"><i class="fa fa-external-link"></i> Publisher</a>
+        {% endif %}
+      </div>
+    </li>
+    {% endfor %}
+  </ol>
+
+  <h3 class="pub-subtitle">Conference Papers</h3>
+  <ol class="publication-list">
+    {% assign conferences = site.research | where: 'type', 'conference' | sort: 'year' | reverse %}
+    {% for r in conferences %}
+    <li>
+      <strong>S. Xu,</strong> et al.
+      {% if r.output %}
+      <a href="{{ r.url }}">{{ r.name }}</a>
+      {% else %}
+      {{ r.name }}
+      {% endif %}
+      {% if r.venue %}<em>{{ r.venue }}</em>,{% endif %} {{ r.year }}
+      <span class="pub-type conference">conference</span>
+      <p class="card-desc">{{ r.description | truncate: 180 }}</p>
+      <div class="research-item-links">
+        {% if r.output %}
+        <a href="{{ r.url }}" class="btn"><i class="fa fa-file-o"></i> Details</a>
+        {% endif %}
+        {% if r.url_paper %}
+        <a href="{{ r.url_paper }}" class="btn btn-outline" target="_blank"><i class="fa fa-external-link"></i> Publisher</a>
+        {% endif %}
+      </div>
+    </li>
+    {% endfor %}
+  </ol>
+
+  <div class="research-topics">
+    <h3 class="pub-subtitle">Research Interests</h3>
+    <div class="card-grid">
+      <div class="card card-highlight">
+        <h3 class="card-title"><i class="fa fa-comment"></i> NLP</h3>
+        <p class="card-desc">Chinese word segmentation, grammar correction, writing evaluation, and question answering systems.</p>
+      </div>
+      <div class="card card-highlight">
+        <h3 class="card-title"><i class="fa fa-brain"></i> Deep Learning</h3>
+        <p class="card-desc">Vision-language models, model distillation, efficient inference, and multimodal reasoning.</p>
+      </div>
+      <div class="card card-highlight">
+        <h3 class="card-title"><i class="fa fa-shield"></i> Information Security</h3>
+        <p class="card-desc">Malware family classification, dynamic analysis, and real-time detection systems.</p>
+      </div>
+      <div class="card card-highlight">
+        <h3 class="card-title"><i class="fa fa-database"></i> Data Mining</h3>
+        <p class="card-desc">Customer classification, clustering, and large-scale behavior analysis.</p>
+      </div>
+    </div>
+  </div>
+</div>
