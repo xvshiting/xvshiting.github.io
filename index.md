@@ -16,7 +16,7 @@ title: Home
       I have also worked on <em>Information Security related to malicious software classification</em>.
     </p>
     <div class="bio-links">
-      <a href="mailto:{{ site.author.email }}" class="btn"><i class="fa fa-envelope"></i> Contact</a>
+      <a href="javascript:void(0)" onclick="this.href='mailto:'+'xvshiting'+'@'+'live.com'" class="btn"><i class="fa fa-envelope"></i> Contact</a>
       <a href="{{ site.author.cv }}" class="btn"><i class="fa fa-file-pdf-o"></i> CV</a>
       <a href="https://github.com/{{ site.author.github }}" class="btn"><i class="fa fa-github"></i> GitHub</a>
       <a href="https://xhslink.com/m/2xSFJbLgcAk" class="btn btn-xhs" target="_blank"><i class="fa fa-book"></i> 小红书</a>
