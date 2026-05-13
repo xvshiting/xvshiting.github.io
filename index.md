@@ -185,6 +185,8 @@ title: Home
   <section class="section">
     <h2 class="section-title"><i class="fa fa-trophy"></i> Awards</h2>
     <ul class="simple-list">
+      <li>2023 &ensp; Annual Performance Evaluation Excellence</li>
+      <li>2025 &ensp; Annual Performance Evaluation Excellence</li>
       <li>2014.9 – 2017.3 &ensp; The First Honor Graduate Scholarship for 3 consecutive years</li>
     </ul>
   </section>
