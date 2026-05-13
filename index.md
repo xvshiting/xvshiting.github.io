@@ -7,7 +7,7 @@ title: Home
   <section class="section bio-section">
     <p class="bio-quote"><em>"NLP as well as Deep Learning could not only help machines better understand human beings, but also help us to know ourselves better."</em></p>
     <p>
-      My name is <strong>Xu Shiting (许士亭)</strong>, also known as <strong>Will Xu</strong>.
+      My name is <strong>S. Xu (许士亭)</strong>, also known as <strong>Will Xu</strong>.
       I am a lecturer at the <strong>Department of Cyberspace Security</strong> in <strong>Shandong University of Political Science and Law</strong>.
     </p>
     <p>
@@ -39,14 +39,14 @@ title: Home
     <ol class="publication-list">
       <li>
         <span class="pub-year">2026</span>
-        <strong>Xu, Shiting.</strong>
+        <strong>S. Xu</strong>
         <a href="https://link.springer.com/article/10.1186/s42400-025-00481-3">VIMAR: vision-language informed malware analysis and reasoning model.</a>
         <em>Cybersecurity</em>, 9, 49, 2026.
         <span class="pub-type journal">journal</span>
       </li>
       <li>
         <span class="pub-year">2025</span>
-        <strong>Xu, Shiting.</strong>
+        <strong>S. Xu</strong>
         <a href="https://doi.org/10.1016/j.ins.2025.122470">DEEP-CWS: Distilling Efficient pre-trained models with Early exit and Pruning for scalable Chinese Word Segmentation.</a>
         <em>Information Sciences</em>, 719, 122470, 2025.
         <span class="pub-type journal">journal</span>
@@ -57,7 +57,7 @@ title: Home
     <ol class="publication-list">
       <li>
         <span class="pub-year">2021</span>
-        <strong>Xu, Shiting,</strong> et al.
+        <strong>S. Xu,</strong> et al.
         <a href="https://link.springer.com/chapter/10.1007/978-3-030-78292-4_36">Automatic Task Requirements Writing Evaluation via Machine Reading Comprehension.</a>
         <em>AIED</em>, 2021.
         <a href="/assets/pdf/paper/202101.pdf" class="pub-pdf">[pdf]</a>
@@ -65,7 +65,7 @@ title: Home
       </li>
       <li>
         <span class="pub-year">2020</span>
-        <strong>Xu, Shiting,</strong> W. Ding, and Z. Liu.
+        <strong>S. Xu,</strong> W. Ding, and Z. Liu.
         <a href="https://link.springer.com/chapter/10.1007/978-3-030-52240-7_62">Automatic Dialogic Instruction Detection for K-12 Online One-on-One Classes.</a>
         <em>AIED</em>, 2020.
         <a href="/assets/pdf/paper/202001.pdf" class="pub-pdf">[pdf]</a>
@@ -73,7 +73,7 @@ title: Home
       </li>
       <li>
         <span class="pub-year">2017</span>
-        <strong>Xu, Shiting,</strong> X. Ma, Y. Liu, and Q. Sheng.
+        <strong>S. Xu,</strong> X. Ma, Y. Liu, and Q. Sheng.
         <a href="http://ieeexplore.ieee.org/document/7917194/">Malicious Application Dynamic Detection in Real-Time API Analysis.</a>
         <em>IEEE iThings-GreenCom-CPSCom-SmartData</em>, pp. 788-794, 2016.
         <a href="/assets/pdf/paper/5880a788.pdf" class="pub-pdf">[pdf]</a>
