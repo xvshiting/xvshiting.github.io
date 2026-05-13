@@ -789,22 +789,29 @@ img {
   padding: 10px 14px;
   font-size: 1.3rem;
   cursor: pointer;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s;
+  transition: background 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  &:hover {
+    background: $accent;
+  }
   &.visible {
-    opacity: 1;
-    pointer-events: auto;
+    display: block;
   }
 }
 
 /* Sidebar hidden state */
 .sidebar.hidden {
   transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.sidebar {
+  transition: transform 0.3s ease;
 }
 
 .content.full {
   margin-left: 0;
+  transition: margin-left 0.3s ease;
 }
 
 .site-footer.full {
