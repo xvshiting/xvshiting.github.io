@@ -1,4 +1,438 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-05-13T13:57:03+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Xu Shiting | 许士亭</title><subtitle>Personal homepage - NLP, Deep Learning, Data Mining</subtitle><author><name>S. Xu (许士亭)</name><email>xvshiting@live.com</email></author><entry><title type="html">Harness Engineering</title><link href="http://localhost:4000/2026/05/13/harness-engineering.html" rel="alternate" type="text/html" title="Harness Engineering" /><published>2026-05-13T00:00:00+08:00</published><updated>2026-05-13T00:00:00+08:00</updated><id>http://localhost:4000/2026/05/13/harness-engineering</id><content type="html" xml:base="http://localhost:4000/2026/05/13/harness-engineering.html">&lt;p&gt;Write your content here. Markdown is supported!&lt;/p&gt;</content><author><name>willXu</name></author><category term="Agent LLM" /><summary type="html">Write your content here. Markdown is supported!</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/image/CV/cv5.png" /></entry><entry><title type="html">2015 Taobao Challenge Of User Classification</title><link href="http://localhost:4000/2019/05/19/2015-TaoBao-Challenge-of-User-Classification.html" rel="alternate" type="text/html" title="2015 Taobao Challenge Of User Classification" /><published>2019-05-19T00:00:00+08:00</published><updated>2019-05-19T00:00:00+08:00</updated><id>http://localhost:4000/2019/05/19/2015-TaoBao-Challenge-of-User-Classification</id><content type="html" xml:base="http://localhost:4000/2019/05/19/2015-TaoBao-Challenge-of-User-Classification.html">&lt;h2 id=&quot;2015-taobao-challenge-of-user-classification&quot;&gt;2015 TaoBao Challenge of User Classification&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-05-14T23:14:05+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Xu Shiting | 许士亭</title><subtitle>Personal homepage - NLP, Deep Learning, Data Mining</subtitle><author><name>S. Xu (许士亭)</name><email>xvshiting-at-live-dot-com</email></author><entry><title type="html">Speculative Decoding A Technical Survey</title><link href="http://localhost:4000/2026/05/14/speculative-decoding-a-technical-survey.html" rel="alternate" type="text/html" title="Speculative Decoding A Technical Survey" /><published>2026-05-14T00:00:00+08:00</published><updated>2026-05-14T00:00:00+08:00</updated><id>http://localhost:4000/2026/05/14/speculative-decoding-a-technical-survey</id><content type="html" xml:base="http://localhost:4000/2026/05/14/speculative-decoding-a-technical-survey.html">&lt;h1 id=&quot;speculative-decoding-a-technical-survey&quot;&gt;Speculative Decoding: A Technical Survey&lt;/h1&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Date&lt;/strong&gt;: 2026-05-14
+&lt;strong&gt;Status&lt;/strong&gt;: Draft&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Speculative decoding is a promising inference acceleration technique for large language models (LLMs) that achieves &lt;strong&gt;lossless speedup&lt;/strong&gt; without modifying the target model’s output distribution. This survey covers the core principles, key algorithms, recent advances, and practical applications.&lt;/p&gt;
+
+&lt;h2 id=&quot;1-background-and-motivation&quot;&gt;1. Background and Motivation&lt;/h2&gt;
+
+&lt;h3 id=&quot;the-inference-bottleneck&quot;&gt;The Inference Bottleneck&lt;/h3&gt;
+
+&lt;p&gt;Autoregressive decoding requires a complete model forward pass for each token generation. This creates three critical problems:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Memory bandwidth bottleneck&lt;/strong&gt;: Billions of parameters must be loaded from HBM to GPU cache for each step, but the actual compute batch is tiny&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Low compute utilization&lt;/strong&gt;: GPU parallel capacity is underutilized during single-token generation&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;High latency&lt;/strong&gt;: Decoding K tokens requires K sequential model calls&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For example, LLaMA-70B typically achieves only 10-20 tokens/s — far below the ideal speed for interactive applications.&lt;/p&gt;
+
+&lt;h3 id=&quot;core-insight&quot;&gt;Core Insight&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Language modeling tasks often contain easier sub-tasks that can be well-approximated by more efficient models.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The basic workflow:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Draft&lt;/strong&gt;: A lightweight draft model quickly generates multiple candidate tokens&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Verify&lt;/strong&gt;: The target model verifies all candidates in a single forward pass&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Accept/Reject&lt;/strong&gt;: Correct tokens are accepted; incorrect ones are rejected and resampled&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Advantages:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;✅ &lt;strong&gt;Lossless acceleration&lt;/strong&gt;: Output distribution is identical to the target model&lt;/li&gt;
+  &lt;li&gt;✅ &lt;strong&gt;No retraining required&lt;/strong&gt;: Directly applicable to existing models&lt;/li&gt;
+  &lt;li&gt;✅ &lt;strong&gt;Efficient parallelism&lt;/strong&gt;: Multiple serial calls merge into one parallel verification&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;2-core-algorithms&quot;&gt;2. Core Algorithms&lt;/h2&gt;
+
+&lt;h3 id=&quot;21-speculative-sampling-deepmind-2023&quot;&gt;2.1 Speculative Sampling (DeepMind, 2023)&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Paper&lt;/strong&gt;: “Accelerating Large Language Model Decoding with Speculative Sampling” (&lt;a href=&quot;https://arxiv.org/abs/2302.01318&quot;&gt;arXiv:2302.01318&lt;/a&gt;)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Mechanism&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Draft model generates γ candidate tokens: x₁, x₂, …, xᵧ&lt;/li&gt;
+  &lt;li&gt;Target model computes probability distributions for all positions in parallel&lt;/li&gt;
+  &lt;li&gt;For each candidate xᵢ:
+    &lt;ul&gt;
+      &lt;li&gt;If q(xᵢ) ≥ p(xᵢ): accept directly (q: draft probability, p: target probability)&lt;/li&gt;
+      &lt;li&gt;If q(xᵢ) &amp;lt; p(xᵢ): accept with probability min(1, p(xᵢ)/q(xᵢ))&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;If rejected, sample from the adjusted distribution: p’(x) = max(0, p(x) - q(x)) / Z&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Key property&lt;/strong&gt;: The modified rejection sampling scheme guarantees the output distribution matches the target model exactly (within hardware precision).&lt;/p&gt;
+
+&lt;h3 id=&quot;22-speculative-decoding-google-2023&quot;&gt;2.2 Speculative Decoding (Google, 2023)&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Paper&lt;/strong&gt;: “Fast Inference from Transformers via Speculative Decoding” (&lt;a href=&quot;https://arxiv.org/abs/2211.17192&quot;&gt;arXiv:2211.17192&lt;/a&gt;, ICML 2023 Oral)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Contributions&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Proposed a speculative decoding framework applicable to T5 and similar models&lt;/li&gt;
+  &lt;li&gt;Achieved 2X-3X speedup on T5-XXL&lt;/li&gt;
+  &lt;li&gt;Key observation: parallel scoring has similar latency to single-token sampling&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;3-advanced-techniques&quot;&gt;3. Advanced Techniques&lt;/h2&gt;
+
+&lt;h3 id=&quot;31-tree-based-speculative-decoding-specinfer&quot;&gt;3.1 Tree-based Speculative Decoding (SpecInfer)&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Paper&lt;/strong&gt;: “Accelerating Generative LLM Serving with Tree-based Speculative Inference and Verification” (&lt;a href=&quot;https://arxiv.org/abs/2305.09781&quot;&gt;arXiv:2305.09781&lt;/a&gt;, ASPLOS’24)&lt;/p&gt;
+
+&lt;p&gt;Organizes candidate tokens as a &lt;strong&gt;tree structure&lt;/strong&gt; rather than a linear sequence:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;        [root]
+       /  |  \
+     x_1 x_2 x_3  (candidates from multiple draft models)
+    /|   |   |\
+  ...  ...  ...  (tree expansion)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Advantages&lt;/strong&gt;: Multiple draft models provide diverse candidate paths; a single verification pass checks the entire tree.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Performance&lt;/strong&gt;: Distributed inference 1.5-2.8x speedup; Offloading inference 2.6-3.5x speedup.&lt;/p&gt;
+
+&lt;h3 id=&quot;32-feature-level-speculation-eagle&quot;&gt;3.2 Feature-level Speculation (EAGLE)&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Paper&lt;/strong&gt;: “Speculative Sampling Requires Rethinking Feature Uncertainty” (&lt;a href=&quot;https://arxiv.org/abs/2401.15077&quot;&gt;arXiv:2401.15077&lt;/a&gt;)&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Feature-level (second-to-last layer) autoregression is simpler than token-level, but has inherent uncertainty constraints.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;EAGLE&lt;/strong&gt; addresses this by incorporating timestep-advanced token sequences to resolve uncertainty, achieving precise feature-level prediction with minimal overhead.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Performance&lt;/strong&gt;: LLaMA2-Chat 70B achieves 2.7x-3.5x speedup, doubling throughput.&lt;/p&gt;
+
+&lt;h3 id=&quot;33-multi-head-decoding-medusa&quot;&gt;3.3 Multi-head Decoding (Medusa)&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Paper&lt;/strong&gt;: “Medusa: Simple LLM Inference Acceleration Framework with Multiple Decoding Heads”&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;                    [Target Model]
+                          |
+                    [Base LM Head]
+                          |
+              +-----+-----+-----+-----+
+              |     |     |     |     |
+           Medusa_0 Medusa_1 ... Medusa_k
+           (predict t+1) (predict t+2)  (predict t+k)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Features&lt;/strong&gt;: Adds multiple decoding heads on top of the original model; no separate draft model needed; low training cost (only new heads are trained).&lt;/p&gt;
+
+&lt;h3 id=&quot;34-self-speculative-decoding&quot;&gt;3.4 Self-Speculative Decoding&lt;/h3&gt;
+
+&lt;p&gt;Uses the target model itself as the draft model through:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Early Exit&lt;/strong&gt;: Exit at intermediate layers for draft&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Layer Skipping&lt;/strong&gt;: Skip layers for fast draft&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Quantized Draft&lt;/strong&gt;: Use low-precision version for draft&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Advantages&lt;/strong&gt;: No additional model required; higher memory efficiency; suitable for edge deployment.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Representative works&lt;/strong&gt;: Kangaroo (2024), CATS (2026), SpecMoE (2026), KnapSpec (2026), Quasar (2026).&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;4-verification-mechanisms&quot;&gt;4. Verification Mechanisms&lt;/h2&gt;
+
+&lt;h3 id=&quot;standard-acceptance-criteria&quot;&gt;Standard Acceptance Criteria&lt;/h3&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;For each position i:
+  Acceptance probability = min(1, p_target(xᵢ) / p_draft(xᵢ))
+  
+Mathematical guarantee: Final distribution = Target model distribution (lossless)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;block-verification&quot;&gt;Block Verification&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;SpecTr-GBV&lt;/strong&gt; (2026): Verifies multiple candidates as a whole rather than per-token, improving efficiency.&lt;/p&gt;
+
+&lt;h3 id=&quot;adaptive-verification&quot;&gt;Adaptive Verification&lt;/h3&gt;
+
+&lt;p&gt;Adaptive strategies for MoE models, optimizing expert invocation during verification.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;5-training-free-vs-training-based-methods&quot;&gt;5. Training-free vs Training-based Methods&lt;/h2&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Category&lt;/th&gt;
+      &lt;th&gt;Method&lt;/th&gt;
+      &lt;th&gt;Advantage&lt;/th&gt;
+      &lt;th&gt;Disadvantage&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;Training-free&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;External Draft Model&lt;/td&gt;
+      &lt;td&gt;No training, directly usable&lt;/td&gt;
+      &lt;td&gt;Extra model memory&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;Training-free&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;Self-speculative&lt;/td&gt;
+      &lt;td&gt;No additional model&lt;/td&gt;
+      &lt;td&gt;Lower draft quality&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;Training-based&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;Medusa Heads&lt;/td&gt;
+      &lt;td&gt;High-quality draft&lt;/td&gt;
+      &lt;td&gt;Need to train new components&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;Training-based&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;EAGLE&lt;/td&gt;
+      &lt;td&gt;Precise feature-level prediction&lt;/td&gt;
+      &lt;td&gt;Need to train draft network&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;6-performance-comparison&quot;&gt;6. Performance Comparison&lt;/h2&gt;
+
+&lt;h3 id=&quot;61-speedup-results&quot;&gt;6.1 Speedup Results&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Model&lt;/th&gt;
+      &lt;th&gt;Method&lt;/th&gt;
+      &lt;th&gt;Speedup&lt;/th&gt;
+      &lt;th&gt;Notes&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;T5-XXL&lt;/td&gt;
+      &lt;td&gt;Google SD&lt;/td&gt;
+      &lt;td&gt;2-3x&lt;/td&gt;
+      &lt;td&gt;ICML 2023 original paper&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Chinchilla 70B&lt;/td&gt;
+      &lt;td&gt;DeepMind SS&lt;/td&gt;
+      &lt;td&gt;2-2.5x&lt;/td&gt;
+      &lt;td&gt;Distributed setup&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;LLaMA2-Chat 70B&lt;/td&gt;
+      &lt;td&gt;EAGLE&lt;/td&gt;
+      &lt;td&gt;2.7-3.5x&lt;/td&gt;
+      &lt;td&gt;Feature-level prediction&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Vicuna series&lt;/td&gt;
+      &lt;td&gt;Medusa&lt;/td&gt;
+      &lt;td&gt;2-2.5x&lt;/td&gt;
+      &lt;td&gt;Multi-head&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;LLaMA series&lt;/td&gt;
+      &lt;td&gt;SpecInfer&lt;/td&gt;
+      &lt;td&gt;1.5-2.8x&lt;/td&gt;
+      &lt;td&gt;Tree-based&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;62-acceptance-rate-by-task&quot;&gt;6.2 Acceptance Rate by Task&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Task Type&lt;/th&gt;
+      &lt;th&gt;Acceptance Rate&lt;/th&gt;
+      &lt;th&gt;Reason&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Code generation&lt;/td&gt;
+      &lt;td&gt;85-95%&lt;/td&gt;
+      &lt;td&gt;Structured output, draft easily matches&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Math reasoning&lt;/td&gt;
+      &lt;td&gt;70-80%&lt;/td&gt;
+      &lt;td&gt;Lower, complex reasoning paths&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;General conversation&lt;/td&gt;
+      &lt;td&gt;80-90%&lt;/td&gt;
+      &lt;td&gt;Moderate complexity&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Compliance text&lt;/td&gt;
+      &lt;td&gt;91.3%&lt;/td&gt;
+      &lt;td&gt;Low-entropy text&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;strong&gt;Insight&lt;/strong&gt;: Low-entropy, structured tasks have higher acceptance rates and better speedup.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;7-recent-advances-2025-2026&quot;&gt;7. Recent Advances (2025-2026)&lt;/h2&gt;
+
+&lt;h3 id=&quot;self-speculative-decoding&quot;&gt;Self-Speculative Decoding&lt;/h3&gt;
+&lt;p&gt;| Paper | Key Technique |
+|——-|—————|
+| CATS (2026) | Cascaded Adaptive Tree Speculation |
+| SlimSpec (2026) | Low-Rank Draft LM-Head |
+| SpecMoE (2026) | Self-Assisted Speculative for MoE |
+| KnapSpec (2026) | Adaptive Layer Selection as Knapsack |
+| Quasar (2026) | Quantized Self-Speculative |&lt;/p&gt;
+
+&lt;h3 id=&quot;multi-draft-methods&quot;&gt;Multi-Draft Methods&lt;/h3&gt;
+&lt;p&gt;| Paper | Key Technique |
+|——-|—————|
+| UniVer (2026) | Unified Multi-step/Multi-draft |
+| SpecTr-GBV (2026) | Multi-Draft Block Verification |
+| Hydra (2024) | Sequentially-Dependent Draft Heads |&lt;/p&gt;
+
+&lt;h3 id=&quot;domain-specific-applications&quot;&gt;Domain-Specific Applications&lt;/h3&gt;
+&lt;p&gt;| Paper | Application |
+|——-|————|
+| CoVSpec (2026) | Device-Edge VLM Co-Inference |
+| SpecFed (2026) | Federated LLM Inference |
+| DiP-SD (2026) | Distributed Pipelined SD at Edge |&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;8-open-source-projects&quot;&gt;8. Open Source Projects&lt;/h2&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Project&lt;/th&gt;
+      &lt;th&gt;Organization&lt;/th&gt;
+      &lt;th&gt;SD Support&lt;/th&gt;
+      &lt;th&gt;Highlights&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;vLLM&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;UC Berkeley&lt;/td&gt;
+      &lt;td&gt;✅ Built-in&lt;/td&gt;
+      &lt;td&gt;High-performance inference, PagedAttention&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;TensorRT-LLM&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;NVIDIA&lt;/td&gt;
+      &lt;td&gt;✅ Built-in&lt;/td&gt;
+      &lt;td&gt;GPU-optimized, production deployment&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;llama.cpp&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;Georgi Gerganov&lt;/td&gt;
+      &lt;td&gt;✅ Supported&lt;/td&gt;
+      &lt;td&gt;CPU/edge-friendly&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;MLX-LM&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;Apple&lt;/td&gt;
+      &lt;td&gt;✅ Supported&lt;/td&gt;
+      &lt;td&gt;Apple Silicon optimization&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;Medusa&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;FasterDecoding&lt;/td&gt;
+      &lt;td&gt;✅ Purpose-built&lt;/td&gt;
+      &lt;td&gt;Multi-head decoding&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;EAGLE&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;SafeAILab&lt;/td&gt;
+      &lt;td&gt;✅ Purpose-built&lt;/td&gt;
+      &lt;td&gt;Feature-level speculation&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;SpecInfer/FlexFlow&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;CMU&lt;/td&gt;
+      &lt;td&gt;✅ Purpose-built&lt;/td&gt;
+      &lt;td&gt;Tree-based inference&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;9-future-directions-and-challenges&quot;&gt;9. Future Directions and Challenges&lt;/h2&gt;
+
+&lt;h3 id=&quot;open-challenges&quot;&gt;Open Challenges&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Technical&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Draft-Target matching&lt;/strong&gt;: How to optimally select draft models&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Acceptance rate optimization&lt;/strong&gt;: Low acceptance on complex tasks&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Long context&lt;/strong&gt;: KV cache compatibility with speculative decoding&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Dynamic load&lt;/strong&gt;: Heterogeneous request handling&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Systems&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Memory overhead&lt;/strong&gt;: Multi-model/multi-head memory pressure&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Scheduling complexity&lt;/strong&gt;: Multi-tenant optimization&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Edge deployment&lt;/strong&gt;: Feasibility of on-device speculative decoding&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;predicted-directions&quot;&gt;Predicted Directions&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Training-aware speculative decoding&lt;/strong&gt;: Deep integration with model training&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Hardware co-design&lt;/strong&gt;: Dedicated accelerator support for SD&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Intelligent draft selection&lt;/strong&gt;: Context-aware dynamic draft strategies&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Multi-modal unification&lt;/strong&gt;: Unified speculative frameworks for text/image/video&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Leviathan, Y., et al. “Fast Inference from Transformers via Speculative Decoding.” ICML 2023. &lt;a href=&quot;https://arxiv.org/abs/2211.17192&quot;&gt;arXiv:2211.17192&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Chen, C., et al. “Accelerating Large Language Model Decoding with Speculative Sampling.” &lt;a href=&quot;https://arxiv.org/abs/2302.01318&quot;&gt;arXiv:2302.01318&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Miao, X., et al. “Accelerating Generative LLM Serving with Tree-based Speculative Inference and Verification.” ASPLOS 2024. &lt;a href=&quot;https://arxiv.org/abs/2305.09781&quot;&gt;arXiv:2305.09781&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Li, Y., et al. “Speculative Sampling Requires Rethinking Feature Uncertainty.” &lt;a href=&quot;https://arxiv.org/abs/2401.15077&quot;&gt;arXiv:2401.15077&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Cai, T., et al. “Medusa: Simple LLM Inference Acceleration Framework with Multiple Decoding Heads.”&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-bibtex highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;@article&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;leviathan2023fast&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{Fast Inference from Transformers via Speculative Decoding}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;author&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{Leviathan, Yaniv and Kalman, Matan and Matias, Yossi}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;journal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{ICML}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;year&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{2023}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nc&quot;&gt;@article&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;chen2023accelerating&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{Accelerating Large Language Model Decoding with Speculative Sampling}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;author&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{Chen, Charlie and others}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;journal&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{arXiv preprint arXiv:2302.01318}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;year&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{2023}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nc&quot;&gt;@inproceedings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;miao2024specinfer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{Accelerating Generative LLM Serving with Tree-based Speculative Inference and Verification}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;author&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{Miao, Xupeng and others}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;booktitle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{ASPLOS}&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;year&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;{2024}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>willXu</name></author><category term="Speculative Decoding" /><category term="LLM" /><category term="Deep Learning" /><category term="NLP" /><summary type="html">Speculative Decoding: A Technical Survey</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/image/CV/cv5.png" /></entry><entry><title type="html">Harness Engineering</title><link href="http://localhost:4000/2026/05/13/harness-engineering.html" rel="alternate" type="text/html" title="Harness Engineering" /><published>2026-05-13T00:00:00+08:00</published><updated>2026-05-13T00:00:00+08:00</updated><id>http://localhost:4000/2026/05/13/harness-engineering</id><content type="html" xml:base="http://localhost:4000/2026/05/13/harness-engineering.html">&lt;p&gt;Write your content here. Markdown is supported!&lt;/p&gt;</content><author><name>willXu</name></author><category term="Agent LLM" /><summary type="html">Write your content here. Markdown is supported!</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/image/CV/cv5.png" /></entry><entry><title type="html">2015 Taobao Challenge Of User Classification</title><link href="http://localhost:4000/2019/05/19/2015-TaoBao-Challenge-of-User-Classification.html" rel="alternate" type="text/html" title="2015 Taobao Challenge Of User Classification" /><published>2019-05-19T00:00:00+08:00</published><updated>2019-05-19T00:00:00+08:00</updated><id>http://localhost:4000/2019/05/19/2015-TaoBao-Challenge-of-User-Classification</id><content type="html" xml:base="http://localhost:4000/2019/05/19/2015-TaoBao-Challenge-of-User-Classification.html">&lt;h2 id=&quot;2015-taobao-challenge-of-user-classification&quot;&gt;2015 TaoBao Challenge of User Classification&lt;/h2&gt;
 
 &lt;ul id=&quot;markdown-toc&quot;&gt;
   &lt;li&gt;&lt;a href=&quot;#2015-taobao-challenge-of-user-classification&quot; id=&quot;markdown-toc-2015-taobao-challenge-of-user-classification&quot;&gt;2015 TaoBao Challenge of User Classification&lt;/a&gt;    &lt;ul&gt;
